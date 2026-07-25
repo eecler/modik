@@ -1,0 +1,312 @@
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/Users/markterentev/.gradle/wrapper/dists/gradle-8.11.1-bin/bpt9gzteqjrbo1mjrsomdt32c/gradle-8.11.1/lib/native-platform-0.22-milestone-26.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+> Task :createMinecraftArtifacts UP-TO-DATE
+
+> Task :compileJava FAILED
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveBlock.java:4: error: cannot find symbol
+import petrolpark.mc.destroy.DestroyBlockEntityTypes;
+                            ^
+  symbol:   class DestroyBlockEntityTypes
+  location: package petrolpark.mc.destroy
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveBlock.java:6: error: cannot find symbol
+import petrolpark.mc.destroy.DestroyVoxelShapes;
+                            ^
+  symbol:   class DestroyVoxelShapes
+  location: package petrolpark.mc.destroy
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveBlockEntity.java:9: error: cannot find symbol
+import petrolpark.mc.destroy.DestroyRecipeTypes;
+                            ^
+  symbol:   class DestroyRecipeTypes
+  location: package petrolpark.mc.destroy
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/SievingRecipe.java:3: error: cannot find symbol
+import petrolpark.mc.destroy.DestroyRecipeTypes;
+                            ^
+  symbol:   class DestroyRecipeTypes
+  location: package petrolpark.mc.destroy
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/SievingRecipe.java:11: error: wrong number of type arguments; required 2
+public class SievingRecipe extends ProcessingRecipe<RecipeWrapper> implements IFTLProcessingRecipe<SievingRecipe> {
+                                                   ^
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveVisual.java:39: error: reference to Context is ambiguous
+    public void beginFrame(Context ctx) {
+                           ^
+  both interface dev.engine_room.flywheel.api.visual.TickableVisual.Context in TickableVisual and interface dev.engine_room.flywheel.api.visual.DynamicVisual.Context in DynamicVisual match
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveBlock.java:60: error: cannot find symbol
+        return DestroyVoxelShapes.MECHANICAL_SIEVE;
+               ^
+  symbol:   variable DestroyVoxelShapes
+  location: class MechanicalSieveBlock
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveBlock.java:65: error: cannot find symbol
+        if (context instanceof EntityCollisionContext entityContext && entityContext.getEntity() instanceof ItemEntity) return DestroyVoxelShapes.MECHANICAL_SIEVE_COLLISION;
+                                                                                                                               ^
+  symbol:   variable DestroyVoxelShapes
+  location: class MechanicalSieveBlock
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveBlock.java:73: error: cannot find symbol
+		if (!DestroyBlocks.MECHANICAL_SIEVE.has(level.getBlockState(pos)) || !(entity instanceof ItemEntity item) || !entity.isAlive()) return;
+		                  ^
+  symbol:   variable MECHANICAL_SIEVE
+  location: class DestroyBlocks
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveBlock.java:105: error: package DestroyBlockEntityTypes does not exist
+        return DestroyBlockEntityTypes.MECHANICAL_SIEVE.get();
+                                      ^
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveBlockEntity.java:54: error: package DestroyRecipeTypes does not exist
+        luckyBehaviour = new FTLRecipesBehaviour(this, DestroyRecipeTypes.SIEVING::is);
+                                                                         ^
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveBlockEntity.java:72: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveBlockEntity.java:74: error: method read in class KineticBlockEntity cannot be applied to given types;
+        super.read(compound, clientPacket);
+             ^
+  required: CompoundTag,Provider,boolean
+  found:    CompoundTag,boolean
+  reason: actual and formal argument lists differ in length
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveBlockEntity.java:83: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveBlockEntity.java:85: error: method write in class KineticBlockEntity cannot be applied to given types;
+        super.write(compound, clientPacket);
+             ^
+  required: CompoundTag,Provider,boolean
+  found:    CompoundTag,boolean
+  reason: actual and formal argument lists differ in length
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveBlockEntity.java:119: error: incompatible types: SievingRecipe cannot be converted to RandomSource
+                for (ItemStack stack : RecipeHelper.rollResults(item.getRecipe(), luckyBehaviour.getPlayer(), entity.getItem().getCount())) {
+                                                                              ^
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveBlockEntity.java:153: error: package DestroyRecipeTypes does not exist
+            Optional<SievingRecipe> recipeOp = DestroyRecipeTypes.SIEVING.find(wrapper, getLevel());
+                                                                 ^
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveBlockEntity.java:157: error: cannot find symbol
+        return new ProcessingItem(entity, processingTime == -1 ? recipe.getProcessingDuration() : processingTime, recipe);
+                                                                       ^
+  symbol:   method getProcessingDuration()
+  location: variable recipe of type SievingRecipe
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/SievingRecipe.java:11: error: type argument SievingRecipe is not within bounds of type-variable T
+public class SievingRecipe extends ProcessingRecipe<RecipeWrapper> implements IFTLProcessingRecipe<SievingRecipe> {
+                                                                                                   ^
+  where T is a type-variable:
+    T extends ProcessingRecipe<?,?> declared in interface IFTLProcessingRecipe
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/SievingRecipe.java:11: error: SievingRecipe is not abstract and does not override abstract method getFirstTimeLuckyKey() in IFTLProcessingRecipe
+public class SievingRecipe extends ProcessingRecipe<RecipeWrapper> implements IFTLProcessingRecipe<SievingRecipe> {
+       ^
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/SievingRecipe.java:16: error: cannot find symbol
+        super(DestroyRecipeTypes.SIEVING, params);
+              ^
+  symbol:   variable DestroyRecipeTypes
+  location: class SievingRecipe
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/SievingRecipe.java:19: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/SievingRecipe.java:22: error: cannot find symbol
+		return ingredients.get(0).test(inv.getItem(0));
+		       ^
+  symbol:   variable ingredients
+  location: class SievingRecipe
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/SievingRecipe.java:25: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/SievingRecipe.java:30: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/SievingRecipe.java:35: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/SievingRecipe.java:45: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/SievingRecipe.java:50: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveRenderer.java:43: error: cannot find symbol
+        CachedBuffers.partial(DestroyPartials.MECHANICAL_SIEVE, state)
+                                             ^
+  symbol:   variable MECHANICAL_SIEVE
+  location: class DestroyPartials
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveRenderer.java:52: error: cannot find symbol
+        CachedBuffers.partial(DestroyPartials.MECHANICAL_SIEVE_LINKAGES, state)
+                                             ^
+  symbol:   variable MECHANICAL_SIEVE_LINKAGES
+  location: class DestroyPartials
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveRenderer.java:65: error: cannot find symbol
+        return CachedBuffers.partialFacingVertical(DestroyPartials.MECHANICAL_SIEVE_SHAFT, state, state.getValue(MechanicalSieveBlock.X) ? Direction.WEST : Direction.NORTH);
+                                                                  ^
+  symbol:   variable MECHANICAL_SIEVE_SHAFT
+  location: class DestroyPartials
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveVisual.java:27: error: cannot find symbol
+        super(ctx, blockEntity, partialTick,  Models.partial(DestroyPartials.MECHANICAL_SIEVE_SHAFT));
+                                                                            ^
+  symbol:   variable MECHANICAL_SIEVE_SHAFT
+  location: class DestroyPartials
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveVisual.java:29: error: cannot find symbol
+        sieve = instancerProvider().instancer(InstanceTypes.TRANSFORMED, Models.partial(DestroyPartials.MECHANICAL_SIEVE))
+                                                                                                       ^
+  symbol:   variable MECHANICAL_SIEVE
+  location: class DestroyPartials
+/Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveVisual.java:32: error: cannot find symbol
+        linkages = instancerProvider().instancer(InstanceTypes.TRANSFORMED, Models.partial(DestroyPartials.MECHANICAL_SIEVE_LINKAGES))
+                                                                                                          ^
+  symbol:   variable MECHANICAL_SIEVE_LINKAGES
+  location: class DestroyPartials
+Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+34 errors
+[Incubating] Problems report is available at: file:///Users/markterentev/Documents/GitHub/modik/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileJava'.
+> Compilation failed; see the compiler output below.
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveBlockEntity.java:72: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveBlockEntity.java:83: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/SievingRecipe.java:19: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/SievingRecipe.java:25: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/SievingRecipe.java:30: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/SievingRecipe.java:35: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/SievingRecipe.java:45: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/SievingRecipe.java:50: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/SievingRecipe.java:11: error: SievingRecipe is not abstract and does not override abstract method getFirstTimeLuckyKey() in IFTLProcessingRecipe
+  public class SievingRecipe extends ProcessingRecipe<RecipeWrapper> implements IFTLProcessingRecipe<SievingRecipe> {
+         ^
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveBlockEntity.java:119: error: incompatible types: SievingRecipe cannot be converted to RandomSource
+                  for (ItemStack stack : RecipeHelper.rollResults(item.getRecipe(), luckyBehaviour.getPlayer(), entity.getItem().getCount())) {
+                                                                                ^
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveVisual.java:39: error: reference to Context is ambiguous
+      public void beginFrame(Context ctx) {
+                             ^
+    both interface dev.engine_room.flywheel.api.visual.TickableVisual.Context in TickableVisual and interface dev.engine_room.flywheel.api.visual.DynamicVisual.Context in DynamicVisual match
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveBlock.java:105: error: package DestroyBlockEntityTypes does not exist
+          return DestroyBlockEntityTypes.MECHANICAL_SIEVE.get();
+                                        ^
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveBlockEntity.java:54: error: package DestroyRecipeTypes does not exist
+          luckyBehaviour = new FTLRecipesBehaviour(this, DestroyRecipeTypes.SIEVING::is);
+                                                                           ^
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveBlockEntity.java:153: error: package DestroyRecipeTypes does not exist
+              Optional<SievingRecipe> recipeOp = DestroyRecipeTypes.SIEVING.find(wrapper, getLevel());
+                                                                   ^
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/SievingRecipe.java:11: error: type argument SievingRecipe is not within bounds of type-variable T
+  public class SievingRecipe extends ProcessingRecipe<RecipeWrapper> implements IFTLProcessingRecipe<SievingRecipe> {
+                                                                                                     ^
+    where T is a type-variable:
+      T extends ProcessingRecipe<?,?> declared in interface IFTLProcessingRecipe
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveBlockEntity.java:157: error: cannot find symbol
+          return new ProcessingItem(entity, processingTime == -1 ? recipe.getProcessingDuration() : processingTime, recipe);
+                                                                         ^
+    symbol:   method getProcessingDuration()
+    location: variable recipe of type SievingRecipe
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveBlockEntity.java:74: error: method read in class KineticBlockEntity cannot be applied to given types;
+          super.read(compound, clientPacket);
+               ^
+    required: CompoundTag,Provider,boolean
+    found:    CompoundTag,boolean
+    reason: actual and formal argument lists differ in length
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveBlockEntity.java:85: error: method write in class KineticBlockEntity cannot be applied to given types;
+          super.write(compound, clientPacket);
+               ^
+    required: CompoundTag,Provider,boolean
+    found:    CompoundTag,boolean
+    reason: actual and formal argument lists differ in length
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/SievingRecipe.java:11: error: wrong number of type arguments; required 2
+  public class SievingRecipe extends ProcessingRecipe<RecipeWrapper> implements IFTLProcessingRecipe<SievingRecipe> {
+                                                     ^
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveBlock.java:4: error: cannot find symbol
+  import petrolpark.mc.destroy.DestroyBlockEntityTypes;
+                              ^
+    symbol:   class DestroyBlockEntityTypes
+    location: package petrolpark.mc.destroy
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveBlock.java:6: error: cannot find symbol
+  import petrolpark.mc.destroy.DestroyVoxelShapes;
+                              ^
+    symbol:   class DestroyVoxelShapes
+    location: package petrolpark.mc.destroy
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveBlockEntity.java:9: error: cannot find symbol
+  import petrolpark.mc.destroy.DestroyRecipeTypes;
+                              ^
+    symbol:   class DestroyRecipeTypes
+    location: package petrolpark.mc.destroy
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/SievingRecipe.java:3: error: cannot find symbol
+  import petrolpark.mc.destroy.DestroyRecipeTypes;
+                              ^
+    symbol:   class DestroyRecipeTypes
+    location: package petrolpark.mc.destroy
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveBlock.java:60: error: cannot find symbol
+          return DestroyVoxelShapes.MECHANICAL_SIEVE;
+                 ^
+    symbol:   variable DestroyVoxelShapes
+    location: class MechanicalSieveBlock
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveBlock.java:65: error: cannot find symbol
+          if (context instanceof EntityCollisionContext entityContext && entityContext.getEntity() instanceof ItemEntity) return DestroyVoxelShapes.MECHANICAL_SIEVE_COLLISION;
+                                                                                                                                 ^
+    symbol:   variable DestroyVoxelShapes
+    location: class MechanicalSieveBlock
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveBlock.java:73: error: cannot find symbol
+  		if (!DestroyBlocks.MECHANICAL_SIEVE.has(level.getBlockState(pos)) || !(entity instanceof ItemEntity item) || !entity.isAlive()) return;
+  		                  ^
+    symbol:   variable MECHANICAL_SIEVE
+    location: class DestroyBlocks
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/SievingRecipe.java:16: error: cannot find symbol
+          super(DestroyRecipeTypes.SIEVING, params);
+                ^
+    symbol:   variable DestroyRecipeTypes
+    location: class SievingRecipe
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/SievingRecipe.java:22: error: cannot find symbol
+  		return ingredients.get(0).test(inv.getItem(0));
+  		       ^
+    symbol:   variable ingredients
+    location: class SievingRecipe
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveRenderer.java:43: error: cannot find symbol
+          CachedBuffers.partial(DestroyPartials.MECHANICAL_SIEVE, state)
+                                               ^
+    symbol:   variable MECHANICAL_SIEVE
+    location: class DestroyPartials
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveRenderer.java:52: error: cannot find symbol
+          CachedBuffers.partial(DestroyPartials.MECHANICAL_SIEVE_LINKAGES, state)
+                                               ^
+    symbol:   variable MECHANICAL_SIEVE_LINKAGES
+    location: class DestroyPartials
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveRenderer.java:65: error: cannot find symbol
+          return CachedBuffers.partialFacingVertical(DestroyPartials.MECHANICAL_SIEVE_SHAFT, state, state.getValue(MechanicalSieveBlock.X) ? Direction.WEST : Direction.NORTH);
+                                                                    ^
+    symbol:   variable MECHANICAL_SIEVE_SHAFT
+    location: class DestroyPartials
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveVisual.java:27: error: cannot find symbol
+          super(ctx, blockEntity, partialTick,  Models.partial(DestroyPartials.MECHANICAL_SIEVE_SHAFT));
+                                                                              ^
+    symbol:   variable MECHANICAL_SIEVE_SHAFT
+    location: class DestroyPartials
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveVisual.java:29: error: cannot find symbol
+          sieve = instancerProvider().instancer(InstanceTypes.TRANSFORMED, Models.partial(DestroyPartials.MECHANICAL_SIEVE))
+                                                                                                         ^
+    symbol:   variable MECHANICAL_SIEVE
+    location: class DestroyPartials
+  /Users/markterentev/Documents/GitHub/modik/src/main/java/petrolpark/mc/destroy/content/processing/sieve/MechanicalSieveVisual.java:32: error: cannot find symbol
+          linkages = instancerProvider().instancer(InstanceTypes.TRANSFORMED, Models.partial(DestroyPartials.MECHANICAL_SIEVE_LINKAGES))
+                                                                                                            ^
+    symbol:   variable MECHANICAL_SIEVE_LINKAGES
+    location: class DestroyPartials
+  Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+  34 errors
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to get full insights.
+
+BUILD FAILED in 742ms
+2 actionable tasks: 1 executed, 1 up-to-date

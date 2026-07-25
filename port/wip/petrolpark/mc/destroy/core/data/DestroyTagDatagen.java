@@ -1,6 +1,6 @@
 package petrolpark.mc.destroy.core.data;
 
-import petrolpark.mc.library.compat.CompatMods;
+import petrolpark.mc.library.compat.Mods;
 import petrolpark.mc.destroy.Destroy;
 import petrolpark.mc.destroy.DestroyItems;
 import petrolpark.mc.destroy.DestroyTags;

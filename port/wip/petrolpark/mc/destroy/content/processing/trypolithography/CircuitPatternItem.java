@@ -1,13 +1,13 @@
 package petrolpark.mc.destroy.content.processing.trypolithography;
 
-import petrolpark.mc.library.compat.create.item.directional.IDirectionalOnBelt;
+import petrolpark.mc.library.compat.create.core.world.item.transported.IDirectionalBeltItem;
 import petrolpark.mc.library.util.NBTHelper;
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyItem;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
-public class CircuitPatternItem extends Item implements IDirectionalOnBelt {
+public class CircuitPatternItem extends Item implements IDirectionalBeltItem {
 
     public CircuitPatternItem(Properties properties) {
         super(properties);

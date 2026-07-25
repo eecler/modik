@@ -6,7 +6,7 @@ import java.util.function.Supplier;
 
 import petrolpark.mc.destroy.client.DestroyPonderTags;
 import petrolpark.mc.library.network.packet.S2CPacket;
-import petrolpark.mc.library.recipe.ingredient.BlockIngredient;
+import petrolpark.mc.library.core.data.recipe.ingredient.BlockIngredient;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent.Context;

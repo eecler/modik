@@ -1,9 +1,9 @@
 // package petrolpark.mc.destroy.core.pollution;
 
-// import petrolpark.mc.library.client.ponder.PonderPlayer;
-// import petrolpark.mc.library.client.ponder.instruction.AdvanceTimeOfDayInstruction;
-// import petrolpark.mc.library.client.ponder.instruction.CreateFishingHookInstruction;
-// import petrolpark.mc.library.client.ponder.particle.PetrolparkEmitters;
+// import petrolpark.mc.library.core.client.ponder.PonderPlayer;
+// import petrolpark.mc.library.core.client.ponder.instruction.AdvanceTimeOfDayInstruction;
+// import petrolpark.mc.library.core.client.ponder.instruction.CreateFishingHookInstruction;
+// import petrolpark.mc.library.core.client.ponder.particle.PetrolparkEmitters;
 // import petrolpark.mc.library.destroy.DestroyItems;
 // import petrolpark.mc.library.destroy.chemistry.legacy.LegacyMixture;
 // import petrolpark.mc.library.destroy.chemistry.legacy.index.DestroyMolecules;

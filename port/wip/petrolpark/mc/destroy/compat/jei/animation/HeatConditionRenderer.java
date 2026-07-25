@@ -20,7 +20,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 public class HeatConditionRenderer {
 
@@ -41,7 +41,7 @@ public class HeatConditionRenderer {
      */
     public static void addHeatConditionSlots(IRecipeLayoutBuilder builder, int x, int y, HeatCondition requiredHeat) {
         List<ItemStack> blazeTreatStacks = new ArrayList<>();
-        ForgeRegistries.ITEMS.tags().getTag(AllTags.AllItemTags.BLAZE_BURNER_FUEL_SPECIAL.tag).forEach(item -> {
+        BuiltInRegistries.ITEM.tags().getTag(AllTags.AllItemTags.BLAZE_BURNER_FUEL_SPECIAL.tag).forEach(item -> {
             blazeTreatStacks.add(new ItemStack(item));
         });
         

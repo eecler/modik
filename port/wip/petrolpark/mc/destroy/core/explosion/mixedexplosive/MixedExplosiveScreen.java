@@ -3,7 +3,7 @@ package petrolpark.mc.destroy.core.explosion.mixedexplosive;
 import java.util.List;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import petrolpark.mc.library.compat.CompatMods;
+import petrolpark.mc.library.compat.Mods;
 import petrolpark.mc.destroy.client.DestroyGuiTextures;
 import petrolpark.mc.destroy.client.DestroyIcons;
 import petrolpark.mc.destroy.client.DestroyLang;

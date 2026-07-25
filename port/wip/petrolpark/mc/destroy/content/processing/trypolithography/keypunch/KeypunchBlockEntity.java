@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicReference;
 
-import petrolpark.mc.library.compat.create.block.entity.behaviour.AbstractRememberPlacerBehaviour;
-import petrolpark.mc.library.compat.create.item.directional.DirectionalTransportedItemStack;
-import petrolpark.mc.library.compat.create.item.directional.IDirectionalOnBelt;
+import petrolpark.mc.library.compat.create.core.world.block.entity.behaviour.AbstractRememberPlacerBehaviour;
+import petrolpark.mc.library.compat.create.core.world.item.transported.DirectionalTransportedItemStack;
+import petrolpark.mc.library.compat.create.core.world.item.transported.IDirectionalBeltItem;
 import petrolpark.mc.destroy.Destroy;
 import petrolpark.mc.destroy.DestroyAdvancementTrigger;
 import petrolpark.mc.destroy.DestroyMessages;
@@ -89,7 +89,7 @@ public class KeypunchBlockEntity extends KineticBlockEntity implements ICircuitP
 
         if (!simulate) {
             ItemStack resultStack = CircuitMaskItem.contaminate(input.stack, uuid);
-            if (!(resultStack.getItem() instanceof IDirectionalOnBelt)) {
+            if (!(resultStack.getItem() instanceof IDirectionalBeltItem)) {
                 output.set(new TransportedItemStack(resultStack));
                 return true;
             };

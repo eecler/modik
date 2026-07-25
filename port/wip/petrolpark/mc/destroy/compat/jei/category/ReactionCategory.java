@@ -12,7 +12,7 @@ import java.util.Optional;
 import org.joml.Vector2i;
 
 import com.ibm.icu.text.DecimalFormat;
-import petrolpark.mc.library.client.rendering.PetrolparkGuiTexture;
+import petrolpark.mc.library.core.client.rendering.PetrolparkGuiTexture;
 import petrolpark.mc.library.compat.jei.JEITextureDrawable;
 import petrolpark.mc.destroy.Destroy;
 import petrolpark.mc.destroy.DestroyItems;

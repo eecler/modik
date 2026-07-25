@@ -23,8 +23,8 @@ import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.minecraftforge.forgespi.language.IModFileInfo;
 import net.minecraftforge.forgespi.locating.IModFile;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegisterEvent;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.neoforged.neoforge.registries.RegisterEvent;
 
 @EventBusSubscriber(modid = Destroy.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class DestroyCommonModEvents {
@@ -65,7 +65,7 @@ public class DestroyCommonModEvents {
 
     @SubscribeEvent
     public static final void registerIngredientTypes(RegisterEvent event) {
-        if (event.getRegistryKey().equals(ForgeRegistries.Keys.RECIPE_SERIALIZERS)) {
+        if (event.getRegistryKey().equals(BuiltInRegistries.Keys.RECIPE_SERIALIZERS)) {
             // Ingredient types
             CraftingHelper.register(Destroy.asResource("circuit_pattern_item"), CircuitPatternIngredient.SERIALIZER);
             CraftingHelper.register(Destroy.asResource("example_circuit_mask"), CircuitDeployerApplicationRecipe.ExampleMaskIngredient.SERIALIZER); // Should never actually appear in a JSON recipe

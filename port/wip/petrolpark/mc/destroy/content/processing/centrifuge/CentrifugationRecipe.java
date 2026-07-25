@@ -6,12 +6,12 @@ import java.util.HashSet;
 import com.ibm.icu.impl.locale.XCldrStub.ImmutableSet;
 import petrolpark.mc.destroy.DestroyRecipeTypes;
 import petrolpark.mc.destroy.core.recipe.SingleFluidRecipe;
-import petrolpark.mc.library.recipe.advancedprocessing.IBiomeSpecificProcessingRecipe;
+import petrolpark.mc.library.core.data.recipe.IBiomeSpecificRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeParams;
 
 import net.neoforged.neoforge.fluids.FluidStack;
 
-public class CentrifugationRecipe extends SingleFluidRecipe implements IBiomeSpecificProcessingRecipe {
+public class CentrifugationRecipe extends SingleFluidRecipe implements IBiomeSpecificRecipe {
     
     private Set<BiomeValue> biomes = new HashSet<>();
 

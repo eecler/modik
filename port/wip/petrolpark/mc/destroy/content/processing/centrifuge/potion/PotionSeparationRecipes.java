@@ -24,7 +24,7 @@ import net.minecraft.world.item.alchemy.PotionBrewing;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 public class PotionSeparationRecipes {
 
@@ -46,7 +46,7 @@ public class PotionSeparationRecipes {
 
             for (Entry<Item, FluidStack> entry : PotionFluidMixingRecipes.FLUID_EQUIVALENTS.entrySet()) {
                 if (mix.ingredient.test(new ItemStack(entry.getKey()))) {
-                    addEachPotion: for (Potion potion : ForgeRegistries.POTIONS.getValues()) {
+                    addEachPotion: for (Potion potion : BuiltInRegistries.POTION.getValues()) {
                         Pair<Potion, BottleType> potionAndType = Pair.of(potion, toBottleType);
                         if (potion == Potions.EMPTY) continue addEachPotion;
         
@@ -78,7 +78,7 @@ public class PotionSeparationRecipes {
 		};
 
         // Lowest priority - split one potion with multiple effects into multiple potions
-        for (Potion potion : ForgeRegistries.POTIONS.getValues()) {
+        for (Potion potion : BuiltInRegistries.POTION.getValues()) {
             if (potion == Potions.EMPTY) continue;
             List<MobEffectInstance> effects = potion.getEffects();
             if (effects.size() > 1) {

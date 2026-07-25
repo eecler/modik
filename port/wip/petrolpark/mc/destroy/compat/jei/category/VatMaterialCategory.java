@@ -3,14 +3,14 @@ package petrolpark.mc.destroy.compat.jei.category;
 import java.util.List;
 import java.util.Collections;
 
-import petrolpark.mc.library.client.rendering.PetrolparkGuiTexture;
+import petrolpark.mc.library.core.client.rendering.PetrolparkGuiTexture;
 import petrolpark.mc.library.compat.jei.category.PetrolparkRecipeCategory;
 import petrolpark.mc.destroy.Destroy;
 import petrolpark.mc.destroy.DestroyBlocks;
 import petrolpark.mc.destroy.client.DestroyLang;
 import petrolpark.mc.destroy.config.DestroyAllConfigs;
 import petrolpark.mc.destroy.core.chemistry.vat.material.VatMaterial;
-import petrolpark.mc.library.recipe.ingredient.BlockIngredient;
+import petrolpark.mc.library.core.data.recipe.ingredient.BlockIngredient;
 import com.simibubi.create.foundation.item.TooltipHelper;
 import net.createmod.catnip.lang.FontHelper.Palette;
 

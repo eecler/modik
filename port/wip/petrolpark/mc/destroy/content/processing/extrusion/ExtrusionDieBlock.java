@@ -2,7 +2,7 @@ package petrolpark.mc.destroy.content.processing.extrusion;
 
 import javax.annotation.Nullable;
 
-import petrolpark.mc.library.compat.create.block.entity.behaviour.AbstractRememberPlacerBehaviour;
+import petrolpark.mc.library.compat.create.core.world.block.entity.behaviour.AbstractRememberPlacerBehaviour;
 import petrolpark.mc.destroy.DestroyBlockEntityTypes;
 import petrolpark.mc.destroy.DestroyDamageSources;
 import petrolpark.mc.destroy.DestroyVoxelShapes;

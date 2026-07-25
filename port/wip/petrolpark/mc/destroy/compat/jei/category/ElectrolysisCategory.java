@@ -14,7 +14,7 @@ import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 public class ElectrolysisCategory extends BasinCategory {
 
@@ -38,7 +38,7 @@ public class ElectrolysisCategory extends BasinCategory {
     public void registerRecipes(IRecipeRegistration registration) {
         super.registerRecipes(registration);
         CreateJEI.<DiscElectroplatingRecipe>consumeTypedRecipes(recipe -> {
-            if (recipe.original) registration.addRecipes(type, ForgeRegistries.ITEMS.tags().getTag(ItemTags.MUSIC_DISCS).stream().filter(item -> !item.equals(DestroyItems.BLANK_MUSIC_DISC.get())).map(
+            if (recipe.original) registration.addRecipes(type, BuiltInRegistries.ITEM.tags().getTag(ItemTags.MUSIC_DISCS).stream().filter(item -> !item.equals(DestroyItems.BLANK_MUSIC_DISC.get())).map(
                 item -> recipe.copyWithDisc(new ItemStack(item))
             ).toList());
         }, DestroyRecipeTypes.DISC_ELECTROPLATING.getType());

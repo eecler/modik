@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import petrolpark.mc.library.client.rendering.PetrolparkGuiTexture;
+import petrolpark.mc.library.core.client.rendering.PetrolparkGuiTexture;
 import petrolpark.mc.library.compat.jei.category.PetrolparkRecipeCategory;
 import petrolpark.mc.destroy.DestroyItems;
 import petrolpark.mc.destroy.compat.jei.animation.GUIBlockRenderer;

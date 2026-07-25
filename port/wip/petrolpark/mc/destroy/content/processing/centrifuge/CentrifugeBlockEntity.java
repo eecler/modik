@@ -67,7 +67,7 @@ import net.neoforged.neoforge.common.util.LazyOptional;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 public class CentrifugeBlockEntity extends KineticBlockEntity implements IDirectionalOutputFluidBlockEntity, IHaveLabGoggleInformation {
 
@@ -166,7 +166,7 @@ public class CentrifugeBlockEntity extends KineticBlockEntity implements IDirect
 
             // Potion separation
             if (AllConfigs.server().recipes.allowBrewingInMixer.get() && inputFluidStack.getFluid().isSame(AllFluids.POTION.get()) && inputFluidStack.hasTag()) {
-                Potion potion = ForgeRegistries.POTIONS.getValue(new ResourceLocation(inputFluidStack.getOrCreateTag().getString("Potion")));
+                Potion potion = BuiltInRegistries.POTION.getValue(new ResourceLocation(inputFluidStack.getOrCreateTag().getString("Potion")));
                 BottleType bottleType = NBTHelper.readEnum(inputFluidStack.getOrCreateTag(), "BottleType", BottleType.class);
                 if (potion != null) {
                     CentrifugationRecipe potionSeparationRecipe = PotionSeparationRecipes.ALL.get(Pair.of(potion, bottleType));

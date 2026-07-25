@@ -3,7 +3,7 @@ package petrolpark.mc.destroy.content.product;
 import java.util.function.Supplier;
 
 
-import petrolpark.mc.library.item.decay.ConfiguredDecayingItem;
+import petrolpark.mc.library.core.world.item.decay.ItemDecay;
 import net.createmod.catnip.config.ConfigBase;
 import net.minecraft.world.item.ItemStack;
 

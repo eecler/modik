@@ -6,7 +6,7 @@ import petrolpark.mc.destroy.core.chemistry.vat.material.VatMaterial;
 
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
-import net.minecraftforge.registries.RegistryBuilder;
+import net.neoforged.neoforge.registries.RegistryBuilder;
 
 public class DestroyRegistryKeys {
     

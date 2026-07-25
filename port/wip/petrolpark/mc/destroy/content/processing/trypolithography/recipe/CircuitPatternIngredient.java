@@ -14,7 +14,7 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.common.crafting.AbstractIngredient;
 import net.neoforged.neoforge.common.crafting.CraftingHelper;
 import net.neoforged.neoforge.common.crafting.IIngredientSerializer;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 public class CircuitPatternIngredient extends AbstractIngredient {
 
@@ -62,7 +62,7 @@ public class CircuitPatternIngredient extends AbstractIngredient {
     public JsonElement toJson() {
         JsonObject json = new JsonObject();
         json.addProperty("type", CraftingHelper.getID(SERIALIZER).toString());
-        json.addProperty("item", ForgeRegistries.ITEMS.getKey(item).toString());
+        json.addProperty("item", BuiltInRegistries.ITEM.getKey(item).toString());
         json.addProperty("pattern", patternRL.toString());
         return json;
     };
@@ -71,7 +71,7 @@ public class CircuitPatternIngredient extends AbstractIngredient {
 
         @Override
         public CircuitPatternIngredient parse(FriendlyByteBuf buffer) {
-            return new CircuitPatternIngredient(buffer.readRegistryIdUnsafe(ForgeRegistries.ITEMS), buffer.readResourceLocation());
+            return new CircuitPatternIngredient(buffer.readRegistryIdUnsafe(BuiltInRegistries.ITEM), buffer.readResourceLocation());
         };
 
         @Override
@@ -89,7 +89,7 @@ public class CircuitPatternIngredient extends AbstractIngredient {
 
         @Override
         public void write(FriendlyByteBuf buffer, CircuitPatternIngredient ingredient) {
-            buffer.writeRegistryIdUnsafe(ForgeRegistries.ITEMS, ingredient.item);
+            buffer.writeRegistryIdUnsafe(BuiltInRegistries.ITEM, ingredient.item);
             buffer.writeResourceLocation(ingredient.patternRL);
         };
 

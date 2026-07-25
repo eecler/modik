@@ -1,7 +1,7 @@
 package petrolpark.mc.destroy.compat.jei.category;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import petrolpark.mc.library.client.rendering.PetrolparkGuiTexture;
+import petrolpark.mc.library.core.client.rendering.PetrolparkGuiTexture;
 import petrolpark.mc.library.compat.jei.category.PetrolparkRecipeCategory;
 import petrolpark.mc.destroy.core.explosion.ObliterationRecipe;
 import petrolpark.mc.destroy.core.explosion.mixedexplosive.MixedExplosiveBlockItem;

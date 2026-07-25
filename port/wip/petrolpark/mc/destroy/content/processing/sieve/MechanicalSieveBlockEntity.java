@@ -8,8 +8,8 @@ import java.util.Optional;
 import petrolpark.mc.destroy.DestroyAdvancementTrigger;
 import petrolpark.mc.destroy.DestroyRecipeTypes;
 import petrolpark.mc.destroy.core.data.advancement.DestroyAdvancementBehaviour;
-import petrolpark.mc.library.recipe.RecipeHelper;
-import petrolpark.mc.library.recipe.advancedprocessing.firsttimelucky.FirstTimeLuckyRecipesBehaviour;
+import petrolpark.mc.library.util.RecipeHelper;
+import petrolpark.mc.library.compat.create.core.data.recipe.firstTimeLucky.FTLRecipesBehaviour;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.content.kinetics.belt.behaviour.DirectBeltInputBehaviour;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
@@ -34,7 +34,7 @@ import net.neoforged.neoforge.items.wrapper.RecipeWrapper;
 
 public class MechanicalSieveBlockEntity extends KineticBlockEntity {
 
-    protected FirstTimeLuckyRecipesBehaviour luckyBehaviour;
+    protected FTLRecipesBehaviour luckyBehaviour;
     protected DestroyAdvancementBehaviour advancementBehaviour;
 
     protected SievingRecipe lastRecipe;
@@ -51,7 +51,7 @@ public class MechanicalSieveBlockEntity extends KineticBlockEntity {
     public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
         super.addBehaviours(behaviours);
 
-        luckyBehaviour = new FirstTimeLuckyRecipesBehaviour(this, DestroyRecipeTypes.SIEVING::is);
+        luckyBehaviour = new FTLRecipesBehaviour(this, DestroyRecipeTypes.SIEVING::is);
         behaviours.add(luckyBehaviour);
 
         advancementBehaviour = new DestroyAdvancementBehaviour(this, DestroyAdvancementTrigger.MECHANICAL_SIEVE);

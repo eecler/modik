@@ -1,6 +1,6 @@
 package petrolpark.mc.destroy.compat.jei.category;
 
-import petrolpark.mc.library.client.rendering.PetrolparkGuiTexture;
+import petrolpark.mc.library.core.client.rendering.PetrolparkGuiTexture;
 import petrolpark.mc.library.compat.jei.category.PetrolparkRecipeCategory;
 import petrolpark.mc.destroy.compat.jei.animation.AnimatedCentrifuge;
 import petrolpark.mc.destroy.content.processing.centrifuge.CentrifugationRecipe;

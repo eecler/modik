@@ -27,7 +27,7 @@ import petrolpark.mc.destroy.core.chemistry.recipe.ReactionRecipe;
 import petrolpark.mc.destroy.core.explosion.ExtendedDurationFireworkRocketRecipe;
 import petrolpark.mc.destroy.core.explosion.ObliterationRecipe;
 import petrolpark.mc.destroy.core.explosion.mixedexplosive.FillMixedExplosiveItemRecipe;
-import petrolpark.mc.library.recipe.advancedprocessing.AdvancedProcessingRecipeSerializer;
+import petrolpark.mc.library.compat.create.core.data.recipe.AdvancedProcessingRecipe;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
@@ -42,8 +42,8 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 public enum DestroyRecipeTypes implements IRecipeTypeInfo {
     // Processing recipes
@@ -145,7 +145,7 @@ public enum DestroyRecipeTypes implements IRecipeTypeInfo {
     };
 
     private static class Registers {
-        private static final DeferredRegister<RecipeSerializer<?>> SERIALIZER_REGISTER = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, Destroy.MOD_ID);
+        private static final DeferredRegister<RecipeSerializer<?>> SERIALIZER_REGISTER = DeferredRegister.create(BuiltInRegistries.RECIPE_SERIALIZERS, Destroy.MOD_ID);
         private static final DeferredRegister<RecipeType<?>> TYPE_REGISTER = DeferredRegister.create(Registries.RECIPE_TYPE, Destroy.MOD_ID);
     };
     

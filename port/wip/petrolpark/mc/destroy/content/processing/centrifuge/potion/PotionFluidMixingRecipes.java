@@ -25,7 +25,7 @@ import net.minecraftforge.common.brewing.BrewingRecipe;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.common.brewing.IBrewingRecipe;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 public class PotionFluidMixingRecipes {
 
@@ -76,7 +76,7 @@ public class PotionFluidMixingRecipes {
 
             for (Entry<Item, FluidStack> entry : FLUID_EQUIVALENTS.entrySet()) {
                 if (mix.ingredient.test(new ItemStack(entry.getKey()))) {
-                    addEachPotion: for (Potion potion : ForgeRegistries.POTIONS.getValues()) {
+                    addEachPotion: for (Potion potion : BuiltInRegistries.POTION.getValues()) {
                         if (potion == Potions.EMPTY) continue addEachPotion;
         
                         FluidStack fromFluid = PotionFluidHandler.getFluidFromPotion(potion, fromBottleType, 1000);

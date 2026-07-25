@@ -1,14 +1,14 @@
 package petrolpark.mc.destroy.content.processing.sieve;
 
 import petrolpark.mc.destroy.DestroyRecipeTypes;
-import petrolpark.mc.library.recipe.advancedprocessing.firsttimelucky.IFirstTimeLuckyRecipe;
+import petrolpark.mc.library.compat.create.core.data.recipe.firstTimeLucky.IFTLProcessingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeParams;
 
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.items.wrapper.RecipeWrapper;
 
-public class SievingRecipe extends ProcessingRecipe<RecipeWrapper> implements IFirstTimeLuckyRecipe<SievingRecipe> {
+public class SievingRecipe extends ProcessingRecipe<RecipeWrapper> implements IFTLProcessingRecipe<SievingRecipe> {
 
     protected boolean firstTimeLucky;
     

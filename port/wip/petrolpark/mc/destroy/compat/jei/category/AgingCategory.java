@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.commons.lang3.mutable.MutableInt;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import petrolpark.mc.library.client.rendering.PetrolparkGuiTexture;
+import petrolpark.mc.library.core.client.rendering.PetrolparkGuiTexture;
 import petrolpark.mc.library.compat.jei.category.PetrolparkRecipeCategory;
 import petrolpark.mc.destroy.DestroyBlocks;
 import petrolpark.mc.destroy.client.DestroyLang;

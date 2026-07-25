@@ -2,8 +2,8 @@ package petrolpark.mc.destroy.core.explosion;
 
 import java.util.function.Supplier;
 
-import petrolpark.mc.library.client.ponder.particle.PetrolparkEmitters;
-import petrolpark.mc.library.compat.CompatMods;
+import petrolpark.mc.library.core.client.ponder.particle.PetrolparkEmitters;
+import petrolpark.mc.library.compat.Mods;
 import petrolpark.mc.destroy.DestroyBlocks;
 import petrolpark.mc.destroy.DestroyItems;
 import petrolpark.mc.destroy.core.explosion.mixedexplosive.IDyeableMixedExplosiveBlockEntity;

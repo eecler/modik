@@ -19,8 +19,8 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 public enum DestroyParticleTypes {
 
@@ -68,7 +68,7 @@ public enum DestroyParticleTypes {
      * Copied from the {@link com.simibubi.create.AllParticleTypes.ParticleEntry Create source code}. 
      */
     private static class ParticleEntry<T extends ParticleOptions> {
-        private static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, Destroy.MOD_ID);
+        private static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = DeferredRegister.create(BuiltInRegistries.PARTICLE_TYPES, Destroy.MOD_ID);
 
         private final String name; // ID of this particle
         private final Supplier<? extends ICustomParticleData<T>> typeProvider; // The class initializer for this Particle

@@ -379,7 +379,7 @@ public class ExtendedInventory extends Inventory {
             } catch (Throwable throwable) {
                 CrashReport crashreport = CrashReport.forThrowable(throwable, "Adding item to inventory");
                 CrashReportCategory crashreportcategory = crashreport.addCategory("Item being added");
-                crashreportcategory.setDetail("Registry Name", () -> String.valueOf(net.minecraftforge.registries.ForgeRegistries.ITEMS.getKey(stack.getItem())));
+                crashreportcategory.setDetail("Registry Name", () -> String.valueOf(net.minecraft.core.registries.BuiltInRegistries.ITEMS.getKey(stack.getItem())));
                 crashreportcategory.setDetail("Item Class", () -> stack.getItem().getClass().getName());
                 crashreportcategory.setDetail("Item ID", Item.getId(stack.getItem()));
                 crashreportcategory.setDetail("Item data", stack.getDamageValue());

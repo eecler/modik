@@ -1,6 +1,6 @@
 package petrolpark.mc.destroy.content.product.fireretardant;
 
-import petrolpark.mc.library.PetrolparkRegistries;
+import petrolpark.mc.library.registry.PetrolparkRegistries;
 import petrolpark.mc.library.contamination.Contaminables;
 import petrolpark.mc.library.contamination.Contaminant;
 import petrolpark.mc.library.contamination.ItemContamination;

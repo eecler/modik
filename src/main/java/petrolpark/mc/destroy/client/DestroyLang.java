@@ -3,6 +3,7 @@ package petrolpark.mc.destroy.client;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.UnaryOperator;
 
 import net.createmod.catnip.lang.FontHelper.Palette;
 import net.createmod.catnip.lang.Lang;
@@ -101,6 +102,35 @@ public class DestroyLang {
             } catch (Throwable e) {};
         };
         return string;
+    };
+
+    public static enum TemperatureUnit {
+
+        KELVINS(t -> t, "K"),
+        DEGREES_CELCIUS(t -> t - 273f, "°C"),
+        DEGREES_FARENHEIT(t -> (t - 273f) * 9/5 + 32, "°F");
+
+        private static final DecimalFormat df = new DecimalFormat();
+        static {
+            df.setMinimumFractionDigits(1);
+            df.setMaximumFractionDigits(1);
+        };
+
+        private UnaryOperator<Float> conversionFromKelvins;
+        private String symbol;
+
+        TemperatureUnit(UnaryOperator<Float> conversionFromKelvins, String symbol) {
+            this.conversionFromKelvins = conversionFromKelvins;
+            this.symbol = symbol;
+        };
+
+        public String of(float temperature) {
+            return df.format(conversionFromKelvins.apply(temperature)) + symbol;
+        };
+
+        public String of(float temperature, DecimalFormat df) {
+            return df.format(conversionFromKelvins.apply(temperature)) + symbol;
+        };
     };
 
     public static LangBuilder quantity(float quantity, boolean useMoles, DecimalFormat concentrationFormatter) {

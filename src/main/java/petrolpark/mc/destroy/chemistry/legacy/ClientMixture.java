@@ -8,7 +8,7 @@ import petrolpark.mc.destroy.chemistry.legacy.index.DestroyMolecules;
 import petrolpark.mc.destroy.chemistry.naming.INameableProduct;
 import petrolpark.mc.destroy.chemistry.naming.NamedSalt;
 import petrolpark.mc.destroy.client.DestroyLang;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 
 import net.createmod.catnip.theme.Color;
 import net.minecraft.network.chat.Component;
@@ -43,7 +43,7 @@ public class ClientMixture extends ReadOnlyMixture {
                 return;
             };
             
-            boolean iupac = DestroyAllConfigs.CLIENT.chemistry.iupacNames.get();
+            boolean iupac = DestroyConfigs.client().chemistry.iupacNames.get();
 
             if (contents.size() == 1) {
                 name = contents.entrySet().iterator().next().getKey().getName(iupac);

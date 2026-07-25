@@ -1,5 +1,6 @@
 package petrolpark.mc.destroy.chemistry.legacy.reactionresult;
 
+import petrolpark.mc.destroy.chemistry.legacy.IVatReactionContext;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.function.BiFunction;
@@ -7,12 +8,10 @@ import java.util.function.Supplier;
 
 import petrolpark.mc.destroy.chemistry.legacy.LegacyReaction;
 import petrolpark.mc.destroy.chemistry.legacy.ReactionResult;
-import petrolpark.mc.destroy.core.chemistry.vat.VatControllerBlockEntity;
 import com.simibubi.create.content.processing.basin.BasinBlockEntity;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.items.ItemHandlerHelper;
 
 public class PrecipitateReactionResult extends ReactionResult {
     
@@ -37,8 +36,8 @@ public class PrecipitateReactionResult extends ReactionResult {
     };
 
     @Override
-    public void onVatReaction(Level level, VatControllerBlockEntity vatController) {
-        ItemHandlerHelper.insertItemStacked(vatController.inventory, precipitate.get(), false);
+    public void onVatReaction(Level level, IVatReactionContext vat) {
+        vat.insertPrecipitate(precipitate.get());
     };
 
     @Override

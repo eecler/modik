@@ -1,9 +1,9 @@
 package petrolpark.mc.destroy.chemistry.legacy.reactionresult;
 
+import petrolpark.mc.destroy.chemistry.legacy.IVatReactionContext;
 import petrolpark.mc.destroy.DestroyAdvancementTrigger;
 import petrolpark.mc.destroy.chemistry.legacy.LegacyReaction;
 import petrolpark.mc.destroy.chemistry.legacy.ReactionResult;
-import petrolpark.mc.destroy.core.chemistry.vat.VatControllerBlockEntity;
 import petrolpark.mc.destroy.core.data.advancement.DestroyAdvancementBehaviour;
 import com.simibubi.create.content.processing.basin.BasinBlockEntity;
 
@@ -29,8 +29,8 @@ public class DestroyAdvancementReactionResult extends ReactionResult {
     };
 
     @Override
-    public void onVatReaction(Level level, VatControllerBlockEntity vatController) {
-        vatController.getBehaviour(DestroyAdvancementBehaviour.TYPE).awardDestroyAdvancement(advancement);
+    public void onVatReaction(Level level, IVatReactionContext vat) {
+        vat.awardAdvancement(advancement);
     };
     
 };

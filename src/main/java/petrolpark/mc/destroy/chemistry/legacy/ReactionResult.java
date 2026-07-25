@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.Optional;
 
 import petrolpark.mc.destroy.chemistry.legacy.reactionresult.PrecipitateReactionResult;
-import petrolpark.mc.destroy.core.chemistry.vat.VatControllerBlockEntity;
+
 import com.simibubi.create.content.processing.basin.BasinBlockEntity;
 
 import net.minecraft.world.level.Level;
@@ -56,9 +56,9 @@ public abstract class ReactionResult {
     /**
      * Do something when the Reaction finishes in a Vat.
      * @param level The Level in which the Vat is
-     * @param mixture The Mixture at the time when this Reaction Result occurs
+     * @param vat What the Vat offers this Reaction Result - see {@link IVatReactionContext}
      */
-    public abstract void onVatReaction(Level level, VatControllerBlockEntity vatController);
+    public abstract void onVatReaction(Level level, IVatReactionContext vat);
 
     public Collection<PrecipitateReactionResult> getAllPrecipitates() {
         return Collections.emptySet();

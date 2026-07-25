@@ -1,0 +1,53 @@
+package petrolpark.mc.destroy.core.data.advancement;
+
+import java.util.Set;
+import java.util.function.Supplier;
+
+import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
+import com.simibubi.create.foundation.blockEntity.behaviour.BehaviourType;
+
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
+
+import petrolpark.mc.destroy.DestroyAdvancementTrigger;
+import petrolpark.mc.library.compat.create.core.world.block.entity.behaviour.AbstractRememberPlacerBehaviour;
+
+public class DestroyAdvancementBehaviour extends AbstractRememberPlacerBehaviour {
+
+    public static final BehaviourType<DestroyAdvancementBehaviour> TYPE = new BehaviourType<>();
+
+    private final Set<DestroyAdvancementTrigger> advancements;
+
+    public DestroyAdvancementBehaviour(SmartBlockEntity be, DestroyAdvancementTrigger ...advancements) {
+        super(be);
+        this.advancements = Set.of(advancements);
+    };
+
+    public void awardDestroyAdvancement(DestroyAdvancementTrigger advancement) {
+		awardDestroyAdvancementIf(advancement, () -> true);
+	};
+
+    /**
+     * Trigger the given Destroy Advancement trigger conditionally.
+     * @param advancement
+     * @param condition Computation of this is saved until after we have checked whether the Player actually exists and doesn't already have the Advancement
+     */
+    public void awardDestroyAdvancementIf(DestroyAdvancementTrigger advancement, Supplier<Boolean> condition) {
+        Player placer = getPlayer();
+        if (placer == null || !(placer instanceof ServerPlayer player) || advancement.isAlreadyAwardedTo(player)) return;
+        // PORT (1.21.1): the base class no longer exposes getWorld(); the placer's own level is
+        // the same one, and award() only uses it to check it is server-side.
+        if (condition.get()) advancement.award(player.level(), player);
+    };
+
+    @Override
+    public BehaviourType<?> getType() {
+        return TYPE;
+    };
+
+    @Override
+    public boolean shouldRememberPlacer(Player placer) {
+        return placer instanceof ServerPlayer player && (advancements.size() == 0 || !advancements.stream().allMatch(advancement -> advancement.isAlreadyAwardedTo(player)));
+    };
+
+};

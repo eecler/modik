@@ -1,5 +1,6 @@
 package petrolpark.mc.destroy.chemistry.legacy.reactionresult;
 
+import petrolpark.mc.destroy.chemistry.legacy.IVatReactionContext;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -7,7 +8,6 @@ import java.util.function.BiFunction;
 
 import petrolpark.mc.destroy.chemistry.legacy.LegacyReaction;
 import petrolpark.mc.destroy.chemistry.legacy.ReactionResult;
-import petrolpark.mc.destroy.core.chemistry.vat.VatControllerBlockEntity;
 import com.simibubi.create.content.processing.basin.BasinBlockEntity;
 
 import net.minecraft.world.level.Level;
@@ -38,9 +38,9 @@ public class CombinedReactionResult extends ReactionResult {
     };
 
     @Override
-    public void onVatReaction(Level level, VatControllerBlockEntity vatController) {
+    public void onVatReaction(Level level, IVatReactionContext vat) {
         for (ReactionResult childResult : childResults) {
-            childResult.onVatReaction(level, vatController);
+            childResult.onVatReaction(level, vat);
         };
     };
 

@@ -176,7 +176,10 @@ neoForge.ideSyncTask generateModMetadata
 
 java {
     withSourcesJar()
-    withJavadocJar()
+    // withJavadocJar() // Too many errors with the JavaDocs; prevents publishing.
+    // Same reason it was off on 1.20.1: the chemistry sources carry malformed tags
+    // (e.g. <strong>...</em> in LegacyMixture) plus @link references to classes not yet
+    // ported. Turn back on once the port is complete and the tags are cleaned up.
 }
 
 // Example configuration to allow publishing using the maven-publish plugin

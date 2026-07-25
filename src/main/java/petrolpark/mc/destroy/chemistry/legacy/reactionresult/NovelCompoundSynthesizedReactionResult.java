@@ -1,12 +1,12 @@
 package petrolpark.mc.destroy.chemistry.legacy.reactionresult;
 
+import petrolpark.mc.destroy.chemistry.legacy.IVatReactionContext;
 import java.util.Optional;
 
 import petrolpark.mc.destroy.chemistry.legacy.LegacySpecies;
 import petrolpark.mc.destroy.chemistry.legacy.LegacyReaction;
 import petrolpark.mc.destroy.chemistry.legacy.ReactionResult;
-import petrolpark.mc.destroy.core.chemistry.novelcompounds.PlayerNovelCompoundsSynthesizedCapability;
-import petrolpark.mc.destroy.core.chemistry.vat.VatControllerBlockEntity;
+import petrolpark.mc.destroy.core.chemistry.novelcompounds.PlayerNovelCompoundsSynthesized;
 import petrolpark.mc.destroy.core.data.advancement.DestroyAdvancementBehaviour;
 import com.simibubi.create.content.processing.basin.BasinBlockEntity;
 
@@ -26,14 +26,14 @@ public class NovelCompoundSynthesizedReactionResult extends ReactionResult {
     public void onBasinReaction(Level level, BasinBlockEntity basin) {
         Optional.ofNullable(basin.getBehaviour(DestroyAdvancementBehaviour.TYPE)).ifPresent(behaviour -> {
             if (behaviour.getPlayer() != null)
-                PlayerNovelCompoundsSynthesizedCapability.add(behaviour.getPlayer(), novelMolecule);
+                PlayerNovelCompoundsSynthesized.add(behaviour.getPlayer(), novelMolecule);
         });
     };
 
     @Override
-    public void onVatReaction(Level level, VatControllerBlockEntity vatController) {
-        Player player = vatController.getBehaviour(DestroyAdvancementBehaviour.TYPE).getPlayer();
-        if (player != null) PlayerNovelCompoundsSynthesizedCapability.add(player, novelMolecule);
+    public void onVatReaction(Level level, IVatReactionContext vat) {
+        Player player = vat.getPlacer();
+        if (player != null) PlayerNovelCompoundsSynthesized.add(player, novelMolecule);
     };
     
 };

@@ -42,11 +42,15 @@ public class Destroy {
         DestroyConfigs.register(ModLoadingContext.get(), modContainer);
 
         // Registration
+        DestroyAdvancementTrigger.register(); // Must run before the registry events, it is what creates the triggers
         DestroyAttachmentTypes.register(modEventBus);
+        DestroyDataComponents.register(modEventBus);
+        DestroyFluids.register();
         DestroyNumberProviderTypes.register();
         DestroyPackets.register();
         DestroyPollutionTypes.register();
         DestroyRegistries.init();
+        DestroyStats.register(modEventBus);
     
         // Events
         modEventBus.addListener(this::init);
@@ -59,8 +63,9 @@ public class Destroy {
         // Mods.CURIOS.executeIfInstalled(() -> () -> Curios.ctor(modEventBus, NeoForge.EVENT_BUS));
     };
 
+    // Library 1.5.0 requires this to be static, and fails mod construction otherwise.
     @GetPetrolparkSharedFeatures
-    public SharedFeatureFlag[] getEnabledSharedFeatureFlags() {
+    public static SharedFeatureFlag[] getEnabledSharedFeatureFlags() {
         return new SharedFeatureFlag[]{
             SharedFeatureFlag.BASIN_LID,
             SharedFeatureFlag.BLOOD,
@@ -72,7 +77,7 @@ public class Destroy {
 
     private void init(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-
+            DestroyStats.register(); // Attaches the formatters, which needs the registry to be populated
         });
     };
 

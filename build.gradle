@@ -122,14 +122,17 @@ repositories {
 dependencies {
 
     // Library
-    implementation "petrolpark.mc.library:petrolpark-${minecraft_version}:${petrolpark_library_version}"
+    // Upstream resolves this from a local flatDir maven (../petrolpark_local_maven), which is not
+    // present in this checkout. Pull the published NeoForge jar from Modrinth instead; 1.21.1 uses
+    // official Mojang mappings, so the production jar is usable directly at compile time.
+    implementation "maven.modrinth:petrolpark:${minecraft_version}-${petrolpark_library_version}"
 
     // Registrate (bundled with Petrolpark's Library)
     implementation("com.tterrag.registrate:Registrate:${registrate_version}")
 
     // Create & Ponder
     implementation("com.simibubi.create:create-${minecraft_version}:${create_version}") { transitive = false }
-    implementation("net.createmod.ponder:Ponder-NeoForge-${minecraft_version}:${ponder_version}")
+    implementation("net.createmod.ponder:ponder-neoforge:${ponder_version}")
     compileOnly("dev.engine-room.flywheel:flywheel-neoforge-api-${minecraft_version}:${flywheel_version}")
     runtimeOnly("dev.engine-room.flywheel:flywheel-neoforge-${minecraft_version}:${flywheel_version}")
 
@@ -192,6 +195,9 @@ publishing {
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+    // While the 1.21.1 port is in progress, show the whole error list instead of javac's
+    // default cap of 100, so progress can be measured against a real total.
+    options.compilerArgs << '-Xmaxerrs' << '5000'
 }
 
 tasks.withType(Copy) {

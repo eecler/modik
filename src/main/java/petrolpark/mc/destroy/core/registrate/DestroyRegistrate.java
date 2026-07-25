@@ -4,7 +4,7 @@ import petrolpark.mc.destroy.Destroy;
 
 public class DestroyRegistrate extends AbstractDestroyRegistrate<DestroyRegistrate> {
 
-    protected DestroyRegistrate() {
+    public DestroyRegistrate() {
         super(Destroy.MOD_ID);
     };
     

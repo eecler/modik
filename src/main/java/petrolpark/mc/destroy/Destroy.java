@@ -16,7 +16,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
 import petrolpark.mc.destroy.config.DestroyConfigs;
-import petrolpark.mc.destroy.core.registrate.AbstractDestroyRegistrate;
+import petrolpark.mc.destroy.core.registrate.DestroyRegistrate;
 import petrolpark.mc.destroy.data.DestroyDatagen;
 import petrolpark.mc.library.shared.GetPetrolparkSharedFeatures;
 import petrolpark.mc.library.shared.SharedFeatureFlag;
@@ -28,7 +28,7 @@ public class Destroy {
 
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public static final AbstractDestroyRegistrate REGISTRATE = new AbstractDestroyRegistrate(MOD_ID);
+    public static final DestroyRegistrate REGISTRATE = new DestroyRegistrate();
 
     public static ResourceLocation asResource(String path) {
         return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);

@@ -1,12 +1,13 @@
 package petrolpark.mc.destroy.chemistry.legacy.index.genericreaction;
 
+import petrolpark.mc.destroy.DestroyTags;
+
 import petrolpark.mc.destroy.Destroy;
 import petrolpark.mc.destroy.chemistry.legacy.LegacyElement;
 import petrolpark.mc.destroy.chemistry.legacy.LegacyMolecularStructure;
 import petrolpark.mc.destroy.chemistry.legacy.LegacyReaction.ReactionBuilder;
 import petrolpark.mc.destroy.chemistry.legacy.LegacySpecies;
 import petrolpark.mc.destroy.chemistry.legacy.index.DestroyMolecules;
-import com.simibubi.create.AllTags;
 
 public class SaturatedCarbonHydrogenation extends ElectrophilicAddition {
 
@@ -31,7 +32,7 @@ public class SaturatedCarbonHydrogenation extends ElectrophilicAddition {
 
     @Override
     public void transform(ReactionBuilder builder) {
-        builder.addSimpleItemTagCatalyst(AllTags.commonItemTag("dusts/nickel"), 1f);
+        builder.addSimpleItemTagCatalyst(DestroyTags.commonItemTag("dusts/nickel"), 1f);
     };
     
 };

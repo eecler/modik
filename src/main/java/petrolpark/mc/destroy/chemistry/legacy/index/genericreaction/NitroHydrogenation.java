@@ -1,5 +1,7 @@
 package petrolpark.mc.destroy.chemistry.legacy.index.genericreaction;
 
+import petrolpark.mc.destroy.DestroyTags;
+
 import petrolpark.mc.destroy.Destroy;
 import petrolpark.mc.destroy.chemistry.legacy.LegacyElement;
 import petrolpark.mc.destroy.chemistry.legacy.LegacyMolecularStructure;
@@ -10,7 +12,6 @@ import petrolpark.mc.destroy.chemistry.legacy.genericreaction.SingleGroupGeneric
 import petrolpark.mc.destroy.chemistry.legacy.index.DestroyGroupTypes;
 import petrolpark.mc.destroy.chemistry.legacy.index.DestroyMolecules;
 import petrolpark.mc.destroy.chemistry.legacy.index.group.NitroGroup;
-import com.simibubi.create.AllTags;
 
 public class NitroHydrogenation extends SingleGroupGenericReaction<NitroGroup> {
 
@@ -37,7 +38,7 @@ public class NitroHydrogenation extends SingleGroupGenericReaction<NitroGroup> {
             .addReactant(DestroyMolecules.HYDROGEN, 3)
             .addProduct(DestroyMolecules.WATER, 2)
             .addProduct(moleculeBuilder().structure(structure).build())
-            .addSimpleItemTagCatalyst(AllTags.commonItemTag("dusts/palladium"), 1.0f)
+            .addSimpleItemTagCatalyst(DestroyTags.commonItemTag("dusts/palladium"), 1.0f)
             .build();
     };
     

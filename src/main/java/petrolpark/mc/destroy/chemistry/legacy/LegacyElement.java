@@ -3,7 +3,6 @@ package petrolpark.mc.destroy.chemistry.legacy;
 import java.util.function.Function;
 
 import dev.engine_room.flywheel.lib.model.baked.PartialModel;
-import petrolpark.mc.destroy.core.chemistry.MoleculeRenderer.Geometry;
 
 /**
  * Something inbetween an actual element and a nuclide.

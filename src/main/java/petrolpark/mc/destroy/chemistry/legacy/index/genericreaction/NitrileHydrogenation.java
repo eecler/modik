@@ -1,5 +1,7 @@
 package petrolpark.mc.destroy.chemistry.legacy.index.genericreaction;
 
+import petrolpark.mc.destroy.DestroyTags;
+
 import petrolpark.mc.destroy.Destroy;
 import petrolpark.mc.destroy.chemistry.legacy.LegacyElement;
 import petrolpark.mc.destroy.chemistry.legacy.LegacyMolecularStructure;
@@ -10,7 +12,6 @@ import petrolpark.mc.destroy.chemistry.legacy.genericreaction.SingleGroupGeneric
 import petrolpark.mc.destroy.chemistry.legacy.index.DestroyGroupTypes;
 import petrolpark.mc.destroy.chemistry.legacy.index.DestroyMolecules;
 import petrolpark.mc.destroy.chemistry.legacy.index.group.NitrileGroup;
-import com.simibubi.create.AllTags;
 
 public class NitrileHydrogenation extends SingleGroupGenericReaction<NitrileGroup> {
 
@@ -40,7 +41,7 @@ public class NitrileHydrogenation extends SingleGroupGenericReaction<NitrileGrou
         return reactionBuilder()
             .addReactant(reactant.getMolecule())
             .addReactant(DestroyMolecules.HYDROGEN, 2)
-            .addSimpleItemTagCatalyst(AllTags.commonItemTag("dusts/nickel"), 1f)
+            .addSimpleItemTagCatalyst(DestroyTags.commonItemTag("dusts/nickel"), 1f)
             .addProduct(moleculeBuilder().structure(structure).build())
             .build();
     };

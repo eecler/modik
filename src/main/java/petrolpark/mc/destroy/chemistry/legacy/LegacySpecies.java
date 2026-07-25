@@ -21,7 +21,6 @@ import petrolpark.mc.destroy.chemistry.legacy.index.DestroyMolecules;
 import petrolpark.mc.destroy.chemistry.naming.INameableProduct;
 import petrolpark.mc.destroy.chemistry.serializer.Branch;
 import petrolpark.mc.destroy.client.DestroyLang;
-import petrolpark.mc.destroy.core.chemistry.MoleculeRenderer;
 
 import net.createmod.catnip.data.Pair;
 import net.minecraft.client.resources.language.I18n;
@@ -138,10 +137,10 @@ public class LegacySpecies implements INameableProduct {
      */
     private int color;
 
-    /**
-     * The {@link petrolpark.mc.destroy.core.chemistry.MoleculeRenderer Renderer} for this Molecule.
-     */
-    private MoleculeRenderer renderer;
+    // PORT (1.21.1): the cached MoleculeRenderer field and getRenderer() were removed here
+    // until MoleculeRenderer itself is ported. It is client-only (JEI and GUI molecule
+    // display) and nothing in the engine calls it, so the engine does not need it to work.
+    // Restore both together with the renderer.
 
     private LegacySpecies(String nameSpace) {
         this.nameSpace = nameSpace;
@@ -528,17 +527,7 @@ public class LegacySpecies implements INameableProduct {
         return structure.getSideChainsForRendering();
     };
 
-    /**
-     * Get the {@link petrolpark.mc.destroy.core.chemistry.MoleculeRenderer Renderer} for this Molecule.
-     * To save on processing time, the first time Renderer is generated, it is {@link LegacySpecies#renderer stored}
-     * in this Molecule and referred to for later use.
-     */
-    public MoleculeRenderer getRenderer() {
-        if (renderer == null) {
-            renderer = new MoleculeRenderer(this);
-        };
-        return renderer;
-    };
+    // PORT (1.21.1): getRenderer() removed here - see the note where the renderer field was.
 
     /**
      * A class for constructing {@link LegacySpecies Molecules}. This is typically used for:<ul>

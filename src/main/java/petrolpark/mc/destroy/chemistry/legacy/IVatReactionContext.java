@@ -41,4 +41,12 @@ public interface IVatReactionContext {
      */
     void awardAdvancement(DestroyAdvancementTrigger advancement);
 
+    /**
+     * Blow this Vat up.
+     * @param radius Of the explosion
+     * @param irregularity How irregularly shaped the blast is, from 0 to 1 - used once
+     * {@code SmartExplosion} is ported, see {@link petrolpark.mc.destroy.chemistry.legacy.reactionresult.ExplosionReactionResult}
+     */
+    void explode(float radius, float irregularity);
+
 };

@@ -2,20 +2,24 @@ package petrolpark.mc.destroy;
 
 import petrolpark.mc.destroy.chemistry.legacy.LegacySpecies;
 import petrolpark.mc.destroy.core.chemistry.hazard.ChemicalDamageSource;
+import petrolpark.mc.destroy.core.explosion.SmartExplosion;
+import petrolpark.mc.destroy.core.explosion.SmartExplosionDamageSource;
 
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 
-/**
- * PORT (1.21.1): smartExplosion() returns with the SmartExplosion system.
- */
 public class DestroyDamageSources {
+
+    public static DamageSource smartExplosion(Level level, SmartExplosion explosion) {
+        return new SmartExplosionDamageSource(level.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.EXPLOSION), explosion);
+    };
 
     public static DamageSource alcohol(Level level) {
         return source(DestroyDamageTypes.Keys.ALCOHOL, level);

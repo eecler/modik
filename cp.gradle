@@ -1,0 +1,7 @@
+allprojects {
+    tasks.register("printCompileCp") {
+        doLast {
+            new File("cp.txt").text = project.sourceSets.main.compileClasspath.files.join(":")
+        }
+    }
+}

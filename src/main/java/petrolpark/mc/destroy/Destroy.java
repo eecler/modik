@@ -18,7 +18,8 @@ import net.neoforged.fml.loading.FMLEnvironment;
 import petrolpark.mc.destroy.config.DestroyConfigs;
 import petrolpark.mc.destroy.content.processing.moltenblock.MoltenBlocks;
 import petrolpark.mc.destroy.content.processing.treetap.TreeTapRegistry;
-import petrolpark.mc.destroy.core.chemistry.storage.MixtureStorageCapabilities;
+import petrolpark.mc.destroy.client.DestroyParticleTypes;
+import petrolpark.mc.destroy.core.chemistry.storage.MixtureStorage;
 import petrolpark.mc.destroy.core.registrate.DestroyRegistrate;
 import petrolpark.mc.destroy.data.DestroyDatagen;
 import petrolpark.mc.library.shared.GetPetrolparkSharedFeatures;
@@ -47,14 +48,20 @@ public class Destroy {
         // Registration
         DestroyAdvancementTrigger.register(); // Must run before the registry events, it is what creates the triggers
         DestroyAttachmentTypes.register(modEventBus);
+        DestroyArmorMaterials.register(modEventBus);
         DestroyAttributes.register(modEventBus);
         DestroyBlockEntityTypes.register();
         DestroyBlocks.register();
         DestroyCreativeModeTabs.register(modEventBus);
         DestroyDataComponents.register(modEventBus);
+        DestroyEntityTypes.register();
         DestroyFluids.register();
         DestroyItems.register();
-        MixtureStorageCapabilities.register(modEventBus);
+        DestroyLootConditions.register(modEventBus);
+        petrolpark.mc.destroy.client.DestroyMenuTypes.register();
+        DestroyCapabilities.register(modEventBus);
+        DestroyParticleTypes.register(modEventBus);
+        MixtureStorage.register();
         MoltenBlocks.register();
         TreeTapRegistry.register();
         DestroyMobEffects.register(modEventBus);

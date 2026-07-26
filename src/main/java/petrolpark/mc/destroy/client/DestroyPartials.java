@@ -61,6 +61,11 @@ public class DestroyPartials {
     public static final PartialModel
     TREE_TAP_ARM = block("tree_tap/arm");
 
+    // Custom Explosive Mix
+    public static final PartialModel
+    CUSTOM_EXPLOSIVE_MIX_BASE = block("custom_explosive_mix_no_overlay"),
+    CUSTOM_EXPLOSIVE_MIX_OVERLAY = block("custom_explosive_mix_overlay");
+
     private static PartialModel block(String path) { //copied from Create source code
         return PartialModel.of(Destroy.asResource("block/"+path));
     };

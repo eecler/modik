@@ -6,7 +6,7 @@ import petrolpark.mc.library.network.packet.S2CPacket;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraftforge.network.NetworkEvent.Context;
+import net.neoforged.neoforge.network.NetworkEvent.Context;
 
 public class RedstoneProgramSyncReplyS2CPacket extends S2CPacket {
 

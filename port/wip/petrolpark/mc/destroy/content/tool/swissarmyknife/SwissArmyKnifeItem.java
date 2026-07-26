@@ -1,5 +1,6 @@
 package petrolpark.mc.destroy.content.tool.swissarmyknife;
 
+import petrolpark.mc.destroy.legacy.LegacyNBT;
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.Set;
@@ -42,10 +43,10 @@ import net.minecraft.world.phys.HitResult;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
-import net.minecraftforge.common.IForgeShearable;
-import net.minecraftforge.common.TierSortingRegistry;
-import net.minecraftforge.common.ToolAction;
-import net.minecraftforge.common.ToolActions;
+import net.neoforged.neoforge.common.IForgeShearable;
+import net.neoforged.neoforge.common.TierSortingRegistry;
+import net.neoforged.neoforge.common.ToolAction;
+import net.neoforged.neoforge.common.ToolActions;
 
 public class SwissArmyKnifeItem extends DiggerItem {
 
@@ -223,14 +224,14 @@ public class SwissArmyKnifeItem extends DiggerItem {
 
     @Nullable
     public static Tool getTool(ItemStack stack) {
-        CompoundTag tag = stack.getOrCreateTag();
+        CompoundTag tag = LegacyNBT.getOrCreateTag(stack);
         if (!tag.contains("ActiveTool")) return null;
         return Tool.values()[tag.getInt("ActiveTool")];
     };
 
     public static void putTool(ItemStack stack, @Nullable Tool tool) {
         stack.removeTagKey("ActiveTool");
-        if (tool != null) stack.getOrCreateTag().putInt("ActiveTool", tool.ordinal());
+        if (tool != null) LegacyNBT.getOrCreateTag(stack).putInt("ActiveTool", tool.ordinal());
     };
 
     @OnlyIn(Dist.CLIENT)

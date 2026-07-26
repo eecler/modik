@@ -3,7 +3,7 @@ package petrolpark.mc.destroy.content.product.babyblue;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -13,7 +13,7 @@ import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.capabilities.CapabilityToken;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.neoforged.neoforge.common.util.INBTSerializable;
-import net.neoforged.neoforge.common.util.LazyOptional;
+import net.minecraftforge.common.util.LazyOptional;
 
 public class PlayerBabyBlueAddictionCapability {
 
@@ -34,7 +34,7 @@ public class PlayerBabyBlueAddictionCapability {
     };
 
     public static final int getMaxBabyBlueAddiction() {
-        return DestroyAllConfigs.SERVER.substances.babyBlueMaxAddictionLevel.get();
+        return DestroyConfigs.server().substances.babyBlueMaxAddictionLevel.get();
     };
 
     public void addBabyBlueAddiction(int change) {

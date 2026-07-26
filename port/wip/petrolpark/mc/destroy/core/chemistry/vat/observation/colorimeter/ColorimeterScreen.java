@@ -8,7 +8,7 @@ import petrolpark.mc.destroy.chemistry.legacy.LegacySpecies;
 import petrolpark.mc.destroy.client.DestroyGuiTextures;
 import petrolpark.mc.destroy.client.DestroyIcons;
 import petrolpark.mc.destroy.client.DestroyLang;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import petrolpark.mc.destroy.core.chemistry.MoleculeRenderer;
 import petrolpark.mc.destroy.core.chemistry.vat.observation.AbstractQuantityObservingScreen;
 import petrolpark.mc.destroy.core.chemistry.vat.observation.RedstoneQuantityMonitorThresholdChangeC2SPacket;
@@ -129,7 +129,7 @@ public class ColorimeterScreen extends AbstractQuantityObservingScreen {
         UIRenderHelper.swapAndBlitColor(UIRenderHelper.framebuffer, minecraft.getMainRenderTarget());
 
         // Species name
-        Component name = species == null ? DestroyLang.translate("tooltip.colorimeter.menu.select_species").component() : species.getName(DestroyAllConfigs.CLIENT.chemistry.iupacNames.get());
+        Component name = species == null ? DestroyLang.translate("tooltip.colorimeter.menu.select_species").component() : species.getName(DestroyConfigs.client().chemistry.iupacNames.get());
         graphics.drawCenteredString(font, name, guiLeft + 128, guiTop + 105, 0xFFFFFF);
     };
 

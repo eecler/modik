@@ -1,5 +1,7 @@
 package petrolpark.mc.destroy.content.processing.ageing;
 
+import petrolpark.mc.destroy.legacy.LegacyRegistries;
+import net.minecraft.core.HolderLookup;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,7 +38,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.neoforged.neoforge.common.util.LazyOptional;
+import net.minecraftforge.common.util.LazyOptional;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
 import net.neoforged.neoforge.items.IItemHandlerModifiable;
@@ -144,18 +146,18 @@ public class AgeingBarrelBlockEntity extends SmartBlockEntity implements IHaveGo
     };
 
     @Override
-    protected void read(CompoundTag compound, boolean clientPacket) {
-        super.read(compound, clientPacket);
-        inventory.deserializeNBT(compound.getCompound("Inventory"));
+    protected void read(CompoundTag compound, HolderLookup.Provider registries, boolean clientPacket) {
+        super.read(compound, registries, clientPacket);
+        LegacyRegistries.deserializeNBT(inventory, compound.getCompound("Inventory"));
         timer = compound.getInt("Timer");
         totalTime = compound.getInt("TotalTime");
         // Storage of what's in the Tank is automatically covered in SmartBlockEntity
     };
 
     @Override
-    protected void write(CompoundTag compound, boolean clientPacket) {
-        super.write(compound, clientPacket);
-        compound.put("Inventory", inventory.serializeNBT());
+    protected void write(CompoundTag compound, HolderLookup.Provider registries, boolean clientPacket) {
+        super.write(compound, registries, clientPacket);
+        compound.put("Inventory", LegacyRegistries.serializeNBT(inventory));
         compound.putInt("Timer", timer);
         compound.putInt("TotalTime", totalTime);
         // Retrieval of what's in the Tank is automatically covered in SmartBlockEntity

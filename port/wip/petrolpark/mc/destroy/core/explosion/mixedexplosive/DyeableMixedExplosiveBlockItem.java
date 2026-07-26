@@ -1,5 +1,6 @@
 package petrolpark.mc.destroy.core.explosion.mixedexplosive;
 
+import petrolpark.mc.destroy.legacy.LegacyRegistries;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
@@ -31,7 +32,7 @@ public abstract class DyeableMixedExplosiveBlockItem extends BlockItem implement
         ItemStack stack = new ItemStack(this);
         setColor(stack, info.nbt().getInt("Color"));
         MixedExplosiveInventory inv = new MixedExplosiveInventory(getExplosiveInventorySize());
-        inv.deserializeNBT(info.nbt().getCompound("ExplosiveMix"));
+        LegacyRegistries.deserializeNBT(inv, info.nbt().getCompound("ExplosiveMix"));
         setExplosiveInventory(stack, inv);
         return stack;
     };

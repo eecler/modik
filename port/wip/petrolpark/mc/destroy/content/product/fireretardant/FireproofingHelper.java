@@ -1,5 +1,6 @@
 package petrolpark.mc.destroy.content.product.fireretardant;
 
+import petrolpark.mc.destroy.legacy.LegacyRecipes;
 import petrolpark.mc.library.registry.PetrolparkRegistries;
 import petrolpark.mc.library.contamination.Contaminables;
 import petrolpark.mc.library.contamination.Contaminant;
@@ -38,7 +39,7 @@ public class FireproofingHelper {
 
     public static int getRequiredAmountForItem(Level world, ItemStack stack, FluidStack availableFluid) {
         if (!canApply(world, stack)) return -1;
-        return world.getRecipeManager().getRecipeFor(DestroyRecipeTypes.FLAME_RETARDANT_APPLICATION.getType(), WRAPPER, world).stream()
+        return LegacyRecipes.getRecipeFor(DestroyRecipeTypes.FLAME_RETARDANT_APPLICATION.getType(), WRAPPER, world).stream()
             .map(SingleFluidRecipe.class::cast)
             .map(SingleFluidRecipe::getRequiredFluid)
             .filter(i -> i.test(availableFluid))
@@ -49,7 +50,7 @@ public class FireproofingHelper {
 
     public static ItemStack fillItem(Level world, int requiredAmount, ItemStack stack, FluidStack availableFluid) {
         if (!canApply(world, stack)) return ItemStack.EMPTY;
-        return world.getRecipeManager().getRecipeFor(DestroyRecipeTypes.FLAME_RETARDANT_APPLICATION.getType(), WRAPPER, world)
+        return LegacyRecipes.getRecipeFor(DestroyRecipeTypes.FLAME_RETARDANT_APPLICATION.getType(), WRAPPER, world)
             .map(SingleFluidRecipe.class::cast)
             .filter(r  -> r.getRequiredFluid().test(availableFluid))
             .map(r -> {

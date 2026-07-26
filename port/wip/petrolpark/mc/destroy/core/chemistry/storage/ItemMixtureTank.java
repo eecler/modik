@@ -1,5 +1,6 @@
 package petrolpark.mc.destroy.core.chemistry.storage;
 
+import petrolpark.mc.destroy.legacy.LegacyNBT;
 import java.util.function.Consumer;
 
 import org.jetbrains.annotations.NotNull;
@@ -14,7 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.neoforged.neoforge.common.util.LazyOptional;
+import net.minecraftforge.common.util.LazyOptional;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
 
@@ -30,7 +31,7 @@ public class ItemMixtureTank extends GeniusFluidTank implements ICapabilityProvi
         if (!(container.getItem() instanceof IMixtureStorageItem item)) throw new IllegalArgumentException(container.getItem().getDescriptionId()+" cannot store Mixtures");
         capacity = item.getCapacity(container);
         this.container = container;
-        fluid = FluidStack.loadFluidStackFromNBT(container.getOrCreateTag().getCompound("Fluid"));
+        fluid = FluidStack.loadFluidStackFromNBT(LegacyNBT.getOrCreateTag(container).getCompound("Fluid"));
     };
 
     public int getRemainingSpace() {

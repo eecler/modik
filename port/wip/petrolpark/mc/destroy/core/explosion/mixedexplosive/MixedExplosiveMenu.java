@@ -1,5 +1,6 @@
 package petrolpark.mc.destroy.core.explosion.mixedexplosive;
 
+import petrolpark.mc.destroy.legacy.LegacyRegistries;
 import petrolpark.mc.destroy.client.DestroyMenuTypes;
 import petrolpark.mc.destroy.core.explosion.mixedexplosive.ExplosiveProperties.ExplosivePropertyCondition;
 import com.simibubi.create.foundation.gui.menu.MenuBase;
@@ -76,7 +77,7 @@ public class MixedExplosiveMenu extends MenuBase<IMixedExplosiveBlockEntity> {
         protected DummyCustomExplosiveMixBlockEntity(FriendlyByteBuf buffer) {
             this.name = buffer.readComponent();
             inv = new MixedExplosiveInventory(buffer.readVarInt());
-            inv.deserializeNBT(buffer.readNbt());
+            LegacyRegistries.deserializeNBT(inv, buffer.readNbt());
             int conditionCount = buffer.readVarInt();
             conditions = new ExplosivePropertyCondition[conditionCount];
             for (int i = 0; i < conditionCount; i++) conditions[i] = ExplosiveProperties.EXPLOSIVE_PROPERTY_CONDITIONS.get(buffer.readResourceLocation());

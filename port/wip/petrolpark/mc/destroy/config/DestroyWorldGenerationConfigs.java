@@ -1,6 +1,6 @@
 package petrolpark.mc.destroy.config;
 
-import net.minecraftforge.common.ForgeConfigSpec.Builder;
+import net.neoforged.neoforge.common.ForgeConfigSpec.Builder;
 
 public class DestroyWorldGenerationConfigs extends DestroyConfigBase {
     

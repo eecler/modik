@@ -1,10 +1,12 @@
 package petrolpark.mc.destroy.core.pollution.pollutometer;
 
+import petrolpark.mc.destroy.DestroyPollutionTypes;
+import net.minecraft.core.HolderLookup;
 import java.util.List;
 
 import petrolpark.mc.destroy.client.DestroyLang;
 import petrolpark.mc.destroy.core.pollution.PollutometerBlock;
-import petrolpark.mc.destroy.core.pollution.Pollution.PollutionType;
+import petrolpark.mc.destroy.core.pollution.PollutionType;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import com.simibubi.create.foundation.blockEntity.behaviour.ValueBoxTransform;
@@ -29,7 +31,7 @@ public class PollutometerBlockEntity extends SmartBlockEntity {
 
     public PollutometerBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
-        pollutionType = PollutionType.GREENHOUSE;
+        pollutionType = DestroyPollutionTypes.GREENHOUSE.get();
     };
 
     @Override
@@ -40,17 +42,17 @@ public class PollutometerBlockEntity extends SmartBlockEntity {
     };
 
     @Override
-    protected void read(CompoundTag tag, boolean clientPacket) {
+    protected void read(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
         int pollutionTypeIndex = tag.getInt("PollutionType");
         setPollutionType(pollutionTypeIndex);
         pollutionTypeDisplay.value = pollutionTypeIndex;
-        super.read(tag, clientPacket);
+        super.read(tag, registries, clientPacket);
     };
 
     @Override
-    protected void write(CompoundTag tag, boolean clientPacket) {
+    protected void write(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
         tag.putInt("PollutionType", pollutionType.ordinal());
-        super.write(tag, clientPacket);
+        super.write(tag, registries, clientPacket);
     };
 
     public PollutionType getPollutionType() {

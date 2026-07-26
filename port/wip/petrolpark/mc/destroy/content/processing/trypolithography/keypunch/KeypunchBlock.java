@@ -28,7 +28,7 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.DistExecutor;
+import net.neoforged.fml.DistExecutor;
 
 public class KeypunchBlock extends HorizontalKineticBlock implements IBE<KeypunchBlockEntity>, ICogWheel {
     

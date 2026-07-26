@@ -5,7 +5,7 @@ import java.util.function.Supplier;
 import petrolpark.mc.library.network.packet.C2SPacket;
 
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraftforge.network.NetworkEvent.Context;
+import net.neoforged.neoforge.network.NetworkEvent.Context;
 
 public class RequestInventoryFullStateC2SPacket extends C2SPacket {
 

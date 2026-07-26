@@ -12,7 +12,7 @@ import petrolpark.mc.destroy.chemistry.legacy.ReadOnlyMixture;
 import petrolpark.mc.destroy.chemistry.legacy.index.DestroyMolecules;
 import petrolpark.mc.destroy.chemistry.naming.NamedSalt;
 import petrolpark.mc.destroy.client.DestroyLang;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import com.simibubi.create.foundation.item.TooltipHelper;
 import net.createmod.catnip.lang.FontHelper.Palette;
 
@@ -105,7 +105,7 @@ public class SaltFluidIngredient extends ConcentrationRangeFluidIngredient<SaltF
             String anionID = fluidTag.getString("RequiredAnion");
             float minConc = fluidTag.getFloat("MinimumConcentration");
             float maxConc = fluidTag.getFloat("MaximumConcentration");
-            boolean iupac = DestroyAllConfigs.CLIENT.chemistry.iupacNames.get();
+            boolean iupac = DestroyConfigs.client().chemistry.iupacNames.get();
     
             LegacySpecies cation = LegacySpecies.getMolecule(cationID);
             LegacySpecies anion = LegacySpecies.getMolecule(anionID);

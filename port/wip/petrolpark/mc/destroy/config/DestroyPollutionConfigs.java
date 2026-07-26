@@ -4,7 +4,7 @@ import java.util.EnumMap;
 import java.util.stream.Stream;
 
 import petrolpark.mc.destroy.client.DestroyLang;
-import petrolpark.mc.destroy.core.pollution.Pollution.PollutionType;
+import petrolpark.mc.destroy.core.pollution.PollutionType;
 
 public class DestroyPollutionConfigs extends DestroyConfigBase {
 

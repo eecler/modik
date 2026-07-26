@@ -44,14 +44,18 @@ public class Destroy {
         // Registration
         DestroyAdvancementTrigger.register(); // Must run before the registry events, it is what creates the triggers
         DestroyAttachmentTypes.register(modEventBus);
+        DestroyAttributes.register(modEventBus);
+        DestroyBlockEntityTypes.register();
         DestroyBlocks.register();
         DestroyCreativeModeTabs.register(modEventBus);
         DestroyDataComponents.register(modEventBus);
         DestroyFluids.register();
         DestroyItems.register();
+        DestroyMobEffects.register(modEventBus);
         DestroyNumberProviderTypes.register();
         DestroyPackets.register();
         DestroyPollutionTypes.register();
+        DestroyRecipeTypes.register(modEventBus);
         DestroyRegistries.init();
         DestroyStats.register(modEventBus);
     

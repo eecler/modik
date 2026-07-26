@@ -13,7 +13,7 @@ import petrolpark.mc.destroy.DestroyAdvancementTrigger;
 import petrolpark.mc.destroy.DestroyBlocks;
 import petrolpark.mc.destroy.DestroyFluids;
 import petrolpark.mc.destroy.DestroySoundEvents;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import petrolpark.mc.destroy.content.oil.ChunkCrudeOil;
 import petrolpark.mc.destroy.core.data.advancement.DestroyAdvancementBehaviour;
 import petrolpark.mc.destroy.core.pollution.PollutingBehaviour;
@@ -39,10 +39,10 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.neoforged.neoforge.common.util.LazyOptional;
+import net.minecraftforge.common.util.LazyOptional;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
-import net.minecraftforge.fml.DistExecutor;
+import net.neoforged.fml.DistExecutor;
 
 public class PumpjackBlockEntity extends SmartBlockEntity implements IHaveGoggleInformation {
 
@@ -117,7 +117,7 @@ public class PumpjackBlockEntity extends SmartBlockEntity implements IHaveGoggle
         advancementBehaviour.awardDestroyAdvancement(DestroyAdvancementTrigger.USE_PUMPJACK);
         // Add the oil to the Pumpjack's internal tank
         tank.allowInsertion();
-        int amountPumped = tank.getPrimaryHandler().fill(new FluidStack(DestroyFluids.CRUDE_OIL.get(), (int)Math.min(oilAmount, DestroyAllConfigs.SERVER.blocks.pumpjackExtractionSpeed.getF() * Math.abs(cam.getSpeed() / 16f))), FluidAction.EXECUTE);
+        int amountPumped = tank.getPrimaryHandler().fill(new FluidStack(DestroyFluids.CRUDE_OIL.get(), (int)Math.min(oilAmount, DestroyConfigs.server().blocks.pumpjackExtractionSpeed.getF() * Math.abs(cam.getSpeed() / 16f))), FluidAction.EXECUTE);
         tank.forbidInsertion();
         crudeOilOptional.ifPresent(crudeOilCap -> crudeOilCap.decreaseAmount(amountPumped));
     };
@@ -230,7 +230,7 @@ public class PumpjackBlockEntity extends SmartBlockEntity implements IHaveGoggle
     };
 
     public int getTankCapacity() {
-        return DestroyAllConfigs.SERVER.blocks.pumpjackCapacity.get();
+        return DestroyConfigs.server().blocks.pumpjackCapacity.get();
     };
     
 };

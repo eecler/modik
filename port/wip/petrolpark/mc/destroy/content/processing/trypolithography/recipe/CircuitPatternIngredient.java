@@ -78,7 +78,7 @@ public class CircuitPatternIngredient extends AbstractIngredient {
         public CircuitPatternIngredient parse(JsonObject json) {
             if (json.has("item")) {
                 if (json.has("pattern")) {
-                    return new CircuitPatternIngredient(CraftingHelper.getItem(GsonHelper.getAsString(json, "item"), true), new ResourceLocation(GsonHelper.getAsString(json, "pattern")));
+                    return new CircuitPatternIngredient(CraftingHelper.getItem(GsonHelper.getAsString(json, "item"), true), ResourceLocation.parse(GsonHelper.getAsString(json, "pattern")));
                 } else {
                     throw new JsonSyntaxException("Must specify the ID of a circuit pattern");
                 }

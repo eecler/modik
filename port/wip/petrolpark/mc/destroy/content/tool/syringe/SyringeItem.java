@@ -1,5 +1,6 @@
 package petrolpark.mc.destroy.content.tool.syringe;
 
+import petrolpark.mc.destroy.legacy.LegacyNBT;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -49,13 +50,13 @@ public class SyringeItem extends Item implements CustomUseEffectsItem {
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack itemStack = player.getItemInHand(hand);
 
-        if (itemStack.getOrCreateTag().contains("Injecting")) { //continue if Player is already injecting
+        if (LegacyNBT.getOrCreateTag(itemStack).contains("Injecting")) { //continue if Player is already injecting
             player.startUsingItem(hand);
             return new InteractionResultHolder<>(InteractionResult.PASS, itemStack);
         };
 
         if (hand == InteractionHand.OFF_HAND && player.getMainHandItem().isEmpty()) { // ensure Player is using the Syringe with their offhand, and has an empty main hand
-            itemStack.getOrCreateTag().putBoolean("Injecting", true);
+            LegacyNBT.getOrCreateTag(itemStack).putBoolean("Injecting", true);
             player.startUsingItem(hand);
 
             return new InteractionResultHolder<>(InteractionResult.SUCCESS, itemStack);
@@ -85,14 +86,14 @@ public class SyringeItem extends Item implements CustomUseEffectsItem {
             return itemStack;
         }
         if (!(entity instanceof Player)) return itemStack;
-        itemStack.getOrCreateTag().remove("Injecting");
+        LegacyNBT.getOrCreateTag(itemStack).remove("Injecting");
         return new ItemStack(DestroyItems.SYRINGE.get());
     };
 
     @Override
     public void releaseUsing(ItemStack itemStack, Level level, LivingEntity entity, int timeLeft) {
         if (!(entity instanceof Player)) return;
-        itemStack.getOrCreateTag().remove("Injecting");
+        LegacyNBT.getOrCreateTag(itemStack).remove("Injecting");
     };
 
     @Override

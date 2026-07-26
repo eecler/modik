@@ -1,5 +1,6 @@
 package petrolpark.mc.destroy.content.processing.distillation;
 
+import petrolpark.mc.destroy.legacy.LegacyNBT;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,7 +12,7 @@ import petrolpark.mc.destroy.chemistry.legacy.LegacyMixture;
 import petrolpark.mc.destroy.chemistry.legacy.LegacySpecies;
 import petrolpark.mc.destroy.chemistry.legacy.ReadOnlyMixture;
 import petrolpark.mc.destroy.chemistry.minecraft.MixtureFluid;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import petrolpark.mc.destroy.core.pollution.Pollution;
 import com.simibubi.create.content.processing.basin.BasinBlockEntity;
 import com.simibubi.create.content.processing.burner.BlazeBurnerBlock.HeatLevel;
@@ -55,7 +56,7 @@ public class DistillationTower {
     };
 
     public int getProcessingTime() {
-        return DestroyAllConfigs.SERVER.blocks.bubbleCapRecipeFrequency.get();
+        return DestroyConfigs.server().blocks.bubbleCapRecipeFrequency.get();
     };
 
     public DistillationTower(CompoundTag compound, Level level, BlockPos pos) { // Create a new Distillation Tower from NBT
@@ -151,8 +152,8 @@ public class DistillationTower {
         // Mixtures
         FluidStack fluidStack = getControllerBubbleCap().getTank().getFluid();
         if (fluidStack.isEmpty()) return false;
-        if (DestroyFluids.isMixture(fluidStack.getFluid()) && fluidStack.getOrCreateTag().contains("Mixture", Tag.TAG_COMPOUND)) {
-            ReadOnlyMixture mixture = ReadOnlyMixture.readNBT(ReadOnlyMixture::new, fluidStack.getOrCreateTag().getCompound("Mixture"));
+        if (DestroyFluids.isMixture(fluidStack.getFluid()) && LegacyNBT.getOrCreateTag(fluidStack).contains("Mixture", Tag.TAG_COMPOUND)) {
+            ReadOnlyMixture mixture = ReadOnlyMixture.readNBT(ReadOnlyMixture::new, LegacyNBT.getOrCreateTag(fluidStack).getCompound("Mixture"));
             List<FluidStack> fractions = getFractionsOfMixture(mixture, fluidStack.getAmount(), getHeight() - 1);
             if (fractions.size() <= 1) return false; // If the only result is the residue, there is no point distilling
             for (boolean simulate : Iterate.trueAndFalse) {

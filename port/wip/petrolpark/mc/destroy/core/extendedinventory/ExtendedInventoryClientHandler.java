@@ -14,7 +14,7 @@ import petrolpark.mc.destroy.MoveToPetrolparkLibrary;
 import petrolpark.mc.destroy.client.DestroyGuiTextures;
 import petrolpark.mc.destroy.client.DestroyKeys;
 import petrolpark.mc.destroy.client.DestroyNineSlices;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import petrolpark.mc.destroy.config.DestroyClientConfigs;
 import petrolpark.mc.destroy.config.DestroyClientConfigs.ExtraInventoryClientSettings;
 import petrolpark.mc.destroy.core.extendedinventory.ExtendedInventory.DelayedSlotPopulation;
@@ -39,9 +39,9 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.RegisterGuiOverlaysEvent;
 import net.neoforged.neoforge.client.event.ScreenEvent;
-import net.minecraftforge.client.gui.overlay.ForgeGui;
-import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
-import net.minecraftforge.event.TickEvent.ClientTickEvent;
+import net.neoforged.neoforge.client.gui.overlay.ForgeGui;
+import net.neoforged.neoforge.client.gui.overlay.VanillaGuiOverlay;
+import net.neoforged.neoforge.event.TickEvent.ClientTickEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 
@@ -50,7 +50,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 @MoveToPetrolparkLibrary
 public class ExtendedInventoryClientHandler {
 
-    protected static final ResourceLocation WIDGETS_LOCATION = new ResourceLocation("textures/gui/widgets.png");
+    protected static final ResourceLocation WIDGETS_LOCATION = ResourceLocation.parse("textures/gui/widgets.png");
 
     private static final List<KeyMapping> hotbarKeys = new ArrayList<>(17);
     private static boolean keysInitialized = false;
@@ -76,7 +76,7 @@ public class ExtendedInventoryClientHandler {
         ExtendedInventory inv = ExtendedInventory.get(mc.player);
 
         // Update survival inventory screen if the layout of the Extended Inventory has changed
-        ExtraInventoryClientSettings currentSettings = DestroyAllConfigs.CLIENT.getExtraInventorySettings();
+        ExtraInventoryClientSettings currentSettings = DestroyConfigs.client().getExtraInventorySettings();
         if (!currentSettings.equals(settings)) {
             settings = currentSettings;
             refreshClientInventoryMenu(inv);
@@ -137,7 +137,7 @@ public class ExtendedInventoryClientHandler {
             rightX = 0;
             rightY = 0;
         };
-        ExtendedInventory.refreshPlayerInventoryMenu(inv.player, DestroyAllConfigs.CLIENT.extraInventoryWidth.get(), invX + INVENTORY_PADDING, invY + INVENTORY_PADDING, DestroyClientConfigs.getLeftSlots(inv.getExtraHotbarSlots()), leftX, leftY, rightX, rightY);
+        ExtendedInventory.refreshPlayerInventoryMenu(inv.player, DestroyConfigs.client().extraInventoryWidth.get(), invX + INVENTORY_PADDING, invY + INVENTORY_PADDING, DestroyClientConfigs.getLeftSlots(inv.getExtraHotbarSlots()), leftX, leftY, rightX, rightY);
     };
 
     public static void handleExtendedInventorySizeChange(ExtraInventorySizeChangeS2CPacket packet) {
@@ -200,9 +200,9 @@ public class ExtendedInventoryClientHandler {
      * @return {@code null} if the main Extended Inventory section is too short to merge with the hotbar "window", or if there is no hotbar "window" on the side of the main Inventory.
      */
     public static Rect2i getCombinedInventoryHotbarLocation(ExtendedInventory inv, Rect2i screenArea, int hotbarY) {
-        boolean left = DestroyAllConfigs.CLIENT.extraInventoryLeft.get();
+        boolean left = DestroyConfigs.client().extraInventoryLeft.get();
         int inventorySlots = inv.extraItems.size() - inv.getExtraHotbarSlots();
-        int inventoryWidth = DestroyAllConfigs.CLIENT.extraInventoryWidth.get();
+        int inventoryWidth = DestroyConfigs.client().extraInventoryWidth.get();
         int inventoryHeight = inventorySlots / inventoryWidth;
         if (inventorySlots % inventoryWidth > 0) inventoryHeight++;
         int hotbarSlots = left ? DestroyClientConfigs.getLeftSlots(inv.getExtraHotbarSlots()) : DestroyClientConfigs.getRightSlots(inv.getExtraHotbarSlots());
@@ -225,11 +225,11 @@ public class ExtendedInventoryClientHandler {
     public static Rect2i getInventoryLocation(ExtendedInventory inv, Rect2i screenArea, int hotbarY) {
         int inventorySlots = inv.extraItems.size() - inv.getExtraHotbarSlots();
         if (inventorySlots <= 0) return null;
-        int inventoryWidth = DestroyAllConfigs.CLIENT.extraInventoryWidth.get();
+        int inventoryWidth = DestroyConfigs.client().extraInventoryWidth.get();
         int inventoryHeight = inventorySlots / inventoryWidth;
         if (inventorySlots % inventoryWidth > 0) inventoryHeight++;
         return new Rect2i(
-            screenArea.getX() + (DestroyAllConfigs.CLIENT.extraInventoryLeft.get() ? - INVENTORY_SPACING - 2 * INVENTORY_PADDING - inventoryWidth * 18: INVENTORY_SPACING + screenArea.getWidth()),
+            screenArea.getX() + (DestroyConfigs.client().extraInventoryLeft.get() ? - INVENTORY_SPACING - 2 * INVENTORY_PADDING - inventoryWidth * 18: INVENTORY_SPACING + screenArea.getWidth()),
             hotbarY - INVENTORY_HOTBAR_SPACING - INVENTORY_PADDING - 18 * Math.max(3, inventoryHeight),
             2 * INVENTORY_PADDING + inventoryWidth * 18,
             2 * INVENTORY_PADDING + 18 * inventoryHeight
@@ -283,7 +283,7 @@ public class ExtendedInventoryClientHandler {
     public void refreshExtraInventoryAreas(ExtendedInventory inv) {
         if (currentScreen == null) return;
 
-        boolean mainInventoryLeft = DestroyAllConfigs.CLIENT.extraInventoryLeft.get();
+        boolean mainInventoryLeft = DestroyConfigs.client().extraInventoryLeft.get();
 
         if (currentScreen instanceof IExtendedInventoryScreen customScreen && !customScreen.customExtendedInventoryRendering()) {
             int leftHotbarSlots = DestroyClientConfigs.getLeftSlots(inv.getExtraHotbarSlots());
@@ -328,7 +328,7 @@ public class ExtendedInventoryClientHandler {
      * The leftmost point of any Extended Inventory "windows".
      */
     public int getLeftmostX() {
-        if (DestroyAllConfigs.CLIENT.extraInventoryLeft.get()) {
+        if (DestroyConfigs.client().extraInventoryLeft.get()) {
             if (combinedInventoryHotbar != null) return combinedInventoryHotbar.getX();
             return Math.min(leftHotbar == null ? 0 : leftHotbar.getX(), inventory == null ? 0 : inventory.getX());
         };
@@ -368,7 +368,7 @@ public class ExtendedInventoryClientHandler {
             rightX = 0;
             rightY = 0;
         };
-        inv.addExtraInventorySlotsToMenu(slotAdder, slotFactory, DestroyAllConfigs.CLIENT.extraInventoryWidth.get(), invX + INVENTORY_PADDING, invY + INVENTORY_PADDING, DestroyClientConfigs.getLeftSlots(inv.getExtraHotbarSlots()), leftX, leftY, rightX, rightY);
+        inv.addExtraInventorySlotsToMenu(slotAdder, slotFactory, DestroyConfigs.client().extraInventoryWidth.get(), invX + INVENTORY_PADDING, invY + INVENTORY_PADDING, DestroyClientConfigs.getLeftSlots(inv.getExtraHotbarSlots()), leftX, leftY, rightX, rightY);
     };
 
     public void onOpenContainerScreen(ScreenEvent.Init.Post event) {
@@ -418,9 +418,9 @@ public class ExtendedInventoryClientHandler {
         )) return;
 
         ExtendedInventory inv = ExtendedInventory.get(mc.player);
-        boolean left = DestroyAllConfigs.CLIENT.extraInventoryLeft.get();
+        boolean left = DestroyConfigs.client().extraInventoryLeft.get();
         int leftHotbarSlots = DestroyClientConfigs.getLeftSlots(inv.getExtraHotbarSlots());
-        int columns = DestroyAllConfigs.CLIENT.extraInventoryWidth.get();
+        int columns = DestroyConfigs.client().extraInventoryWidth.get();
         GuiGraphics graphics = event.getGuiGraphics();
         PoseStack ms = graphics.pose();
 

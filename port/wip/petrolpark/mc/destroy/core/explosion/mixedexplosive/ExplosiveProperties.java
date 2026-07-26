@@ -223,7 +223,7 @@ public class ExplosiveProperties extends EnumMap<ExplosiveProperties.ExplosivePr
                 JsonObject object = entry.getValue().getAsJsonObject();
                 if (!CraftingHelper.processConditions(object, "conditions", this.context)) return;
 
-                Optional<? extends Holder<Item>> itemOptional = BuiltInRegistries.ITEM.asLookup().get(ResourceKey.create(Registries.ITEM, new ResourceLocation(entry.getKey())));
+                Optional<? extends Holder<Item>> itemOptional = BuiltInRegistries.ITEM.asLookup().get(ResourceKey.create(Registries.ITEM, ResourceLocation.parse(entry.getKey())));
                 if (itemOptional.isEmpty()) throw new IllegalStateException("Invalid item ID: "+entry.getKey());
                 ITEM_EXPLOSIVE_PROPERTIES.put(itemOptional.get().value(), fromJson(object));
             };

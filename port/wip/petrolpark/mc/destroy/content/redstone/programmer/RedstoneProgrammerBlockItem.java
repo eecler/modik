@@ -1,5 +1,6 @@
 package petrolpark.mc.destroy.content.redstone.programmer;
 
+import petrolpark.mc.destroy.legacy.LegacyNBT;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Consumer;
@@ -30,7 +31,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
-import net.minecraftforge.network.NetworkHooks;
+import net.neoforged.neoforge.network.NetworkHooks;
 
 public class RedstoneProgrammerBlockItem extends BlockItem {
 
@@ -93,7 +94,7 @@ public class RedstoneProgrammerBlockItem extends BlockItem {
     };
 
     public static void setProgram(ItemStack stack, RedstoneProgram program) {
-        stack.getOrCreateTag().put("Program", program.write());
+        LegacyNBT.getOrCreateTag(stack).put("Program", program.write());
     };
 
     public static ItemStack withProgram(RedstoneProgram program) {
@@ -111,7 +112,7 @@ public class RedstoneProgrammerBlockItem extends BlockItem {
      */
     public static Optional<RedstoneProgram> getProgram(ItemStack item, LevelAccessor level, LivingEntity player) {
         if (!(item.getItem() instanceof RedstoneProgrammerBlockItem) || player == null) return Optional.empty();
-        CompoundTag tag = item.getOrCreateTag();
+        CompoundTag tag = LegacyNBT.getOrCreateTag(item);
         UUID uuid = null;
         if (tag.contains("UUID")) {
             uuid = tag.getUUID("UUID");
@@ -122,7 +123,7 @@ public class RedstoneProgrammerBlockItem extends BlockItem {
 
         ItemStackRedstoneProgram newProgram;
         if (!tag.contains("Program")) newProgram = new ItemStackRedstoneProgram(player);
-        else newProgram = RedstoneProgram.read(() -> new ItemStackRedstoneProgram(player), item.getOrCreateTag().getCompound("Program"));
+        else newProgram = RedstoneProgram.read(() -> new ItemStackRedstoneProgram(player), LegacyNBT.getOrCreateTag(item).getCompound("Program"));
 
         if (level.isClientSide()) return Optional.of(newProgram); // For client-sided Redstone Programmers, create a new one every time its needed
 

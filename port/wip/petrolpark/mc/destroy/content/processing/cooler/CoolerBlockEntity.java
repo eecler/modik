@@ -1,5 +1,6 @@
 package petrolpark.mc.destroy.content.processing.cooler;
 
+import net.minecraft.core.HolderLookup;
 import java.util.List;
 
 import com.simibubi.create.api.equipment.goggles.IHaveGoggleInformation;
@@ -16,7 +17,7 @@ import petrolpark.mc.destroy.chemistry.legacy.LegacySpecies;
 import petrolpark.mc.destroy.chemistry.legacy.ReadOnlyMixture;
 import petrolpark.mc.destroy.chemistry.legacy.index.DestroyMolecules;
 import petrolpark.mc.destroy.client.DestroyLang;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import petrolpark.mc.destroy.core.pollution.PollutionHelper;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.fluids.tank.FluidTankBlock;
@@ -45,7 +46,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.neoforged.neoforge.common.util.LazyOptional;
+import net.minecraftforge.common.util.LazyOptional;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
 
@@ -99,11 +100,11 @@ public class CoolerBlockEntity extends SmartBlockEntity implements IHaveGoggleIn
                 totalMolesPerBucket += concentration;
                 if (molecule.hasTag(DestroyMolecules.Tags.REFRIGERANT)) {
                     totalRefrigerantMolesPerBucket += concentration;
-                    coolingPower += DestroyAllConfigs.SERVER.blocks.coolerEfficiency.getF() * concentration * amount * molecule.getMolarHeatCapacity() * 10 / Constants.MILLIBUCKETS_PER_LITER;
+                    coolingPower += DestroyConfigs.server().blocks.coolerEfficiency.getF() * concentration * amount * molecule.getMolarHeatCapacity() * 10 / Constants.MILLIBUCKETS_PER_LITER;
                 };
             };
 
-            if (DestroyAllConfigs.SERVER.blocks.coolerEnhancedByPurity.get()) coolingPower *= totalRefrigerantMolesPerBucket / totalMolesPerBucket; // Scale the effectiveness of the refrigerant with its purity
+            if (DestroyConfigs.server().blocks.coolerEnhancedByPurity.get()) coolingPower *= totalRefrigerantMolesPerBucket / totalMolesPerBucket; // Scale the effectiveness of the refrigerant with its purity
 
             
         } else if (fluidStack.getFluid().is(Fluids.COOLANT.tag)) {
@@ -157,14 +158,14 @@ public class CoolerBlockEntity extends SmartBlockEntity implements IHaveGoggleIn
     };
 
     @Override
-    protected void read(CompoundTag tag, boolean clientPacket) {
-        super.read(tag, clientPacket);
+    protected void read(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
+        super.read(tag, registries, clientPacket);
         coolingTicks = tag.getInt("Timer");
     };
 
     @Override
-    protected void write(CompoundTag tag, boolean clientPacket) {
-        super.write(tag, clientPacket);
+    protected void write(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
+        super.write(tag, registries, clientPacket);
         tag.putInt("Timer", coolingTicks);
     };
 
@@ -308,7 +309,7 @@ public class CoolerBlockEntity extends SmartBlockEntity implements IHaveGoggleIn
      * @return 10 minutes by default
      */
     public int getMaxCoolingTicks() {
-        return DestroyAllConfigs.SERVER.blocks.maximumCoolingTicks.get();
+        return DestroyConfigs.server().blocks.maximumCoolingTicks.get();
     };
     
 };

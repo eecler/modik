@@ -10,7 +10,7 @@ import petrolpark.mc.destroy.util.NameLists;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraftforge.network.NetworkEvent.Context;
+import net.neoforged.neoforge.network.NetworkEvent.Context;
 
 public class RequestKeypunchNameS2CPacket extends S2CPacket {
 

@@ -10,12 +10,12 @@ import org.apache.commons.lang3.tuple.Pair;
 import com.simibubi.create.api.stress.BlockStressValues;
 import com.simibubi.create.infrastructure.config.AllConfigs;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.ForgeConfigSpec;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.config.ModConfig;
-import net.minecraftforge.fml.event.config.ModConfigEvent;
+import net.neoforged.fml.event.config.ModConfigEvent;
 
 @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
 public class DestroyAllConfigs extends AllConfigs {

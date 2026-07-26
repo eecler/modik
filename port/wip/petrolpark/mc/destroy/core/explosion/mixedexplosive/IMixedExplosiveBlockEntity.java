@@ -1,5 +1,6 @@
 package petrolpark.mc.destroy.core.explosion.mixedexplosive;
 
+import petrolpark.mc.destroy.legacy.LegacyRegistries;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,7 +82,7 @@ public interface IMixedExplosiveBlockEntity extends MenuProvider, ClipboardClone
             };
 
             ItemStackHandler targetInventory = new ItemStackHandler();
-            targetInventory.deserializeNBT(tag.getCompound("TargetInventory"));
+            LegacyRegistries.deserializeNBT(targetInventory, tag.getCompound("TargetInventory"));
 
             List<ItemStack> leftoverItems = new ArrayList<>();
 

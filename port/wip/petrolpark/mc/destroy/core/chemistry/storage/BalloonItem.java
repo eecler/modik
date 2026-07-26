@@ -1,6 +1,6 @@
 package petrolpark.mc.destroy.core.chemistry.storage;
 
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
@@ -14,7 +14,7 @@ public class BalloonItem extends Item implements IMixtureStorageItem {
 
     @Override
     public int getCapacity(ItemStack stack) {
-        return DestroyAllConfigs.SERVER.blocks.balloonPoppingCapacity.get();
+        return DestroyConfigs.server().blocks.balloonPoppingCapacity.get();
     };
 
     @Override

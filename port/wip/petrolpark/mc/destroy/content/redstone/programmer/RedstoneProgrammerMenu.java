@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import petrolpark.mc.destroy.DestroyMessages;
 import petrolpark.mc.destroy.client.DestroyMenuTypes;
 import petrolpark.mc.destroy.client.IConditionalGhostSlot;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import petrolpark.mc.destroy.content.redstone.programmer.RedstoneProgram.Channel;
 import com.simibubi.create.content.redstone.link.RedstoneLinkNetworkHandler.Frequency;
 import com.simibubi.create.foundation.gui.menu.GhostItemMenu;
@@ -23,10 +23,10 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraftforge.event.TickEvent.Phase;
-import net.minecraftforge.event.TickEvent.PlayerTickEvent;
+import net.neoforged.neoforge.event.TickEvent.Phase;
+import net.neoforged.neoforge.event.TickEvent.PlayerTickEvent;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.minecraftforge.fml.LogicalSide;
+import net.neoforged.fml.LogicalSide;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import net.neoforged.neoforge.items.SlotItemHandler;
@@ -94,7 +94,7 @@ public class RedstoneProgrammerMenu extends GhostItemMenu<RedstoneProgram> {
         remoteSlots.clear();
         int i = 0;
         int position = SCREEN_ITEM_AREA_Y - 16 - this.offset;
-        for (int channel = 0; channel < Math.min(contentHolder.getChannels().size() + 1, DestroyAllConfigs.SERVER.blocks.redstoneProgrammerMaxChannels.get()); channel++) {
+        for (int channel = 0; channel < Math.min(contentHolder.getChannels().size() + 1, DestroyConfigs.server().blocks.redstoneProgrammerMaxChannels.get()); channel++) {
             position += SCREEN_DISTANCE_BETWEEN_CHANNELS;
             Slot slot1 = addSlot(new FrequencySlotItemHandler(i++, SCREEN_ITEM_AREA_X + 32, position, channel, true));
             Slot slot2 = addSlot(new FrequencySlotItemHandler(i++, SCREEN_ITEM_AREA_X + 50, position, channel, false));
@@ -173,7 +173,7 @@ public class RedstoneProgrammerMenu extends GhostItemMenu<RedstoneProgram> {
     };
 
     public static int maxSlots(RedstoneProgram program) {
-        return 2 * Math.min(program.getChannels().size() + 1, DestroyAllConfigs.SERVER.blocks.redstoneProgrammerMaxChannels.get());
+        return 2 * Math.min(program.getChannels().size() + 1, DestroyConfigs.server().blocks.redstoneProgrammerMaxChannels.get());
     };
 
     public static class DummyRedstoneProgram extends RedstoneProgram {

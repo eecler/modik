@@ -2,7 +2,7 @@ package petrolpark.mc.destroy.core.chemistry.storage.measuringcylinder;
 
 import petrolpark.mc.destroy.DestroyBlockEntityTypes;
 import petrolpark.mc.destroy.DestroyVoxelShapes;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import petrolpark.mc.destroy.core.chemistry.storage.PlaceableMixtureTankBlock;
 
 import net.minecraft.core.BlockPos;
@@ -35,7 +35,7 @@ public class MeasuringCylinderBlock extends PlaceableMixtureTankBlock<MeasuringC
 
     @Override
     public int getMixtureCapacity() {
-        return DestroyAllConfigs.SERVER.blocks.measuringCylinderCapacity.get();
+        return DestroyConfigs.server().blocks.measuringCylinderCapacity.get();
     };
 
     @Override

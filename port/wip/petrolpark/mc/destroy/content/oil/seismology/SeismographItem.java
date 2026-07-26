@@ -1,5 +1,6 @@
 package petrolpark.mc.destroy.content.oil.seismology;
 
+import petrolpark.mc.destroy.legacy.LegacyNBT;
 import java.util.Arrays;
 import java.util.function.Consumer;
 
@@ -31,7 +32,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.RenderItemInFrameEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.minecraftforge.fml.DistExecutor;
+import net.neoforged.fml.DistExecutor;
 import net.neoforged.fml.common.EventBusSubscriber;
 
 @EventBusSubscriber(value = Dist.CLIENT, modid = Destroy.MOD_ID, bus = EventBusSubscriber.Bus.FORGE)
@@ -56,7 +57,7 @@ public class SeismographItem extends MapItem {
     public static Seismograph readSeismograph(ItemStack stack) {
         Seismograph seismograph = new Seismograph();
         if (!(stack.getItem() instanceof SeismographItem)) return seismograph;
-        CompoundTag tag = stack.getOrCreateTag().getCompound("Seismograph");
+        CompoundTag tag = LegacyNBT.getOrCreateTag(stack).getCompound("Seismograph");
         seismograph.rowsDiscovered = tag.getByte("RowsDiscovered");
         seismograph.columnsDiscovered = tag.getByte("ColumnsDiscovered");
         seismograph.rows = Arrays.copyOf(tag.getByteArray("Rows"), 8);
@@ -72,7 +73,7 @@ public class SeismographItem extends MapItem {
         tag.putByteArray("Rows", seismograph.rows);
         tag.putByteArray("Columns", seismograph.columns);
         tag.putByteArray("Markings", seismograph.marks);
-        stack.getOrCreateTag().put("Seismograph", tag);
+        LegacyNBT.getOrCreateTag(stack).put("Seismograph", tag);
     };
 
     @Override

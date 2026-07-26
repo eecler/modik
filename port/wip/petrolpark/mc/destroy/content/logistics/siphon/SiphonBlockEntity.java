@@ -1,11 +1,12 @@
 package petrolpark.mc.destroy.content.logistics.siphon;
 
+import net.minecraft.core.HolderLookup;
 import java.text.DecimalFormat;
 import java.util.List;
 
 import petrolpark.mc.destroy.DestroyAdvancementTrigger;
 import petrolpark.mc.destroy.client.DestroyLang;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import petrolpark.mc.destroy.core.block.entity.IHaveLabGoggleInformation;
 import petrolpark.mc.destroy.core.data.advancement.DestroyAdvancementBehaviour;
 import petrolpark.mc.destroy.core.fluid.GeniusFluidTankBehaviour;
@@ -33,7 +34,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.neoforged.neoforge.common.util.LazyOptional;
+import net.minecraftforge.common.util.LazyOptional;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 
@@ -66,14 +67,14 @@ public class SiphonBlockEntity extends SmartBlockEntity implements IHaveLabGoggl
     };
 
     @Override
-    protected void read(CompoundTag tag, boolean clientPacket) {
-        super.read(tag, clientPacket);
+    protected void read(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
+        super.read(tag, registries, clientPacket);
         leftToDrain = tag.getInt("LeftToDrain");
     };
 
     @Override
-    protected void write(CompoundTag tag, boolean clientPacket) {
-        super.write(tag, clientPacket);
+    protected void write(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
+        super.write(tag, registries, clientPacket);
         tag.putInt("LeftToDrain", leftToDrain);
     };
 
@@ -93,7 +94,7 @@ public class SiphonBlockEntity extends SmartBlockEntity implements IHaveLabGoggl
     public class SiphonFluidTankBehaviour extends GeniusFluidTankBehaviour {
 
         public SiphonFluidTankBehaviour() {
-            super(GeniusFluidTankBehaviour.TYPE, SiphonBlockEntity.this, 1, DestroyAllConfigs.SERVER.blocks.siphonCapacity.get(), false);
+            super(GeniusFluidTankBehaviour.TYPE, SiphonBlockEntity.this, 1, DestroyConfigs.server().blocks.siphonCapacity.get(), false);
             capability = LazyOptional.of(() -> new SiphonFluidHandler(getPrimaryHandler()));
         };
 

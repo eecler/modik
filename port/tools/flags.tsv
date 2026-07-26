@@ -1,0 +1,550 @@
+category	file	line	code
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/content/logistics/siphon/SiphonBlockEntity.java	36	import net.minecraftforge.common.capabilities.ForgeCapabilities;
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/content/logistics/siphon/SiphonBlockEntity.java	83	if (cap == ForgeCapabilities.FLUID_HANDLER) return tank.getCapability().cast();
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/content/logistics/siphon/SiphonBlockEntity.java	89	containedFluidTooltip(tooltip, isPlayerSneaking, getCapability(ForgeCapabilities.FLUID_HANDLER));
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/content/oil/pumpjack/PumpjackBlockEntity.java	41	import net.minecraftforge.common.capabilities.ForgeCapabilities;
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/content/oil/pumpjack/PumpjackBlockEntity.java	127	if (cap == ForgeCapabilities.FLUID_HANDLER && (side == null || (PumpjackBlock.getFacing(getBlockState()).getAxis() != si
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/content/oil/pumpjack/PumpjackBlockEntity.java	207	return containedFluidTooltip(tooltip, isPlayerSneaking, getCapability(ForgeCapabilities.FLUID_HANDLER));
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/content/processing/ProcessingPonderScenes.java	75	import net.minecraftforge.common.capabilities.ForgeCapabilities;
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/content/processing/ProcessingPonderScenes.java	607	scene.world().modifyBlockEntity(basin, BasinBlockEntity.class, be -> be.getCapability(ForgeCapabilities.FLUID_HANDLER).i
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/content/processing/ageing/AgeingBarrelBlockEntity.java	40	import net.minecraftforge.common.capabilities.ForgeCapabilities;
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/content/processing/ageing/AgeingBarrelBlockEntity.java	170	if (cap == ForgeCapabilities.FLUID_HANDLER) {
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/content/processing/ageing/AgeingBarrelBlockEntity.java	172	} else if (cap == ForgeCapabilities.ITEM_HANDLER) {
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/content/processing/centrifuge/CentrifugeBlockEntity.java	67	import net.minecraftforge.common.capabilities.ForgeCapabilities;
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/content/processing/centrifuge/CentrifugeBlockEntity.java	485	if (cap == ForgeCapabilities.FLUID_HANDLER) {
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/content/processing/cooler/CoolerBlockEntity.java	48	import net.minecraftforge.common.capabilities.ForgeCapabilities;
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/content/processing/cooler/CoolerBlockEntity.java	258	if (cap == ForgeCapabilities.FLUID_HANDLER && side == Direction.DOWN) {
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/content/processing/distillation/BubbleCapBlockEntity.java	49	import net.minecraftforge.common.capabilities.ForgeCapabilities;
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/content/processing/distillation/BubbleCapBlockEntity.java	320	if (cap == ForgeCapabilities.FLUID_HANDLER) {
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/content/processing/dynamo/DynamoBlockEntity.java	45	import net.minecraftforge.common.capabilities.ForgeCapabilities;
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/content/processing/dynamo/DynamoBlockEntity.java	212	IFluidHandler fluidHandler = basin.getCapability(ForgeCapabilities.FLUID_HANDLER).orElse(null);
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/content/processing/dynamo/DynamoBlockEntity.java	277	IItemHandler availableItems = basin.getCapability(ForgeCapabilities.ITEM_HANDLER).orElse(null);
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/content/processing/glassblowing/BlowpipeItem.java	46	import net.minecraftforge.common.capabilities.ForgeCapabilities;
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/content/processing/glassblowing/BlowpipeItem.java	122	LazyOptional<IFluidHandler> cap = be.getCapability(ForgeCapabilities.FLUID_HANDLER, face);
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/content/processing/glassblowing/BlowpipeItem.java	264	if (cap != ForgeCapabilities.FLUID_HANDLER_ITEM) return LazyOptional.empty();
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/content/processing/treetap/TreeTapBlockEntity.java	22	import net.minecraftforge.common.capabilities.ForgeCapabilities;
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/content/processing/treetap/TreeTapBlockEntity.java	101	if (cap == ForgeCapabilities.FLUID_HANDLER) return fluidCapability.cast();
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/content/tool/SprayBottleItem.java	22	import net.minecraftforge.common.capabilities.ForgeCapabilities;
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/content/tool/SprayBottleItem.java	76	LazyOptional<IItemHandler> invCap = blockSource.getEntity().getCapability(ForgeCapabilities.ITEM_HANDLER);
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/core/chemistry/storage/ElementTankBlockEntity.java	27	import net.minecraftforge.common.capabilities.ForgeCapabilities;
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/core/chemistry/storage/ElementTankBlockEntity.java	66	if (cap == ForgeCapabilities.FLUID_HANDLER) return tank.getCapability().cast();
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/core/chemistry/storage/IMixtureStorageItem.java	36	import net.minecraftforge.common.capabilities.ForgeCapabilities;
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/core/chemistry/storage/IMixtureStorageItem.java	138	LazyOptional<IFluidHandler> fluidCap = be.getCapability(ForgeCapabilities.FLUID_HANDLER, face);
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/core/chemistry/storage/IMixtureStorageItem.java	159	InteractionResult result = item.tryEmpty(context.getItemInHand(), (ItemMixtureTank)context.getItemInHand().getCapability
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/core/chemistry/storage/IMixtureStorageItem.java	176	InteractionResult result = item.tryFill(stack, (ItemMixtureTank)stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/core/chemistry/storage/IMixtureStorageItem.java	198	return itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).map(tanks -> tanks.drain(getCapacity(itemStack), Fl
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/core/chemistry/storage/IMixtureStorageItem.java	202	itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).ifPresent(tanks -> tanks.fill(fluidStack, FluidAction.EXEC
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/core/chemistry/storage/ItemMixtureTank.java	16	import net.minecraftforge.common.capabilities.ForgeCapabilities;
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/core/chemistry/storage/ItemMixtureTank.java	65	if (cap != ForgeCapabilities.FLUID_HANDLER_ITEM) return LazyOptional.empty();
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/core/chemistry/storage/PlaceableMixtureTankBlock.java	21	import net.minecraftforge.common.capabilities.ForgeCapabilities;
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/core/chemistry/storage/PlaceableMixtureTankBlock.java	36	be.getCapability(ForgeCapabilities.FLUID_HANDLER).ifPresent(fluidHandler -> {
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/core/chemistry/storage/PlaceableMixtureTankBlock.java	58	return be.getCapability(ForgeCapabilities.FLUID_HANDLER).map(fluidHandler -> {
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/core/chemistry/storage/SimpleMixtureTankBlockEntity.java	25	import net.minecraftforge.common.capabilities.ForgeCapabilities;
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/core/chemistry/storage/SimpleMixtureTankBlockEntity.java	71	if (cap == ForgeCapabilities.FLUID_HANDLER) {
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/core/chemistry/storage/measuringcylinder/MeasuringCylinderBlockItem.java	37	import net.minecraftforge.common.capabilities.ForgeCapabilities;
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/core/chemistry/storage/measuringcylinder/MeasuringCylinderBlockItem.java	55	LazyOptional<IFluidHandlerItem> cap = stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM);
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/core/chemistry/storage/measuringcylinder/TransferFluidC2SPacket.java	17	import net.minecraftforge.common.capabilities.ForgeCapabilities;
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/core/chemistry/storage/measuringcylinder/TransferFluidC2SPacket.java	66	LazyOptional<IFluidHandlerItem> cap = stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM);
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/core/chemistry/storage/testtube/TestTubeRackBlock.java	34	import net.minecraftforge.common.capabilities.ForgeCapabilities;
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/core/chemistry/storage/testtube/TestTubeRackBlock.java	128	return tubeStack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).orElse(null);
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/core/chemistry/storage/testtube/TestTubeRackBlockEntity.java	30	import net.minecraftforge.common.capabilities.ForgeCapabilities;
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/core/chemistry/storage/testtube/TestTubeRackBlockEntity.java	52	if (cap == ForgeCapabilities.ITEM_HANDLER) return lazyItemHandler.cast();
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/SimpleDyeableNameableMixedExplosiveBlockEntity.java	35	import net.minecraftforge.common.capabilities.ForgeCapabilities;
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/SimpleDyeableNameableMixedExplosiveBlockEntity.java	75	if (cap == ForgeCapabilities.ITEM_HANDLER) return itemCapability.cast();
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/core/pollution/PollutingBehaviour.java	15	import net.minecraftforge.common.capabilities.ForgeCapabilities;
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/core/pollution/PollutingBehaviour.java	36	IFluidHandler availableFluids = blockEntity.getCapability(ForgeCapabilities.FLUID_HANDLER).orElse(null);
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/core/pollution/catalyticconverter/CatalyticConverterBlockEntity.java	24	import net.minecraftforge.common.capabilities.ForgeCapabilities;
+ForgeCapabilities	port/wip/petrolpark/mc/destroy/core/pollution/catalyticconverter/CatalyticConverterBlockEntity.java	77	if (cap == ForgeCapabilities.FLUID_HANDLER && side == null || side == getBlockState().getValue(CatalyticConverterBlock.F
+LazyOptional	port/wip/petrolpark/mc/destroy/content/logistics/siphon/SiphonBlockEntity.java	37	import net.minecraftforge.common.util.LazyOptional;
+LazyOptional	port/wip/petrolpark/mc/destroy/content/logistics/siphon/SiphonBlockEntity.java	82	public <T> LazyOptional<T> getCapability(Capability<T> cap, Direction side) {
+LazyOptional	port/wip/petrolpark/mc/destroy/content/logistics/siphon/SiphonBlockEntity.java	98	capability = LazyOptional.of(() -> new SiphonFluidHandler(getPrimaryHandler()));
+LazyOptional	port/wip/petrolpark/mc/destroy/content/oil/ChunkCrudeOil.java	22	import net.minecraftforge.common.util.LazyOptional;
+LazyOptional	port/wip/petrolpark/mc/destroy/content/oil/ChunkCrudeOil.java	177	private final LazyOptional<ChunkCrudeOil> optional = LazyOptional.of(this::createChunkCrudeOil);
+LazyOptional	port/wip/petrolpark/mc/destroy/content/oil/ChunkCrudeOil.java	201	public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+LazyOptional	port/wip/petrolpark/mc/destroy/content/oil/ChunkCrudeOil.java	206	return LazyOptional.empty();
+LazyOptional	port/wip/petrolpark/mc/destroy/content/oil/pumpjack/PumpjackBlockEntity.java	42	import net.minecraftforge.common.util.LazyOptional;
+LazyOptional	port/wip/petrolpark/mc/destroy/content/oil/pumpjack/PumpjackBlockEntity.java	110	LazyOptional<ChunkCrudeOil> crudeOilOptional = chunk.getCapability(ChunkCrudeOil.Provider.CHUNK_CRUDE_OIL);
+LazyOptional	port/wip/petrolpark/mc/destroy/content/oil/pumpjack/PumpjackBlockEntity.java	126	public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+LazyOptional	port/wip/petrolpark/mc/destroy/content/oil/seismology/SeismometerItem.java	32	import net.minecraftforge.common.util.LazyOptional;
+LazyOptional	port/wip/petrolpark/mc/destroy/content/oil/seismology/SeismometerItem.java	72	LazyOptional<ChunkCrudeOil> ccoOptional = chunk.getCapability(ChunkCrudeOil.Provider.CHUNK_CRUDE_OIL);
+LazyOptional	port/wip/petrolpark/mc/destroy/content/processing/ageing/AgeingBarrelBlockEntity.java	41	import net.minecraftforge.common.util.LazyOptional;
+LazyOptional	port/wip/petrolpark/mc/destroy/content/processing/ageing/AgeingBarrelBlockEntity.java	54	public LazyOptional<IItemHandlerModifiable> itemCapability;
+LazyOptional	port/wip/petrolpark/mc/destroy/content/processing/ageing/AgeingBarrelBlockEntity.java	67	itemCapability = LazyOptional.of(() -> inventory);
+LazyOptional	port/wip/petrolpark/mc/destroy/content/processing/ageing/AgeingBarrelBlockEntity.java	169	public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+LazyOptional	port/wip/petrolpark/mc/destroy/content/processing/centrifuge/CentrifugeBlockEntity.java	68	import net.minecraftforge.common.util.LazyOptional;
+LazyOptional	port/wip/petrolpark/mc/destroy/content/processing/centrifuge/CentrifugeBlockEntity.java	79	protected LazyOptional<IFluidHandler> allFluidCapability;
+LazyOptional	port/wip/petrolpark/mc/destroy/content/processing/centrifuge/CentrifugeBlockEntity.java	109	allFluidCapability = LazyOptional.of(() -> {
+LazyOptional	port/wip/petrolpark/mc/destroy/content/processing/centrifuge/CentrifugeBlockEntity.java	484	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+LazyOptional	port/wip/petrolpark/mc/destroy/content/processing/cooler/CoolerBlockEntity.java	49	import net.minecraftforge.common.util.LazyOptional;
+LazyOptional	port/wip/petrolpark/mc/destroy/content/processing/cooler/CoolerBlockEntity.java	257	public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+LazyOptional	port/wip/petrolpark/mc/destroy/content/processing/distillation/BubbleCapBlockEntity.java	50	import net.minecraftforge.common.util.LazyOptional;
+LazyOptional	port/wip/petrolpark/mc/destroy/content/processing/distillation/BubbleCapBlockEntity.java	74	protected LazyOptional<IFluidHandler> allFluidCapability;
+LazyOptional	port/wip/petrolpark/mc/destroy/content/processing/distillation/BubbleCapBlockEntity.java	101	allFluidCapability = LazyOptional.of(() -> { // For Polluting Behaviour, we need access to all tanks
+LazyOptional	port/wip/petrolpark/mc/destroy/content/processing/distillation/BubbleCapBlockEntity.java	319	public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+LazyOptional	port/wip/petrolpark/mc/destroy/content/processing/glassblowing/BlowpipeItem.java	49	import net.minecraftforge.common.util.LazyOptional;
+LazyOptional	port/wip/petrolpark/mc/destroy/content/processing/glassblowing/BlowpipeItem.java	122	LazyOptional<IFluidHandler> cap = be.getCapability(ForgeCapabilities.FLUID_HANDLER, face);
+LazyOptional	port/wip/petrolpark/mc/destroy/content/processing/glassblowing/BlowpipeItem.java	263	public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+LazyOptional	port/wip/petrolpark/mc/destroy/content/processing/glassblowing/BlowpipeItem.java	264	if (cap != ForgeCapabilities.FLUID_HANDLER_ITEM) return LazyOptional.empty();
+LazyOptional	port/wip/petrolpark/mc/destroy/content/processing/glassblowing/BlowpipeItem.java	265	return LazyOptional.of(() -> this).cast();
+LazyOptional	port/wip/petrolpark/mc/destroy/content/processing/treetap/TreeTapBlockEntity.java	23	import net.minecraftforge.common.util.LazyOptional;
+LazyOptional	port/wip/petrolpark/mc/destroy/content/processing/treetap/TreeTapBlockEntity.java	29	protected LazyOptional<IFluidHandler> fluidCapability;
+LazyOptional	port/wip/petrolpark/mc/destroy/content/processing/treetap/TreeTapBlockEntity.java	85	LazyOptional<IFluidHandler> oldCap = fluidCapability;
+LazyOptional	port/wip/petrolpark/mc/destroy/content/processing/treetap/TreeTapBlockEntity.java	86	fluidCapability = LazyOptional.of(tank::getPrimaryHandler);
+LazyOptional	port/wip/petrolpark/mc/destroy/content/processing/treetap/TreeTapBlockEntity.java	98	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+LazyOptional	port/wip/petrolpark/mc/destroy/content/product/babyblue/PlayerBabyBlueAddictionCapability.java	16	import net.minecraftforge.common.util.LazyOptional;
+LazyOptional	port/wip/petrolpark/mc/destroy/content/product/babyblue/PlayerBabyBlueAddictionCapability.java	55	private final LazyOptional<PlayerBabyBlueAddictionCapability> optional = LazyOptional.of(this::createPlayerBabyBlueAddic
+LazyOptional	port/wip/petrolpark/mc/destroy/content/product/babyblue/PlayerBabyBlueAddictionCapability.java	63	public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+LazyOptional	port/wip/petrolpark/mc/destroy/content/product/babyblue/PlayerBabyBlueAddictionCapability.java	65	return LazyOptional.empty();
+LazyOptional	port/wip/petrolpark/mc/destroy/content/tool/SprayBottleItem.java	23	import net.minecraftforge.common.util.LazyOptional;
+LazyOptional	port/wip/petrolpark/mc/destroy/content/tool/SprayBottleItem.java	76	LazyOptional<IItemHandler> invCap = blockSource.getEntity().getCapability(ForgeCapabilities.ITEM_HANDLER);
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/hazard/EntityChemicalPoisonCapability.java	20	import net.minecraftforge.common.util.LazyOptional;
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/hazard/EntityChemicalPoisonCapability.java	53	private final LazyOptional<EntityChemicalPoisonCapability> optional = LazyOptional.of(this::createEntityChemicalPoison);
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/hazard/EntityChemicalPoisonCapability.java	75	public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/hazard/EntityChemicalPoisonCapability.java	77	return LazyOptional.empty();
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/hazard/mobeffect/ChemicalPoisonMobEffect.java	20	import net.minecraftforge.common.util.LazyOptional;
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/hazard/mobeffect/ChemicalPoisonMobEffect.java	46	LazyOptional<EntityChemicalPoisonCapability> cap = getCap(livingEntity);
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/hazard/mobeffect/ChemicalPoisonMobEffect.java	59	private static LazyOptional<EntityChemicalPoisonCapability> getCap(LivingEntity livingEntity) {
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/novelcompounds/PlayerNovelCompoundsSynthesizedCapability.java	23	import net.minecraftforge.common.util.LazyOptional;
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/novelcompounds/PlayerNovelCompoundsSynthesizedCapability.java	45	private final LazyOptional<PlayerNovelCompoundsSynthesizedCapability> optional = LazyOptional.of(this::createPlayerNovel
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/novelcompounds/PlayerNovelCompoundsSynthesizedCapability.java	69	public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/novelcompounds/PlayerNovelCompoundsSynthesizedCapability.java	71	return LazyOptional.empty();
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/storage/ElementTankBlockEntity.java	28	import net.minecraftforge.common.util.LazyOptional;
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/storage/ElementTankBlockEntity.java	65	public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/storage/IMixtureStorageItem.java	37	import net.minecraftforge.common.util.LazyOptional;
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/storage/IMixtureStorageItem.java	138	LazyOptional<IFluidHandler> fluidCap = be.getCapability(ForgeCapabilities.FLUID_HANDLER, face);
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/storage/ItemMixtureTank.java	18	import net.minecraftforge.common.util.LazyOptional;
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/storage/ItemMixtureTank.java	64	public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/storage/ItemMixtureTank.java	65	if (cap != ForgeCapabilities.FLUID_HANDLER_ITEM) return LazyOptional.empty();
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/storage/ItemMixtureTank.java	66	return LazyOptional.of(() -> this).cast();
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/storage/SimpleMixtureTankBlockEntity.java	26	import net.minecraftforge.common.util.LazyOptional;
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/storage/SimpleMixtureTankBlockEntity.java	70	public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/storage/measuringcylinder/MeasuringCylinderBlockItem.java	38	import net.minecraftforge.common.util.LazyOptional;
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/storage/measuringcylinder/MeasuringCylinderBlockItem.java	55	LazyOptional<IFluidHandlerItem> cap = stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM);
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/storage/measuringcylinder/TransferFluidC2SPacket.java	18	import net.minecraftforge.common.util.LazyOptional;
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/storage/measuringcylinder/TransferFluidC2SPacket.java	66	LazyOptional<IFluidHandlerItem> cap = stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM);
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/storage/testtube/TestTubeRackBlockEntity.java	31	import net.minecraftforge.common.util.LazyOptional;
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/storage/testtube/TestTubeRackBlockEntity.java	37	private LazyOptional<TestTubeRackInventory> lazyItemHandler;
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/storage/testtube/TestTubeRackBlockEntity.java	42	lazyItemHandler = LazyOptional.empty();
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/storage/testtube/TestTubeRackBlockEntity.java	47	lazyItemHandler = LazyOptional.of(() -> inv);
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/storage/testtube/TestTubeRackBlockEntity.java	51	public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/vat/VatControllerBlockEntity.java	78	import net.minecraftforge.common.util.LazyOptional;
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/vat/VatControllerBlockEntity.java	115	protected LazyOptional<IFluidHandler> fluidCapability;
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/vat/VatControllerBlockEntity.java	119	protected LazyOptional<IItemHandler> itemCapability;
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/vat/VatControllerBlockEntity.java	136	fluidCapability = LazyOptional.empty();
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/vat/VatControllerBlockEntity.java	137	itemCapability = LazyOptional.empty();
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/vat/VatControllerBlockEntity.java	150	fluidCapability = LazyOptional.empty();
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/vat/VatControllerBlockEntity.java	164	itemCapability = LazyOptional.of(() -> inventory);
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/vat/VatControllerBlockEntity.java	170	fluidCapability = LazyOptional.of(() -> tankBehaviour.getCapability().orElse(null));
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/vat/VatControllerBlockEntity.java	172	fluidCapability = LazyOptional.empty();
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/vat/VatFluidTankBehaviour.java	21	import net.minecraftforge.common.util.LazyOptional;
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/vat/VatFluidTankBehaviour.java	40	capability = LazyOptional.of(() -> new VatFluidHandler(handlers));
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/vat/VatSideBlockEntity.java	56	import net.minecraftforge.common.util.LazyOptional;
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/vat/VatSideBlockEntity.java	73	protected LazyOptional<IFluidHandler> fluidCapability;
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/vat/VatSideBlockEntity.java	75	protected LazyOptional<IItemHandler> itemCapability;
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/vat/VatSideBlockEntity.java	106	fluidCapability = LazyOptional.empty();
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/vat/VatSideBlockEntity.java	107	itemCapability = LazyOptional.empty();
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/vat/VatSideBlockEntity.java	124	//fluidCapability = LazyOptional.empty(); // Temporarily set this to an empty optional
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/vat/VatSideBlockEntity.java	140	fluidCapability = LazyOptional.of(() -> {
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/vat/VatSideBlockEntity.java	142	LazyOptional<? extends IFluidHandler> inputCap = inputBehaviour.getCapability();
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/vat/VatSideBlockEntity.java	144	LazyOptional<? extends IFluidHandler> liquidOutputCap = LazyOptional.empty();
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/vat/VatSideBlockEntity.java	145	LazyOptional<? extends IFluidHandler> gasOutputCap = LazyOptional.empty();
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/vat/VatSideBlockEntity.java	148	liquidOutputCap = LazyOptional.of(() -> vatController.getLiquidTank());
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/vat/VatSideBlockEntity.java	149	gasOutputCap = LazyOptional.of(() -> vatController.getGasTank());
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/vat/VatSideBlockEntity.java	161	itemCapability = LazyOptional.empty();
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/vat/VatSideBlockEntity.java	272	public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+LazyOptional	port/wip/petrolpark/mc/destroy/core/chemistry/vat/VatSideBlockEntity.java	273	if (side != direction) return LazyOptional.empty();
+LazyOptional	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/SimpleDyeableNameableMixedExplosiveBlockEntity.java	36	import net.minecraftforge.common.util.LazyOptional;
+LazyOptional	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/SimpleDyeableNameableMixedExplosiveBlockEntity.java	42	public LazyOptional<IItemHandler> itemCapability;
+LazyOptional	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/SimpleDyeableNameableMixedExplosiveBlockEntity.java	67	itemCapability = LazyOptional.of(() -> inv);
+LazyOptional	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/SimpleDyeableNameableMixedExplosiveBlockEntity.java	74	public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+LazyOptional	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/SimpleDyeableNameableMixedExplosiveBlockEntity.java	76	return LazyOptional.empty();
+LazyOptional	port/wip/petrolpark/mc/destroy/core/fluid/GeniusFluidTankBehaviour.java	17	import net.minecraftforge.common.util.LazyOptional;
+LazyOptional	port/wip/petrolpark/mc/destroy/core/fluid/GeniusFluidTankBehaviour.java	41	capability = LazyOptional.of(() -> new InternalFluidHandler(handlers, enforceVariety));
+LazyOptional	port/wip/petrolpark/mc/destroy/core/player/PlayerCrouchingCapability.java	26	import net.minecraftforge.common.util.LazyOptional;
+LazyOptional	port/wip/petrolpark/mc/destroy/core/player/PlayerCrouchingCapability.java	43	private final LazyOptional<PlayerCrouchingCapability> optional = LazyOptional.of(this::createPlayerCrouching);
+LazyOptional	port/wip/petrolpark/mc/destroy/core/player/PlayerCrouchingCapability.java	69	public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+LazyOptional	port/wip/petrolpark/mc/destroy/core/player/PlayerCrouchingCapability.java	73	return LazyOptional.empty();
+LazyOptional	port/wip/petrolpark/mc/destroy/core/player/PlayerPreviousPositionsCapability.java	26	import net.minecraftforge.common.util.LazyOptional;
+LazyOptional	port/wip/petrolpark/mc/destroy/core/player/PlayerPreviousPositionsCapability.java	93	private final LazyOptional<PlayerPreviousPositionsCapability> optional = LazyOptional.of(this::createPlayerPreviousPosit
+LazyOptional	port/wip/petrolpark/mc/destroy/core/player/PlayerPreviousPositionsCapability.java	104	public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+LazyOptional	port/wip/petrolpark/mc/destroy/core/player/PlayerPreviousPositionsCapability.java	108	return LazyOptional.empty();
+LazyOptional	port/wip/petrolpark/mc/destroy/core/pollution/SmogAffectedBlockColor.java	24	import net.minecraftforge.common.util.LazyOptional;
+LazyOptional	port/wip/petrolpark/mc/destroy/core/pollution/SmogAffectedBlockColor.java	86	public static int getColor(int originalColor, LazyOptional<Pollution> pollutionOp) {
+LazyOptional	port/wip/petrolpark/mc/destroy/core/pollution/catalyticconverter/CatalyticConverterBlockEntity.java	25	import net.minecraftforge.common.util.LazyOptional;
+LazyOptional	port/wip/petrolpark/mc/destroy/core/pollution/catalyticconverter/CatalyticConverterBlockEntity.java	76	public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/oil/seismology/SeismographItem.java	60	CompoundTag tag = LegacyNBT.getOrCreateTag(stack).getCompound("Seismograph");
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/oil/seismology/SeismographItem.java	76	LegacyNBT.getOrCreateTag(stack).put("Seismograph", tag);
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/ProcessingPonderScenes.java	446	LegacyNBT.getOrCreateTag(filledPipe).put("Tank", tank.writeToNBT(new CompoundTag()));
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/ProcessingPonderScenes.java	447	LegacyNBT.getOrCreateTag(filledPipe).putString("Recipe", Destroy.asResource("glassblowing/round_bottomed_flask").toStrin
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/centrifuge/CentrifugeBlockEntity.java	171	Potion potion = BuiltInRegistries.POTION.getValue(ResourceLocation.parse(LegacyNBT.getOrCreateTag(inputFluidStack).getSt
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/centrifuge/CentrifugeBlockEntity.java	172	BottleType bottleType = NBTHelper.readEnum(LegacyNBT.getOrCreateTag(inputFluidStack), "BottleType", BottleType.class);
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/discstamping/DiscStamperItem.java	28	if (LegacyNBT.getOrCreateTag(stamper).contains("Disc", Tag.TAG_COMPOUND)) {
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/discstamping/DiscStamperItem.java	29	return ItemStack.of(LegacyNBT.getOrCreateTag(stamper).getCompound("Disc"));
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/discstamping/DiscStamperItem.java	36	LegacyNBT.getOrCreateTag(stack).put("Disc", discStack.save(new CompoundTag()));
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/distillation/DistillationTower.java	155	if (DestroyFluids.isMixture(fluidStack.getFluid()) && LegacyNBT.getOrCreateTag(fluidStack).contains("Mixture", Tag.TAG_C
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/distillation/DistillationTower.java	156	ReadOnlyMixture mixture = ReadOnlyMixture.readNBT(ReadOnlyMixture::new, LegacyNBT.getOrCreateTag(fluidStack).getCompound
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/glassblowing/BlowpipeBlock.java	58	be.readBlowing(LegacyNBT.getOrCreateTag(stack));
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/glassblowing/BlowpipeBlock.java	107	if (be instanceof BlowpipeBlockEntity blowpipe) blowpipe.writeBlowing(LegacyNBT.getOrCreateTag(stack), true);
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/glassblowing/BlowpipeItem.java	68	CompoundTag tag = LegacyNBT.getOrCreateTag(stack);
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/glassblowing/BlowpipeItem.java	112	CompoundTag tag = LegacyNBT.getOrCreateTag(stack);
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/glassblowing/BlowpipeItem.java	145	CompoundTag tag = LegacyNBT.getOrCreateTag(stack);
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/glassblowing/BlowpipeItem.java	159	CompoundTag tag = LegacyNBT.getOrCreateTag(stack);
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/glassblowing/BlowpipeItem.java	162	if (!tank.isEmpty() && (float)LegacyNBT.getOrCreateTag(stack).getInt("Progress") / (float)BlowpipeBlockEntity.BLOWING_DU
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/glassblowing/BlowpipeItem.java	185	CompoundTag tag = LegacyNBT.getOrCreateTag(stack);
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/glassblowing/BlowpipeItem.java	219	if (!player.swinging && LegacyNBT.getOrCreateTag(stack).getBoolean("Blowing")) return ArmPose.SPYGLASS;
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/glassblowing/BlowpipeItem.java	225	return BlowpipeBlockEntity.BLOWING_DURATION + TIME_TO_MOVE_TO_MOUTH - LegacyNBT.getOrCreateTag(stack).getInt("Progress")
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/glassblowing/BlowpipeItem.java	231	CompoundTag tag = LegacyNBT.getOrCreateTag(stack);
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/glassblowing/BlowpipeItem.java	276	tank.readFromNBT(LegacyNBT.getOrCreateTag(stack).getCompound("Tank"));
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/glassblowing/BlowpipeItem.java	292	CompoundTag tag = LegacyNBT.getOrCreateTag(stack);
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/glassblowing/BlowpipeItemRenderLayer.java	38	if (DestroyBlocks.BLOWPIPE.isIn(stack) && livingEntity.swingTime == 0 && LegacyNBT.getOrCreateTag(stack).getBoolean("Blo
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/glassblowing/BlowpipeItemRenderer.java	28	CompoundTag tag = LegacyNBT.getOrCreateTag(stack);
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/CircuitMaskItem.java	47	LegacyNBT.getOrCreateTag(stack).getList("PunchedBy", Tag.TAG_INT_ARRAY).forEach(uuidTag -> {
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/CircuitMaskItem.java	55	CompoundTag tag = LegacyNBT.getOrCreateTag(stack);
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/CircuitMaskItem.java	89	LegacyNBT.getOrCreateTag(stack).remove("Flipped");
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/CircuitMaskItem.java	90	LegacyNBT.getOrCreateTag(stack).remove("RotationWhileFlying");
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/CircuitMaskItem.java	102	if (LegacyNBT.getOrCreateTag(stack).contains("HideContaminants")) return;
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/CircuitPatternItem.java	19	return NBTHelper.readBinaryMatrix4x4(LegacyNBT.getOrCreateTag(stack), "Pattern");
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/CircuitPatternItem.java	23	if (stack.getItem() instanceof CircuitPatternItem || stack.getItem() instanceof SequencedAssemblyItem) NBTHelper.writeBi
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/CircuitPatternItemRenderer.java	62	if (LegacyNBT.getOrCreateTag(stack).contains("Flipped")) TransformStack.of(ms).rotateYDegrees(180);
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/TrypolithographyPonderScenes.java	312	LegacyNBT.getOrCreateTag(circuit1Flipped).putBoolean("Flipped", true);
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/keypunch/KeypunchBlockEntity.java	88	if (LegacyNBT.getOrCreateTag(stack).contains("Flipped")) positionToPunch = BinaryMatrix4x4.flip(positionToPunch);
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/recipe/CircuitDeployerApplicationRecipe.java	65	LegacyNBT.getOrCreateTag(stack).putBoolean("HideContaminants", true);
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/recipe/ManualCircuitBoardRecipe.java	47	LegacyNBT.getOrCreateTag(stack).putBoolean("HideContaminants", true);
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/product/OxidizingItem.java	40	IDecayingItem.extendLifetime(stack, (int)-IDecayingItem.getRemainingTime(this, stack, LegacyNBT.getOrCreateTag(stack)));
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/redstone/programmer/RedstoneProgrammerBlockItem.java	97	LegacyNBT.getOrCreateTag(stack).put("Program", program.write());
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/redstone/programmer/RedstoneProgrammerBlockItem.java	115	CompoundTag tag = LegacyNBT.getOrCreateTag(item);
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/redstone/programmer/RedstoneProgrammerBlockItem.java	126	else newProgram = RedstoneProgram.read(() -> new ItemStackRedstoneProgram(player), LegacyNBT.getOrCreateTag(item).getCom
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/tool/swissarmyknife/SwissArmyKnifeItem.java	227	CompoundTag tag = LegacyNBT.getOrCreateTag(stack);
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/tool/swissarmyknife/SwissArmyKnifeItem.java	234	if (tool != null) LegacyNBT.getOrCreateTag(stack).putInt("ActiveTool", tool.ordinal());
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/tool/swissarmyknife/SwissArmyKnifeItemRenderer.java	114	LegacyNBT.getOrCreateTag(stack).putFloat("RenderedTool", ((float)ordinal() / 8f));
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/tool/swissarmyknife/SwissArmyKnifeItemRenderer.java	119	return LegacyNBT.getOrCreateTag(stack).getFloat("RenderedTool");
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/tool/syringe/SyringeItem.java	53	if (LegacyNBT.getOrCreateTag(itemStack).contains("Injecting")) { //continue if Player is already injecting
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/tool/syringe/SyringeItem.java	59	LegacyNBT.getOrCreateTag(itemStack).putBoolean("Injecting", true);
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/tool/syringe/SyringeItem.java	89	LegacyNBT.getOrCreateTag(itemStack).remove("Injecting");
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/tool/syringe/SyringeItem.java	96	LegacyNBT.getOrCreateTag(itemStack).remove("Injecting");
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/content/tool/syringe/SyringeItemRenderer.java	43	if (isFirstPersonAnimation && LegacyNBT.getOrCreateTag(stack).contains("Injecting")) {
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/core/chemistry/MixtureContentsDisplaySource.java	51	CompoundTag mixtureTag = LegacyNBT.getOrCreateTag(fluidStack).getCompound("Mixture");
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/core/chemistry/MoleculeDisplayItem.java	43	LegacyNBT.getOrCreateTag(stack).putString("Molecule", molecule.getFullID());
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/core/chemistry/MoleculeDisplayItem.java	56	return LegacySpecies.getMolecule(LegacyNBT.getOrCreateTag(itemStack).getString("Molecule"));
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/core/chemistry/basinreaction/ReactionInBasinRecipe.java	77	mixture = LegacyMixture.readNBT(LegacyNBT.getOrCreateTag(fluidStack).getCompound("Mixture"));
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/core/chemistry/hazard/ChemistryHazardHelper.java	118	CompoundTag tag = LegacyNBT.getOrCreateTag(stack);
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/core/chemistry/hazard/ChemistryHazardHelper.java	127	LegacyNBT.getOrCreateTag(stack).remove("ContaminatingFluid");
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/core/chemistry/hazard/ContaminatedItemTooltipModifier.java	24	CompoundTag tag = LegacyNBT.getOrCreateTag(context.getItemStack());
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/core/chemistry/storage/IMixtureStorageItem.java	231	CompoundTag mixtureTag = LegacyNBT.getOrCreateTag(fluidStack).getCompound("Mixture");
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/core/chemistry/storage/ItemMixtureTank.java	34	fluid = FluidStack.loadFluidStackFromNBT(LegacyNBT.getOrCreateTag(container).getCompound("Fluid"));
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/IMixedExplosiveItem.java	14	LegacyRegistries.deserializeNBT(inventory, LegacyNBT.getOrCreateTag(stack).getCompound("ExplosiveMix"));
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/IMixedExplosiveItem.java	19	if (inv != null && stack.getItem().equals(this)) LegacyNBT.getOrCreateTag(stack).put("ExplosiveMix", LegacyRegistries.se
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/core/fluid/GeniusFluidTankBehaviour.java	76	if (!LegacyNBT.getOrCreateTag(resource).contains("Mixture", Tag.TAG_COMPOUND) || !LegacyNBT.getOrCreateTag(fluid).contai
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/core/fluid/GeniusFluidTankBehaviour.java	77	LegacyMixture existingMixture = LegacyMixture.readNBT(LegacyNBT.getOrCreateTag(fluid).getCompound("Mixture"));
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/core/fluid/GeniusFluidTankBehaviour.java	78	LegacyMixture addedMixture = LegacyMixture.readNBT(LegacyNBT.getOrCreateTag(resource).getCompound("Mixture"));
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/core/recipe/ingredient/fluid/MixtureFluidIngredient.java	46	LegacyNBT.getOrCreateTag(stack).putString("MixtureFluidIngredientSubtype", getType().getMixtureFluidIngredientSubtype())
+LegacyNBT copy semantics	port/wip/petrolpark/mc/destroy/core/recipe/ingredient/fluid/MixtureFluidIngredient.java	47	addNBT(LegacyNBT.getOrCreateTag(stack));
+RegistryObject	port/wip/petrolpark/mc/destroy/DestroyAttributes.java	15	public static final RegistryObject<Attribute>
+RegistryObject	port/wip/petrolpark/mc/destroy/DestroyAttributes.java	20	private static RegistryObject<Attribute> registerRanged(String name, double defaultValue, double min, double max, boolea
+RegistryObject	port/wip/petrolpark/mc/destroy/DestroyLootConditions.java	17	public static final RegistryObject<LootItemConditionType>
+RegistryObject	port/wip/petrolpark/mc/destroy/DestroyLootConditions.java	20	private static RegistryObject<LootItemConditionType> registerLootCondition(String name, Serializer<? extends LootItemCon
+RegistryObject	port/wip/petrolpark/mc/destroy/DestroyMobEffects.java	26	public static final RegistryObject<MobEffect>
+RegistryObject	port/wip/petrolpark/mc/destroy/DestroyNumberProviders.java	17	public static final RegistryObject<LootNumberProviderType> POLLUTION = register("pollution", new PollutionNumberProvider
+RegistryObject	port/wip/petrolpark/mc/destroy/DestroyNumberProviders.java	19	private static RegistryObject<LootNumberProviderType> register(String name, Serializer<? extends NumberProvider> seriali
+RegistryObject	port/wip/petrolpark/mc/destroy/DestroyPotions.java	13	public static final RegistryObject<Potion> UNIQUE = POTIONS.register("unique", Potion::new);
+RegistryObject	port/wip/petrolpark/mc/destroy/DestroyRecipeTypes.java	78	private final RegistryObject<RecipeSerializer<?>> serializerObject;
+RegistryObject	port/wip/petrolpark/mc/destroy/DestroyRecipeTypes.java	80	private final RegistryObject<RecipeType<?>> typeObject;
+RegistryObject	port/wip/petrolpark/mc/destroy/DestroyVillagers.java	18	public static final RegistryObject<PoiType> AGING_BARREL_POI = POI_TYPES.register("aging_barrel_poi", () -> new PoiType(
+RegistryObject	port/wip/petrolpark/mc/destroy/DestroyVillagers.java	20	public static final RegistryObject<VillagerProfession> INNKEEPER = VILLAGER_PROFESSIONS.register("innkeeper", () -> new 
+RegistryObject	port/wip/petrolpark/mc/destroy/client/DestroyParticleTypes.java	75	private final RegistryObject<ParticleType<T>> object; // This Particle's Registry entry
+block use() override	port/wip/petrolpark/mc/destroy/content/processing/ageing/AgingBarrelBlock.java	62	public InteractionResult use(BlockState blockstate, Level level, BlockPos pos, Player player, InteractionHand hand, Bloc
+block use() override	port/wip/petrolpark/mc/destroy/content/processing/cooler/CoolerBlock.java	64	public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitR
+block use() override	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/keypunch/KeypunchBlock.java	53	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitR
+block use() override	port/wip/petrolpark/mc/destroy/content/redstone/programmer/RedstoneProgrammerBlock.java	61	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitR
+block use() override	port/wip/petrolpark/mc/destroy/core/chemistry/storage/measuringcylinder/MeasuringCylinderBlock.java	32	public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, Bloc
+block use() override	port/wip/petrolpark/mc/destroy/core/chemistry/storage/testtube/TestTubeRackBlock.java	63	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitR
+block use() override	port/wip/petrolpark/mc/destroy/core/chemistry/vat/VatControllerBlock.java	63	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitR
+block use() override	port/wip/petrolpark/mc/destroy/core/chemistry/vat/VatSideBlock.java	71	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitR
+block use() override	port/wip/petrolpark/mc/destroy/core/chemistry/vat/observation/colorimeter/ColorimeterBlock.java	63	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitR
+block use() override	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/MixedExplosiveBlock.java	102	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitR
+getCapability call	port/wip/petrolpark/mc/destroy/content/logistics/siphon/SiphonBlockEntity.java	83	if (cap == ForgeCapabilities.FLUID_HANDLER) return tank.getCapability().cast();
+getCapability call	port/wip/petrolpark/mc/destroy/content/logistics/siphon/SiphonBlockEntity.java	84	return super.getCapability(cap, side);
+getCapability call	port/wip/petrolpark/mc/destroy/content/oil/CrudeOilCommand.java	42	int amount = chunk.getCapability(ChunkCrudeOil.Provider.CHUNK_CRUDE_OIL).map(crudeOil -> {
+getCapability call	port/wip/petrolpark/mc/destroy/content/oil/CrudeOilCommand.java	54	int amount = chunk.getCapability(ChunkCrudeOil.Provider.CHUNK_CRUDE_OIL).map(crudeOil -> {
+getCapability call	port/wip/petrolpark/mc/destroy/content/oil/CrudeOilCommand.java	66	int amount = chunk.getCapability(ChunkCrudeOil.Provider.CHUNK_CRUDE_OIL).map(crudeOil -> {
+getCapability call	port/wip/petrolpark/mc/destroy/content/oil/pumpjack/PumpjackBlockEntity.java	110	LazyOptional<ChunkCrudeOil> crudeOilOptional = chunk.getCapability(ChunkCrudeOil.Provider.CHUNK_CRUDE_OIL);
+getCapability call	port/wip/petrolpark/mc/destroy/content/oil/pumpjack/PumpjackBlockEntity.java	128	return tank.getCapability().cast();
+getCapability call	port/wip/petrolpark/mc/destroy/content/oil/pumpjack/PumpjackBlockEntity.java	130	return super.getCapability(cap, side);
+getCapability call	port/wip/petrolpark/mc/destroy/content/oil/pumpjack/PumpjackBlockEntity.java	222	return chunk.getCapability(ChunkCrudeOil.Provider.CHUNK_CRUDE_OIL).map(ChunkCrudeOil::isGenerated).orElse(true);
+getCapability call	port/wip/petrolpark/mc/destroy/content/oil/seismology/SeismometerItem.java	72	LazyOptional<ChunkCrudeOil> ccoOptional = chunk.getCapability(ChunkCrudeOil.Provider.CHUNK_CRUDE_OIL);
+getCapability call	port/wip/petrolpark/mc/destroy/content/processing/ProcessingPonderScenes.java	607	scene.world().modifyBlockEntity(basin, BasinBlockEntity.class, be -> be.getCapability(ForgeCapabilities.FLUID_HANDLER).i
+getCapability call	port/wip/petrolpark/mc/destroy/content/processing/ageing/AgeingBarrelBlockEntity.java	171	return tank.getCapability().cast();
+getCapability call	port/wip/petrolpark/mc/destroy/content/processing/ageing/AgeingBarrelBlockEntity.java	175	return super.getCapability(cap, side);
+getCapability call	port/wip/petrolpark/mc/destroy/content/processing/ageing/AgeingBarrelBlockEntity.java	234	containedFluidTooltip(tooltip, isPlayerSneaking, tank.getCapability().cast());
+getCapability call	port/wip/petrolpark/mc/destroy/content/processing/centrifuge/CentrifugeBlockEntity.java	110	return new CombinedTankWrapper(inputTank.getCapability().orElse(null), denseOutputTank.getCapability().orElse(null), lig
+getCapability call	port/wip/petrolpark/mc/destroy/content/processing/centrifuge/CentrifugeBlockEntity.java	487	return inputTank.getCapability().cast();
+getCapability call	port/wip/petrolpark/mc/destroy/content/processing/centrifuge/CentrifugeBlockEntity.java	489	return lightOutputTank.getCapability().cast();
+getCapability call	port/wip/petrolpark/mc/destroy/content/processing/centrifuge/CentrifugeBlockEntity.java	491	return denseOutputTank.getCapability().cast();
+getCapability call	port/wip/petrolpark/mc/destroy/content/processing/centrifuge/CentrifugeBlockEntity.java	496	return super.getCapability(cap, side);
+getCapability call	port/wip/petrolpark/mc/destroy/content/processing/cooler/CoolerBlockEntity.java	259	return tank.getCapability().cast();
+getCapability call	port/wip/petrolpark/mc/destroy/content/processing/cooler/CoolerBlockEntity.java	261	return super.getCapability(cap, side);
+getCapability call	port/wip/petrolpark/mc/destroy/content/processing/cooler/CoolerBlockEntity.java	267	tank.getCapability().invalidate();
+getCapability call	port/wip/petrolpark/mc/destroy/content/processing/distillation/BubbleCapBlockEntity.java	102	return new CombinedTankWrapper(tank.getCapability().orElse(null), internalTank.getCapability().orElse(null));
+getCapability call	port/wip/petrolpark/mc/destroy/content/processing/distillation/BubbleCapBlockEntity.java	324	return tank.getCapability().cast();
+getCapability call	port/wip/petrolpark/mc/destroy/content/processing/distillation/BubbleCapBlockEntity.java	328	return super.getCapability(cap, side);
+getCapability call	port/wip/petrolpark/mc/destroy/content/processing/dynamo/DynamoBlockEntity.java	212	IFluidHandler fluidHandler = basin.getCapability(ForgeCapabilities.FLUID_HANDLER).orElse(null);
+getCapability call	port/wip/petrolpark/mc/destroy/content/processing/dynamo/DynamoBlockEntity.java	277	IItemHandler availableItems = basin.getCapability(ForgeCapabilities.ITEM_HANDLER).orElse(null);
+getCapability call	port/wip/petrolpark/mc/destroy/content/processing/glassblowing/BlowpipeItem.java	122	LazyOptional<IFluidHandler> cap = be.getCapability(ForgeCapabilities.FLUID_HANDLER, face);
+getCapability call	port/wip/petrolpark/mc/destroy/content/processing/treetap/TreeTapBlockEntity.java	99	if (side != null && side != getBlockState().getValue(TreeTapBlock.HORIZONTAL_FACING).getOpposite()) return super.getCapa
+getCapability call	port/wip/petrolpark/mc/destroy/content/processing/treetap/TreeTapBlockEntity.java	102	return super.getCapability(cap, side);
+getCapability call	port/wip/petrolpark/mc/destroy/content/product/alcohol/ChorusWineItem.java	31	player.getCapability(PlayerPreviousPositionsCapability.CAPABILITY).ifPresent(previousPositions -> {
+getCapability call	port/wip/petrolpark/mc/destroy/content/product/babyblue/BabyBlueAddictionCommand.java	29	return player.getCapability(PlayerBabyBlueAddictionCapability.CAPABILITY).map(babyblueAddiction -> {
+getCapability call	port/wip/petrolpark/mc/destroy/content/product/babyblue/BabyBlueAddictionCommand.java	39	player.getCapability(PlayerBabyBlueAddictionCapability.CAPABILITY).ifPresent(babyblueAddiction -> {
+getCapability call	port/wip/petrolpark/mc/destroy/content/product/babyblue/BabyBlueHighMobEffect.java	39	player.getCapability(PlayerBabyBlueAddictionCapability.CAPABILITY).ifPresent(babyBlueAddiction -> {
+getCapability call	port/wip/petrolpark/mc/destroy/content/product/babyblue/BabyBlueWithdrawalMobEffect.java	37	livingEntity.getCapability(PlayerBabyBlueAddictionCapability.CAPABILITY).ifPresent(babyBlueAddiction -> {
+getCapability call	port/wip/petrolpark/mc/destroy/content/tool/SprayBottleItem.java	76	LazyOptional<IItemHandler> invCap = blockSource.getEntity().getCapability(ForgeCapabilities.ITEM_HANDLER);
+getCapability call	port/wip/petrolpark/mc/destroy/core/chemistry/hazard/EntityChemicalPoisonCapability.java	28	entity.getCapability(Provider.ENTITY_CHEMICAL_POISON).ifPresent(cp -> {
+getCapability call	port/wip/petrolpark/mc/destroy/core/chemistry/hazard/EntityChemicalPoisonCapability.java	37	entity.getCapability(Provider.ENTITY_CHEMICAL_POISON).ifPresent(cp -> {
+getCapability call	port/wip/petrolpark/mc/destroy/core/chemistry/hazard/mobeffect/ChemicalPoisonMobEffect.java	60	return livingEntity.getCapability(EntityChemicalPoisonCapability.Provider.ENTITY_CHEMICAL_POISON);
+getCapability call	port/wip/petrolpark/mc/destroy/core/chemistry/hazard/mobeffect/ChemicalPoisonMobEffect.java	70	minecraft.player.getCapability(EntityChemicalPoisonCapability.Provider.ENTITY_CHEMICAL_POISON).ifPresent(cp -> {
+getCapability call	port/wip/petrolpark/mc/destroy/core/chemistry/novelcompounds/PlayerNovelCompoundsSynthesizedCapability.java	32	player.getCapability(CAPABILITY).ifPresent(pncs -> {
+getCapability call	port/wip/petrolpark/mc/destroy/core/chemistry/storage/ElementTankBlockEntity.java	66	if (cap == ForgeCapabilities.FLUID_HANDLER) return tank.getCapability().cast();
+getCapability call	port/wip/petrolpark/mc/destroy/core/chemistry/storage/ElementTankBlockEntity.java	67	return super.getCapability(cap, side);
+getCapability call	port/wip/petrolpark/mc/destroy/core/chemistry/storage/IMixtureStorageItem.java	138	LazyOptional<IFluidHandler> fluidCap = be.getCapability(ForgeCapabilities.FLUID_HANDLER, face);
+getCapability call	port/wip/petrolpark/mc/destroy/core/chemistry/storage/IMixtureStorageItem.java	159	InteractionResult result = item.tryEmpty(context.getItemInHand(), (ItemMixtureTank)context.getItemInHand().getCapability
+getCapability call	port/wip/petrolpark/mc/destroy/core/chemistry/storage/IMixtureStorageItem.java	176	InteractionResult result = item.tryFill(stack, (ItemMixtureTank)stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM
+getCapability call	port/wip/petrolpark/mc/destroy/core/chemistry/storage/IMixtureStorageItem.java	198	return itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).map(tanks -> tanks.drain(getCapacity(itemStack), Fl
+getCapability call	port/wip/petrolpark/mc/destroy/core/chemistry/storage/IMixtureStorageItem.java	202	itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).ifPresent(tanks -> tanks.fill(fluidStack, FluidAction.EXEC
+getCapability call	port/wip/petrolpark/mc/destroy/core/chemistry/storage/PlaceableMixtureTankBlock.java	36	be.getCapability(ForgeCapabilities.FLUID_HANDLER).ifPresent(fluidHandler -> {
+getCapability call	port/wip/petrolpark/mc/destroy/core/chemistry/storage/PlaceableMixtureTankBlock.java	58	return be.getCapability(ForgeCapabilities.FLUID_HANDLER).map(fluidHandler -> {
+getCapability call	port/wip/petrolpark/mc/destroy/core/chemistry/storage/SimpleMixtureTankBlockEntity.java	72	return tank.getCapability().cast();
+getCapability call	port/wip/petrolpark/mc/destroy/core/chemistry/storage/SimpleMixtureTankBlockEntity.java	74	return super.getCapability(cap, side);
+getCapability call	port/wip/petrolpark/mc/destroy/core/chemistry/storage/measuringcylinder/MeasuringCylinderBlockItem.java	55	LazyOptional<IFluidHandlerItem> cap = stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM);
+getCapability call	port/wip/petrolpark/mc/destroy/core/chemistry/storage/measuringcylinder/TransferFluidC2SPacket.java	66	LazyOptional<IFluidHandlerItem> cap = stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM);
+getCapability call	port/wip/petrolpark/mc/destroy/core/chemistry/storage/testtube/TestTubeRackBlock.java	128	return tubeStack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).orElse(null);
+getCapability call	port/wip/petrolpark/mc/destroy/core/chemistry/storage/testtube/TestTubeRackBlockEntity.java	53	return super.getCapability(cap, side);
+getCapability call	port/wip/petrolpark/mc/destroy/core/chemistry/vat/VatControllerBlockEntity.java	170	fluidCapability = LazyOptional.of(() -> tankBehaviour.getCapability().orElse(null));
+getCapability call	port/wip/petrolpark/mc/destroy/core/chemistry/vat/VatSideBlockEntity.java	142	LazyOptional<? extends IFluidHandler> inputCap = inputBehaviour.getCapability();
+getCapability call	port/wip/petrolpark/mc/destroy/core/chemistry/vat/VatSideBlockEntity.java	282	return super.getCapability(cap, side);
+getCapability call	port/wip/petrolpark/mc/destroy/core/event/DestroyCommonEvents.java	132	if (!level.getCapability(Pollution.CAPABILITY).isPresent()) {
+getCapability call	port/wip/petrolpark/mc/destroy/core/event/DestroyCommonEvents.java	142	if (!entity.getCapability(EntityChemicalPoisonCapability.Provider.ENTITY_CHEMICAL_POISON).isPresent()) {
+getCapability call	port/wip/petrolpark/mc/destroy/core/event/DestroyCommonEvents.java	148	if (!player.getCapability(PlayerBabyBlueAddictionCapability.CAPABILITY).isPresent()) {
+getCapability call	port/wip/petrolpark/mc/destroy/core/event/DestroyCommonEvents.java	152	if (!player.getCapability(PlayerPreviousPositionsCapability.CAPABILITY).isPresent()) {
+getCapability call	port/wip/petrolpark/mc/destroy/core/event/DestroyCommonEvents.java	156	if (!player.getCapability(PlayerCrouchingCapability.CAPABILITY).isPresent()) {
+getCapability call	port/wip/petrolpark/mc/destroy/core/event/DestroyCommonEvents.java	160	if (!player.getCapability(PlayerNovelCompoundsSynthesizedCapability.CAPABILITY).isPresent()) {
+getCapability call	port/wip/petrolpark/mc/destroy/core/event/DestroyCommonEvents.java	169	if (!chunk.getCapability(ChunkCrudeOil.Provider.CHUNK_CRUDE_OIL).isPresent()) {
+getCapability call	port/wip/petrolpark/mc/destroy/core/event/DestroyCommonEvents.java	172	if (!chunk.getCapability(Pollution.CAPABILITY).isPresent()) {
+getCapability call	port/wip/petrolpark/mc/destroy/core/event/DestroyCommonEvents.java	187	level.getCapability(Pollution.CAPABILITY).ifPresent(levelPollution -> {
+getCapability call	port/wip/petrolpark/mc/destroy/core/event/DestroyCommonEvents.java	207	event.getChunk().getCapability(Pollution.CAPABILITY).ifPresent(pollution -> {
+getCapability call	port/wip/petrolpark/mc/destroy/core/event/DestroyCommonEvents.java	225	level.getCapability(Pollution.CAPABILITY).ifPresent(levelPollution -> {
+getCapability call	port/wip/petrolpark/mc/destroy/core/event/DestroyCommonEvents.java	230	player.getCapability(PlayerPreviousPositionsCapability.CAPABILITY).ifPresent(previousPositions -> {
+getCapability call	port/wip/petrolpark/mc/destroy/core/event/DestroyCommonEvents.java	243	if (DestroyConfigs.server().substances.keepBabyBlueAddictionOnDeath.get() || keepInv) event.getOriginal().getCapability(
+getCapability call	port/wip/petrolpark/mc/destroy/core/event/DestroyCommonEvents.java	244	event.getEntity().getCapability(PlayerBabyBlueAddictionCapability.CAPABILITY).ifPresent(newStore -> {
+getCapability call	port/wip/petrolpark/mc/destroy/core/event/DestroyCommonEvents.java	250	event.getOriginal().getCapability(PlayerNovelCompoundsSynthesizedCapability.CAPABILITY).ifPresent(oldStore -> {
+getCapability call	port/wip/petrolpark/mc/destroy/core/event/DestroyCommonEvents.java	251	event.getEntity().getCapability(PlayerNovelCompoundsSynthesizedCapability.CAPABILITY).ifPresent(newStore -> {
+getCapability call	port/wip/petrolpark/mc/destroy/core/player/PlayerCrouchingCapability.java	85	player.getCapability(PlayerCrouchingCapability.CAPABILITY).ifPresent(crouchingCap -> {
+getCapability call	port/wip/petrolpark/mc/destroy/core/player/PlayerCrouchingCapability.java	90	player.getCapability(PlayerCrouchingCapability.CAPABILITY).ifPresent(crouchingCap -> {
+getCapability call	port/wip/petrolpark/mc/destroy/core/player/PlayerCrouchingCapability.java	96	int ticksUrinating = player.getCapability(PlayerCrouchingCapability.CAPABILITY).map(crouchingCap -> crouchingCap.ticksUr
+getCapability call	port/wip/petrolpark/mc/destroy/core/player/PlayerPreviousPositionsCapability.java	128	if (!player.level().isClientSide()) player.getCapability(PlayerPreviousPositionsCapability.CAPABILITY).ifPresent((player
+getCapability call	port/wip/petrolpark/mc/destroy/core/pollution/PollutingBehaviour.java	36	IFluidHandler availableFluids = blockEntity.getCapability(ForgeCapabilities.FLUID_HANDLER).orElse(null);
+getCapability call	port/wip/petrolpark/mc/destroy/core/pollution/SmogAffectedBlockColor.java	69	if (level != null && level instanceof PonderLevel ponder) return getColor(fallback.getAsInt(), ponder.getCapability(Poll
+getCapability call	port/wip/petrolpark/mc/destroy/core/pollution/SmogAffectedBlockColor.java	81	if (chunk != null) return getColor(originalColor, chunk.getCapability(Pollution.CAPABILITY));
+getCapability call	port/wip/petrolpark/mc/destroy/core/pollution/SyncChunkPollutionS2CPacket.java	42	if (chunk != null) chunk.getCapability(Pollution.CAPABILITY).ifPresent(pollution -> {
+getCapability call	port/wip/petrolpark/mc/destroy/core/pollution/catalyticconverter/CatalyticConverterBlockEntity.java	77	if (cap == ForgeCapabilities.FLUID_HANDLER && side == null || side == getBlockState().getValue(CatalyticConverterBlock.F
+getCapability call	port/wip/petrolpark/mc/destroy/core/pollution/catalyticconverter/CatalyticConverterBlockEntity.java	78	return super.getCapability(cap, side);
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/DestroyMessages.java	34	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/DestroyMessages.java	92	public static <T extends S2CPacket> void addS2CPacket(SimpleChannel net, Class<T> clazz, Function<FriendlyByteBuf, T> de
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/DestroyMessages.java	100	public static <T extends C2SPacket> void addC2SPacket(SimpleChannel net, Class<T> clazz, Function<FriendlyByteBuf, T> de
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/confetti/ConfettiBurstS2CPacket.java	10	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/confetti/ConfettiBurstS2CPacket.java	22	public ConfettiBurstS2CPacket(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/confetti/ConfettiBurstS2CPacket.java	35	public void toBytes(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/oil/seismology/MarkSeismographC2SPacket.java	9	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/oil/seismology/MarkSeismographC2SPacket.java	22	public MarkSeismographC2SPacket(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/oil/seismology/MarkSeismographC2SPacket.java	37	public void toBytes(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/oil/seismology/SeismometerSpikeS2CPacket.java	7	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/oil/seismology/SeismometerSpikeS2CPacket.java	15	public SeismometerSpikeS2CPacket(FriendlyByteBuf buffer) {};
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/oil/seismology/SeismometerSpikeS2CPacket.java	18	public void toBytes(FriendlyByteBuf buffer) {};
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/processing/glassblowing/GlassblowingRecipe.java	14	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/processing/glassblowing/GlassblowingRecipe.java	48	public void readAdditional(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/processing/glassblowing/GlassblowingRecipe.java	58	public void writeAdditional(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/processing/glassblowing/SelectGlassblowingRecipeC2SPacket.java	10	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/processing/glassblowing/SelectGlassblowingRecipeC2SPacket.java	29	public SelectGlassblowingRecipeC2SPacket(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/processing/glassblowing/SelectGlassblowingRecipeC2SPacket.java	35	public void toBytes(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/CircuitPatternsS2CPacket.java	11	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/CircuitPatternsS2CPacket.java	23	public static CircuitPatternsS2CPacket read(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/CircuitPatternsS2CPacket.java	33	public void toBytes(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/keypunch/ChangeKeypunchPositionC2SPacket.java	8	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/keypunch/ChangeKeypunchPositionC2SPacket.java	24	public ChangeKeypunchPositionC2SPacket(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/keypunch/ChangeKeypunchPositionC2SPacket.java	30	public void toBytes(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/keypunch/NameKeypunchC2SPacket.java	8	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/keypunch/NameKeypunchC2SPacket.java	24	public NameKeypunchC2SPacket(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/keypunch/NameKeypunchC2SPacket.java	30	public void toBytes(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/keypunch/RequestKeypunchNameS2CPacket.java	12	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/keypunch/RequestKeypunchNameS2CPacket.java	23	public RequestKeypunchNameS2CPacket(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/keypunch/RequestKeypunchNameS2CPacket.java	28	public void toBytes(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/recipe/CircuitDeployerApplicationRecipe.java	28	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/recipe/CircuitDeployerApplicationRecipe.java	79	public ExampleMaskIngredient parse(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/recipe/CircuitDeployerApplicationRecipe.java	89	public void write(FriendlyByteBuf buffer, ExampleMaskIngredient ingredient) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/recipe/CircuitPatternIngredient.java	9	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/recipe/CircuitPatternIngredient.java	73	public CircuitPatternIngredient parse(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/recipe/CircuitPatternIngredient.java	91	public void write(FriendlyByteBuf buffer, CircuitPatternIngredient ingredient) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/recipe/CircuitSequencedAssemblyRecipe.java	14	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/recipe/CircuitSequencedAssemblyRecipe.java	54	protected SequencedAssemblyRecipe readFromBuffer(ResourceLocation recipeId, FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/recipe/ManualCircuitBoardRecipe.java	21	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/recipe/ManualCircuitBoardRecipe.java	167	public ManualCircuitBoardRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/recipe/ManualCircuitBoardRecipe.java	190	public void toNetwork(FriendlyByteBuf buffer, ManualCircuitBoardRecipe recipe) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/product/periodictable/RefreshPeriodicTablePonderSceneS2CPacket.java	8	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/product/periodictable/RefreshPeriodicTablePonderSceneS2CPacket.java	15	public RefreshPeriodicTablePonderSceneS2CPacket(FriendlyByteBuf buffer) {};
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/product/periodictable/RefreshPeriodicTablePonderSceneS2CPacket.java	18	public void toBytes(FriendlyByteBuf buffer) {};
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/redstone/programmer/RedstoneProgram.java	22	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/redstone/programmer/RedstoneProgram.java	271	public final void write(FriendlyByteBuf buf) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/redstone/programmer/RedstoneProgram.java	289	public void read(FriendlyByteBuf buf) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/redstone/programmer/RedstoneProgramSyncC2SPacket.java	10	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/redstone/programmer/RedstoneProgramSyncC2SPacket.java	23	public RedstoneProgramSyncC2SPacket(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/redstone/programmer/RedstoneProgramSyncC2SPacket.java	29	public void toBytes(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/redstone/programmer/RedstoneProgramSyncReplyS2CPacket.java	8	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/redstone/programmer/RedstoneProgramSyncReplyS2CPacket.java	17	public RedstoneProgramSyncReplyS2CPacket(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/redstone/programmer/RedstoneProgramSyncReplyS2CPacket.java	22	public void toBytes(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/redstone/programmer/RedstoneProgrammerMenu.java	17	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/redstone/programmer/RedstoneProgrammerMenu.java	45	public RedstoneProgrammerMenu(MenuType<?> type, int id, Inventory inv, FriendlyByteBuf buf) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/redstone/programmer/RedstoneProgrammerMenu.java	58	protected RedstoneProgram createOnClient(FriendlyByteBuf extraData) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/redstone/programmer/RedstoneProgrammerMenu.java	209	public void read(FriendlyByteBuf buf) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/redstone/programmer/RedstoneProgrammerPowerChangedS2CPacket.java	9	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/redstone/programmer/RedstoneProgrammerPowerChangedS2CPacket.java	20	public RedstoneProgrammerPowerChangedS2CPacket(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/redstone/programmer/RedstoneProgrammerPowerChangedS2CPacket.java	25	public void toBytes(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/tool/swissarmyknife/SwissArmyKnifeToolC2SPacket.java	10	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/tool/swissarmyknife/SwissArmyKnifeToolC2SPacket.java	27	public SwissArmyKnifeToolC2SPacket(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/content/tool/swissarmyknife/SwissArmyKnifeToolC2SPacket.java	33	public void toBytes(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/chemistry/hazard/ChemicalPoisonS2CPacket.java	9	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/chemistry/hazard/ChemicalPoisonS2CPacket.java	22	public ChemicalPoisonS2CPacket(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/chemistry/hazard/ChemicalPoisonS2CPacket.java	33	public void toBytes(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/chemistry/hazard/mobeffect/CryingS2CPacket.java	10	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/chemistry/hazard/mobeffect/CryingS2CPacket.java	26	public CryingS2CPacket(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/chemistry/hazard/mobeffect/CryingS2CPacket.java	32	public void toBytes(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/chemistry/storage/measuringcylinder/TransferFluidC2SPacket.java	11	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/chemistry/storage/measuringcylinder/TransferFluidC2SPacket.java	40	public TransferFluidC2SPacket(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/chemistry/storage/measuringcylinder/TransferFluidC2SPacket.java	49	public void toBytes(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/chemistry/vat/material/SyncVatMaterialsS2CPacket.java	11	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/chemistry/vat/material/SyncVatMaterialsS2CPacket.java	22	public SyncVatMaterialsS2CPacket(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/chemistry/vat/material/SyncVatMaterialsS2CPacket.java	31	public void toBytes(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/chemistry/vat/observation/RedstoneQuantityMonitorThresholdChangeC2SPacket.java	9	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/chemistry/vat/observation/RedstoneQuantityMonitorThresholdChangeC2SPacket.java	25	public RedstoneQuantityMonitorThresholdChangeC2SPacket(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/chemistry/vat/observation/RedstoneQuantityMonitorThresholdChangeC2SPacket.java	32	public void toBytes(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/chemistry/vat/observation/colorimeter/ConfigureColorimeterC2SPacket.java	10	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/chemistry/vat/observation/colorimeter/ConfigureColorimeterC2SPacket.java	25	public ConfigureColorimeterC2SPacket(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/chemistry/vat/observation/colorimeter/ConfigureColorimeterC2SPacket.java	36	public void toBytes(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/explosion/SmartExplosion.java	26	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/explosion/SmartExplosion.java	376	public void write(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/explosion/SmartExplosion.java	390	public SmartExplosion read(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/explosion/SmartExplosionS2CPacket.java	10	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/explosion/SmartExplosionS2CPacket.java	25	public static final SmartExplosionS2CPacket read(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/explosion/SmartExplosionS2CPacket.java	35	public void toBytes(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/CustomExplosiveMixExplosion.java	17	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/CustomExplosiveMixExplosion.java	163	public void write(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/CustomExplosiveMixExplosion.java	165	buffer.writeCollection(specialItems, FriendlyByteBuf::writeItem);
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/CustomExplosiveMixExplosion.java	179	public SmartExplosion read(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/CustomExplosiveMixExplosion.java	181	return CustomExplosiveMixExplosion.create(mc.level, ExplosiveProperties.read(buffer), buffer.readCollection(ArrayList<It
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/ExplosiveProperties.java	26	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/ExplosiveProperties.java	106	public static ExplosiveProperties read(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/ExplosiveProperties.java	112	public void write(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/IMixedExplosiveBlockEntity.java	14	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/IMixedExplosiveBlockEntity.java	54	public default void writeToBuffer(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/MixedExplosiveEntity.java	12	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/MixedExplosiveEntity.java	73	public void writeSpawnData(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/MixedExplosiveEntity.java	80	public void readSpawnData(FriendlyByteBuf additionalData) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/MixedExplosiveMenu.java	8	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/MixedExplosiveMenu.java	21	public MixedExplosiveMenu(MenuType<?> type, int id, Inventory playerInv, FriendlyByteBuf extraData) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/MixedExplosiveMenu.java	35	protected IMixedExplosiveBlockEntity createOnClient(FriendlyByteBuf extraData) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/MixedExplosiveMenu.java	77	protected DummyCustomExplosiveMixBlockEntity(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/extendedinventory/ExtraInventorySizeChangeS2CPacket.java	7	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/extendedinventory/ExtraInventorySizeChangeS2CPacket.java	22	public ExtraInventorySizeChangeS2CPacket(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/extendedinventory/ExtraInventorySizeChangeS2CPacket.java	29	public void toBytes(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/extendedinventory/RequestInventoryFullStateC2SPacket.java	7	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/extendedinventory/RequestInventoryFullStateC2SPacket.java	13	public void toBytes(FriendlyByteBuf buffer) {};
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/fluid/gasparticle/BoilingFluidBubbleParticleData.java	12	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/fluid/gasparticle/BoilingFluidBubbleParticleData.java	68	public BoilingFluidBubbleParticleData fromNetwork(ParticleType<BoilingFluidBubbleParticleData> particleTypeIn, FriendlyB
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/fluid/gasparticle/BoilingFluidBubbleParticleData.java	91	public void writeToNetwork(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/fluid/gasparticle/EvaporatingFluidS2CPacket.java	12	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/fluid/gasparticle/EvaporatingFluidS2CPacket.java	31	public EvaporatingFluidS2CPacket(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/fluid/gasparticle/EvaporatingFluidS2CPacket.java	37	public void toBytes(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/fluid/gasparticle/GasParticleData.java	15	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/fluid/gasparticle/GasParticleData.java	86	public GasParticleData fromNetwork(ParticleType<GasParticleData> particleTypeIn, FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/fluid/gasparticle/GasParticleData.java	110	public void writeToNetwork(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/pollution/LevelPollutionS2CPacket.java	8	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/pollution/LevelPollutionS2CPacket.java	19	public LevelPollutionS2CPacket(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/pollution/LevelPollutionS2CPacket.java	25	public void toBytes(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/pollution/SyncChunkPollutionS2CPacket.java	10	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/pollution/SyncChunkPollutionS2CPacket.java	20	public SyncChunkPollutionS2CPacket(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/pollution/SyncChunkPollutionS2CPacket.java	32	public void toBytes(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/recipe/ingredient/fluid/ConcentrationRangeFluidIngredient.java	11	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/recipe/ingredient/fluid/ConcentrationRangeFluidIngredient.java	32	protected void readInternal(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/recipe/ingredient/fluid/ConcentrationRangeFluidIngredient.java	38	protected void writeInternal(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/recipe/ingredient/fluid/MoleculeFluidIngredient.java	16	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/recipe/ingredient/fluid/MoleculeFluidIngredient.java	43	protected void readInternal(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/recipe/ingredient/fluid/MoleculeFluidIngredient.java	49	protected void writeInternal(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/recipe/ingredient/fluid/MoleculeTagFluidIngredient.java	17	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/recipe/ingredient/fluid/MoleculeTagFluidIngredient.java	52	protected void readInternal(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/recipe/ingredient/fluid/MoleculeTagFluidIngredient.java	58	protected void writeInternal(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/recipe/ingredient/fluid/PureSpeciesFluidIngredient.java	17	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/recipe/ingredient/fluid/PureSpeciesFluidIngredient.java	43	protected void readInternal(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/recipe/ingredient/fluid/PureSpeciesFluidIngredient.java	48	protected void writeInternal(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/recipe/ingredient/fluid/SaltFluidIngredient.java	20	import net.minecraft.network.FriendlyByteBuf;
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/recipe/ingredient/fluid/SaltFluidIngredient.java	50	protected void readInternal(FriendlyByteBuf buffer) {
+packet (FriendlyByteBuf)	port/wip/petrolpark/mc/destroy/core/recipe/ingredient/fluid/SaltFluidIngredient.java	57	protected void writeInternal(FriendlyByteBuf buffer) {
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/DestroyRecipeTypes.java	32	import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/DestroyRecipeTypes.java	108	DestroyRecipeTypes(ProcessingRecipeBuilder.ProcessingRecipeFactory<?> processingFactory) {
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/DestroyRecipeTypes.java	112	DestroyRecipeTypes(ProcessingRecipeBuilder.ProcessingRecipeFactory<?> processingFactory, Supplier<RecipeType<?>> typeSup
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/content/processing/centrifuge/potion/PotionFluidMixingRecipes.java	14	import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/content/processing/centrifuge/potion/PotionFluidMixingRecipes.java	120	return new ProcessingRecipeBuilder<>(MixingRecipe::new, Destroy.asResource(id))
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/content/processing/centrifuge/potion/PotionSeparationRecipes.java	15	import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/content/processing/centrifuge/potion/PotionSeparationRecipes.java	114	return new ProcessingRecipeBuilder<>(CentrifugationRecipe::new, Destroy.asResource(name))
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/content/processing/discstamping/DiscElectroplatingRecipe.java	6	import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/content/processing/discstamping/DiscElectroplatingRecipe.java	28	ProcessingRecipeBuilder<DiscElectroplatingRecipe> builder = new ProcessingRecipeBuilder<DiscElectroplatingRecipe>(params
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/content/processing/discstamping/DiscStampingRecipe.java	11	import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/content/processing/discstamping/DiscStampingRecipe.java	34	return new ProcessingRecipeBuilder<>(DiscStampingRecipe::new, Destroy.asResource("disc_stamping_"+Item.getId(disc.getIte
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/content/processing/extrusion/ExtrusionRecipe.java	10	import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/content/processing/extrusion/ExtrusionRecipe.java	40	ExtrusionRecipe recipe = new ProcessingRecipeBuilder<>(ExtrusionRecipe::new, Destroy.asResource("extrusion" + counter++)
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/content/processing/phytomining/PhytominingRecipe.java	8	import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/content/processing/phytomining/PhytominingRecipe.java	24	ProcessingRecipeBuilder<PhytominingRecipe> recipeBuilder = new ProcessingRecipeBuilder<>(PhytominingRecipe::new, Destroy
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/content/processing/treetap/TappingRecipe.java	6	import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/content/processing/treetap/TappingRecipe.java	23	return new ProcessingRecipeBuilder<>(TappingRecipe::new, Destroy.asResource("tapping_"+recipeId++))
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/recipe/CircuitDeployerApplicationRecipe.java	20	import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/recipe/CircuitDeployerApplicationRecipe.java	22	import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder.ProcessingRecipeFactory;
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/recipe/CircuitDeployerApplicationRecipe.java	80	return new ExampleMaskIngredient(Ingredient.fromNetwork(buffer));
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/recipe/CircuitDeployerApplicationRecipe.java	90	ingredient.parent.toNetwork(buffer);
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/recipe/CircuitDeployerApplicationRecipe.java	128	DeployerApplicationRecipe recipe = new ProcessingRecipeBuilder<>(params -> new SpecificCircuitDeployerApplicationRecipe(
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/recipe/ManualCircuitBoardRecipe.java	167	public ManualCircuitBoardRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/recipe/ManualCircuitBoardRecipe.java	182	list.set(k, Ingredient.fromNetwork(buffer));
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/recipe/ManualCircuitBoardRecipe.java	190	public void toNetwork(FriendlyByteBuf buffer, ManualCircuitBoardRecipe recipe) {
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/content/processing/trypolithography/recipe/ManualCircuitBoardRecipe.java	205	ingredient.toNetwork(buffer);
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/core/chemistry/basinreaction/ReactionInBasinRecipe.java	27	import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/core/chemistry/basinreaction/ReactionInBasinRecipe.java	52	ProcessingRecipeBuilder<ReactionInBasinRecipe> builder = new ProcessingRecipeBuilder<>(ReactionInBasinRecipe::new, Destr
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/core/chemistry/basinreaction/ReactionInBasinRecipe.java	164	private static void gatherReactionResults(Map<ReactionResult, Integer> resultsOfReaction, Map<ReactionResult, Integer> r
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/core/chemistry/recipe/ReactionRecipe.java	10	import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/core/chemistry/recipe/ReactionRecipe.java	27	ReactionRecipe recipe = new ProcessingRecipeBuilder<>(ReactionRecipe::new, Destroy.asResource("reaction_"+counter++)).bu
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/core/chemistry/recipe/ReactionRecipe.java	62	GenericReactionRecipe recipe = new ProcessingRecipeBuilder<>(GenericReactionRecipe::new, Destroy.asResource("generic_rea
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/core/fluid/gasparticle/BoilingFluidBubbleParticleData.java	68	public BoilingFluidBubbleParticleData fromNetwork(ParticleType<BoilingFluidBubbleParticleData> particleTypeIn, FriendlyB
+recipe codec rewrite	port/wip/petrolpark/mc/destroy/core/fluid/gasparticle/GasParticleData.java	86	public GasParticleData fromNetwork(ParticleType<GasParticleData> particleTypeIn, FriendlyByteBuf buffer) {
+serializeNBT	port/wip/petrolpark/mc/destroy/content/oil/ChunkCrudeOil.java	187	public CompoundTag serializeNBT() {
+serializeNBT	port/wip/petrolpark/mc/destroy/content/oil/ChunkCrudeOil.java	195	public void deserializeNBT(CompoundTag tag) {
+serializeNBT	port/wip/petrolpark/mc/destroy/content/processing/ProcessingPonderScenes.java	591	scene.world().modifyBlockEntityNBT(deployerS, DeployerBlockEntity.class, nbt -> nbt.put("HeldItem", DestroyBlocks.BLOWPI
+serializeNBT	port/wip/petrolpark/mc/destroy/content/processing/ProcessingPonderScenes.java	648	scene.world().modifyBlockEntityNBT(util.select().position(deployer), DeployerBlockEntity.class, nbt -> nbt.put("HeldItem
+serializeNBT	port/wip/petrolpark/mc/destroy/content/processing/ProcessingPonderScenes.java	685	scene.world().modifyBlockEntityNBT(util.select().position(deployer), DeployerBlockEntity.class, nbt -> nbt.put("HeldItem
+serializeNBT	port/wip/petrolpark/mc/destroy/content/processing/ageing/AgeingBarrelBlockEntity.java	151	LegacyRegistries.deserializeNBT(inventory, compound.getCompound("Inventory"));
+serializeNBT	port/wip/petrolpark/mc/destroy/content/processing/distillation/DistillationTower.java	301	public CompoundTag serializeNBT() {
+serializeNBT	port/wip/petrolpark/mc/destroy/content/product/babyblue/PlayerBabyBlueAddictionCapability.java	69	public CompoundTag serializeNBT() {
+serializeNBT	port/wip/petrolpark/mc/destroy/content/product/babyblue/PlayerBabyBlueAddictionCapability.java	76	public void deserializeNBT(CompoundTag nbt) {
+serializeNBT	port/wip/petrolpark/mc/destroy/core/chemistry/hazard/EntityChemicalPoisonCapability.java	61	public CompoundTag serializeNBT() {
+serializeNBT	port/wip/petrolpark/mc/destroy/core/chemistry/hazard/EntityChemicalPoisonCapability.java	69	public void deserializeNBT(CompoundTag tag) {
+serializeNBT	port/wip/petrolpark/mc/destroy/core/chemistry/novelcompounds/PlayerNovelCompoundsSynthesizedCapability.java	55	public CompoundTag serializeNBT() {
+serializeNBT	port/wip/petrolpark/mc/destroy/core/chemistry/novelcompounds/PlayerNovelCompoundsSynthesizedCapability.java	64	public void deserializeNBT(CompoundTag nbt) {
+serializeNBT	port/wip/petrolpark/mc/destroy/core/chemistry/storage/testtube/TestTubeRackBlockEntity.java	72	LegacyRegistries.deserializeNBT(inv, tag.getCompound("Inventory"));
+serializeNBT	port/wip/petrolpark/mc/destroy/core/chemistry/vat/VatControllerBlockEntity.java	302	LegacyRegistries.deserializeNBT(inventory, tag.getCompound("Inventory"));
+serializeNBT	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/DyeableMixedExplosiveBlockItem.java	35	LegacyRegistries.deserializeNBT(inv, info.nbt().getCompound("ExplosiveMix"));
+serializeNBT	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/DyeableMixedExplosiveBlockItem.java	43	tag.put("ExplosiveMix", getExplosiveInventory(stack).serializeNBT());
+serializeNBT	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/IMixedExplosiveBlockEntity.java	57	buffer.writeNbt(getExplosiveInventory().serializeNBT());
+serializeNBT	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/IMixedExplosiveBlockEntity.java	85	LegacyRegistries.deserializeNBT(targetInventory, tag.getCompound("TargetInventory"));
+serializeNBT	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/IMixedExplosiveBlockEntity.java	132	tag.put("TargetInventory", getExplosiveInventory().serializeNBT());
+serializeNBT	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/IMixedExplosiveItem.java	14	LegacyRegistries.deserializeNBT(inventory, LegacyNBT.getOrCreateTag(stack).getCompound("ExplosiveMix"));
+serializeNBT	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/MixedExplosiveEntity.java	64	LegacyRegistries.deserializeNBT(inv, compound.getCompound("Inventory"));
+serializeNBT	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/MixedExplosiveMenu.java	80	LegacyRegistries.deserializeNBT(inv, buffer.readNbt());
+serializeNBT	port/wip/petrolpark/mc/destroy/core/explosion/mixedexplosive/SimpleDyeableNameableMixedExplosiveBlockEntity.java	97	LegacyRegistries.deserializeNBT(inv, tag.getCompound("ExplosiveMix"));
+serializeNBT	port/wip/petrolpark/mc/destroy/core/player/PlayerCrouchingCapability.java	53	public CompoundTag serializeNBT() {
+serializeNBT	port/wip/petrolpark/mc/destroy/core/player/PlayerCrouchingCapability.java	62	public void deserializeNBT(CompoundTag tag) {
+serializeNBT	port/wip/petrolpark/mc/destroy/core/player/PlayerPreviousPositionsCapability.java	112	public CompoundTag serializeNBT() {
+serializeNBT	port/wip/petrolpark/mc/destroy/core/player/PlayerPreviousPositionsCapability.java	119	public void deserializeNBT(CompoundTag tag) {

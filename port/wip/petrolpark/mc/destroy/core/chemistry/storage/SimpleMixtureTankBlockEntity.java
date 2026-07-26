@@ -1,5 +1,6 @@
 package petrolpark.mc.destroy.core.chemistry.storage;
 
+import net.minecraft.core.HolderLookup;
 import java.util.List;
 
 import net.createmod.catnip.data.Couple;
@@ -22,7 +23,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.neoforged.neoforge.common.util.LazyOptional;
+import net.minecraftforge.common.util.LazyOptional;
 import net.neoforged.neoforge.fluids.FluidStack;
 
 public abstract class SimpleMixtureTankBlockEntity extends SmartBlockEntity implements ISimpleMixtureTankRenderInformation<Void>, IHaveLabGoggleInformation {
@@ -74,8 +75,8 @@ public abstract class SimpleMixtureTankBlockEntity extends SmartBlockEntity impl
     };
 
     @Override
-    protected void read(CompoundTag tag, boolean clientPacket) {
-        super.read(tag, clientPacket);
+    protected void read(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
+        super.read(tag, registries, clientPacket);
         int prevLuminosity = luminosity;
         luminosity = tag.getInt("Luminosity");
         if (!clientPacket && prevLuminosity != luminosity && hasLevel()) {
@@ -86,8 +87,8 @@ public abstract class SimpleMixtureTankBlockEntity extends SmartBlockEntity impl
     };
 
     @Override
-    protected void write(CompoundTag tag, boolean clientPacket) {
-        super.write(tag, clientPacket);
+    protected void write(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
+        super.write(tag, registries, clientPacket);
         tag.putInt("Luminosity", luminosity);
     };
 

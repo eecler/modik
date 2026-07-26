@@ -1,5 +1,6 @@
 package petrolpark.mc.destroy.content.processing.trypolithography.recipe;
 
+import petrolpark.mc.destroy.legacy.LegacyNBT;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,7 +44,7 @@ public class ManualCircuitBoardRecipe extends ManualOnlyCraftingRecipe {
         @Override
         public ItemStack[] getItems() {
             ItemStack stack = new ItemStack(maskItem);
-            stack.getOrCreateTag().putBoolean("HideContaminants", true);
+            LegacyNBT.getOrCreateTag(stack).putBoolean("HideContaminants", true);
             CircuitPatternItem.putPattern(stack, CircuitDeployerApplicationRecipe.EXAMPLE_PATTERN);
             return new ItemStack[]{stack};
         };

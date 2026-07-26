@@ -44,7 +44,12 @@ public class DestroyPartials {
         };
     };
 
-    @SuppressWarnings("unused") // Used by content as it is ported
+    // Mechanical Sieve
+    public static final PartialModel
+    MECHANICAL_SIEVE_SHAFT = block("mechanical_sieve/shaft"),
+    MECHANICAL_SIEVE_LINKAGES = block("mechanical_sieve/linkages"),
+    MECHANICAL_SIEVE = block("mechanical_sieve/sieve");
+
     private static PartialModel block(String path) { //copied from Create source code
         return PartialModel.of(Destroy.asResource("block/"+path));
     };

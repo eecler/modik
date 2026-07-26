@@ -3,7 +3,7 @@ package petrolpark.mc.destroy.core.explosion.mixedexplosive;
 import java.util.function.Consumer;
 
 import petrolpark.mc.destroy.DestroyBlocks;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import petrolpark.mc.destroy.core.explosion.mixedexplosive.ExplosiveProperties.ExplosivePropertyCondition;
 import com.simibubi.create.foundation.item.render.SimpleCustomRenderer;
 
@@ -29,7 +29,7 @@ public class MixedExplosiveBlockItem extends DyeableMixedExplosiveBlockItem {
 
     @Override
     public int getExplosiveInventorySize() {
-        return DestroyAllConfigs.SERVER.blocks.customExplosiveMixSize.get();
+        return DestroyConfigs.server().blocks.customExplosiveMixSize.get();
     };
 
     @Override

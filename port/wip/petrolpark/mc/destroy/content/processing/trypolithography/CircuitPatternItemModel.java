@@ -58,7 +58,7 @@ public class CircuitPatternItemModel implements IUnbakedGeometry<CircuitPatternI
             ItemLayerModel itemModel = ItemLayerModel.Loader.INSTANCE.read(jsonObject, deserializationContext);
             if (jsonObject.has("fragment_textures")) {
                 try {
-                    return new CircuitPatternItemModel(itemModel, new ResourceLocation(jsonObject.get("fragment_textures").getAsString()));
+                    return new CircuitPatternItemModel(itemModel, ResourceLocation.parse(jsonObject.get("fragment_textures").getAsString()));
                 } catch (UnsupportedOperationException | IllegalStateException e) {
                     throw new JsonParseException("Cannot read Circuit Pattern item model", e);
                 }

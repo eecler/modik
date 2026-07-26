@@ -11,7 +11,7 @@ import petrolpark.mc.destroy.content.redstone.programmer.RedstoneProgrammerBlock
 
 import net.createmod.catnip.data.WorldAttached;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraftforge.event.TickEvent;
+import net.neoforged.neoforge.event.TickEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 

@@ -1,5 +1,7 @@
 package petrolpark.mc.destroy.content.processing;
 
+import petrolpark.mc.destroy.legacy.LegacyRegistries;
+import petrolpark.mc.destroy.legacy.LegacyNBT;
 import java.util.List;
 
 import petrolpark.mc.library.core.client.ponder.PonderPlayer;
@@ -441,8 +443,8 @@ public class ProcessingPonderScenes {
         ItemStack filledPipe = DestroyBlocks.BLOWPIPE.asStack();
         FluidTank tank = new FluidTank(BlowpipeBlockEntity.TANK_CAPACITY);
         tank.fill(new FluidStack(DestroyFluids.MOLTEN_BOROSILICATE_GLASS.get(), 250), FluidAction.EXECUTE);
-        filledPipe.getOrCreateTag().put("Tank", tank.writeToNBT(new CompoundTag()));
-        filledPipe.getOrCreateTag().putString("Recipe", Destroy.asResource("glassblowing/round_bottomed_flask").toString());
+        LegacyNBT.getOrCreateTag(filledPipe).put("Tank", tank.writeToNBT(new CompoundTag()));
+        LegacyNBT.getOrCreateTag(filledPipe).putString("Recipe", Destroy.asResource("glassblowing/round_bottomed_flask").toString());
         return filledPipe;
     };
 
@@ -601,7 +603,7 @@ public class ProcessingPonderScenes {
         scene.idle(20);
         scene.world().moveDeployer(deployer, 1, 20);
         scene.idle(20);
-        scene.world().modifyBlockEntityNBT(deployerS, DeployerBlockEntity.class, nbt -> nbt.put("HeldItem", filledPipe.serializeNBT()));
+        scene.world().modifyBlockEntityNBT(deployerS, DeployerBlockEntity.class, nbt -> nbt.put("HeldItem", LegacyRegistries.serializeNBT(filledPipe)));
         scene.world().modifyBlockEntity(basin, BasinBlockEntity.class, be -> be.getCapability(ForgeCapabilities.FLUID_HANDLER).ifPresent(fh -> fh.drain(250, FluidAction.EXECUTE)));
         scene.idle(10);
         scene.world().moveDeployer(deployer, -1, 20);
@@ -662,7 +664,7 @@ public class ProcessingPonderScenes {
         scene.idle(10);
         scene.world().moveDeployer(deployer, 1, 10);
         scene.idle(10);
-        scene.world().modifyBlockEntityNBT(deployerS, DeployerBlockEntity.class, nbt -> nbt.put("HeldItem", filledPipe.serializeNBT()));
+        scene.world().modifyBlockEntityNBT(deployerS, DeployerBlockEntity.class, nbt -> nbt.put("HeldItem", LegacyRegistries.serializeNBT(filledPipe)));
         scene.addInstruction(new FadeOutOfSceneInstruction<>(0, Direction.DOWN, pipeLink));
         scene.world().moveDeployer(deployer, -1, 10);
         scene.idle(20);

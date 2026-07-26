@@ -6,7 +6,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import petrolpark.mc.destroy.DestroyAdvancementTrigger;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import petrolpark.mc.destroy.core.data.advancement.DestroyAdvancementBehaviour;
 import petrolpark.mc.destroy.core.fluid.GeniusFluidTankBehaviour;
 import com.simibubi.create.content.kinetics.base.BlockBreakingKineticBlockEntity;
@@ -20,7 +20,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.neoforged.neoforge.common.util.LazyOptional;
+import net.minecraftforge.common.util.LazyOptional;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
 
@@ -103,7 +103,7 @@ public class TreeTapBlockEntity extends BlockBreakingKineticBlockEntity {
 	};
 
     public int getCapacity() {
-        return DestroyAllConfigs.SERVER.blocks.treeTapCapacity.get();
+        return DestroyConfigs.server().blocks.treeTapCapacity.get();
     };
     
 };

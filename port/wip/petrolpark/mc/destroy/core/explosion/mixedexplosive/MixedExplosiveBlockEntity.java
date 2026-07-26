@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import petrolpark.mc.destroy.core.explosion.mixedexplosive.ExplosiveProperties.ExplosivePropertyCondition;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 
@@ -56,7 +56,7 @@ public class MixedExplosiveBlockEntity extends SimpleDyeableNameableMixedExplosi
 
     @Override
     public MixedExplosiveInventory createInv() {
-        return new MixedExplosiveInventory(DestroyAllConfigs.SERVER.blocks.customExplosiveMixSize.get(), EXPLOSIVE_PROPERTY_CONDITIONS);
+        return new MixedExplosiveInventory(DestroyConfigs.server().blocks.customExplosiveMixSize.get(), EXPLOSIVE_PROPERTY_CONDITIONS);
     };
 
     @Nullable

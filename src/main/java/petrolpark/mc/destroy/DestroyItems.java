@@ -65,6 +65,7 @@ public class DestroyItems {
 
     // Miscellaneous products
     BABY_BLUE_CRYSTAL = REGISTRATE.item("baby_blue_crystal", Item::new).register(),
+    MESH = REGISTRATE.item("mesh", Item::new).register(),
     CREATINE = REGISTRATE.item("creatine", Item::new).register(), // PORT: CreatineItem + DestroyFoods
     IODINE = REGISTRATE.item("iodine", Item::new).register(); // PORT: IodineItem
 

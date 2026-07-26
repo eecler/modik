@@ -1,5 +1,7 @@
 package petrolpark.mc.destroy.core.chemistry.vat;
 
+import petrolpark.mc.destroy.DestroyPollutionTypes;
+import net.minecraft.core.HolderLookup;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Optional;
@@ -13,12 +15,12 @@ import org.joml.Math;
 import petrolpark.mc.destroy.DestroyBlocks;
 import petrolpark.mc.destroy.client.DestroyLang;
 import petrolpark.mc.destroy.client.DestroyLang.TemperatureUnit;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import petrolpark.mc.destroy.core.block.entity.IHaveLabGoggleInformation;
 import petrolpark.mc.destroy.core.chemistry.vat.material.VatMaterial;
 import petrolpark.mc.destroy.core.chemistry.vat.observation.RedstoneQuantityMonitorBehaviour;
 import petrolpark.mc.destroy.core.chemistry.vat.uv.IUVLampBlock;
-import petrolpark.mc.destroy.core.pollution.Pollution.PollutionType;
+import petrolpark.mc.destroy.core.pollution.PollutionType;
 import petrolpark.mc.destroy.core.pollution.PollutionHelper;
 import com.simibubi.create.api.equipment.goggles.IHaveHoveringInformation;
 import com.simibubi.create.content.contraptions.StructureTransform;
@@ -51,7 +53,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.Capability;
-import net.neoforged.neoforge.common.util.LazyOptional;
+import net.minecraftforge.common.util.LazyOptional;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
@@ -224,8 +226,8 @@ public class VatSideBlockEntity extends CopycatBlockEntity implements IHaveLabGo
     };
 
     @Override
-    protected void read(CompoundTag tag, boolean clientPacket) {
-        super.read(tag, clientPacket);
+    protected void read(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
+        super.read(tag, registries, clientPacket);
         if (tag.contains("Side")) {
             direction = Direction.values()[tag.getInt("Side")];
         } else {
@@ -252,8 +254,8 @@ public class VatSideBlockEntity extends CopycatBlockEntity implements IHaveLabGo
     };
 
     @Override
-    protected void write(CompoundTag tag, boolean clientPacket) {
-        super.write(tag, clientPacket);
+    protected void write(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
+        super.write(tag, registries, clientPacket);
         if (direction != null) tag.putInt("Side", direction.ordinal());
         if (controllerPosition != null) tag.put("ControllerPosition", NbtUtils.writeBlockPos(controllerPosition.subtract(getBlockPos())));
         tag.putInt("DisplayType", displayType.ordinal());
@@ -375,7 +377,7 @@ public class VatSideBlockEntity extends CopycatBlockEntity implements IHaveLabGo
     public float getSkyUV() {
         if (!getLevel().canSeeSky(getBlockPos())) return 0f;
         float uvPower = 10f;
-        if (PollutionHelper.pollutionEnabled() && DestroyAllConfigs.SERVER.pollution.vatUVPowerAffected.get()) uvPower += 20f * (float)PollutionHelper.getPollution(getLevel(), getBlockPos(), PollutionType.OZONE_DEPLETION) / (float)PollutionType.OZONE_DEPLETION.max;
+        if (PollutionHelper.isPollutionEnabled() && DestroyConfigs.server().pollution.vatUVPowerAffected.get()) uvPower += 20f * (float)PollutionHelper.getPollution(getLevel(), getBlockPos(), DestroyPollutionTypes.OZONE_DEPLETION.get()) / (float)DestroyPollutionTypes.OZONE_DEPLETION.get().max;
         return uvPower;
     };
 
@@ -539,9 +541,9 @@ public class VatSideBlockEntity extends CopycatBlockEntity implements IHaveLabGo
         VatControllerBlockEntity controller = getController();
         if (!getVatOptional().isPresent() || controller == null) return false;
         if (getDisplayType().showsTemperature) {
-            TemperatureUnit unit = DestroyAllConfigs.CLIENT.chemistry.temperatureUnit.get();
+            TemperatureUnit unit = DestroyConfigs.client().chemistry.temperatureUnit.get();
             DestroyLang.translate("tooltip.vat.temperature", unit.of(controller.getTemperature(), df)).style(ChatFormatting.WHITE).forGoggles(tooltip);
-            if (DestroyAllConfigs.CLIENT.chemistry.nerdMode.get()) DestroyLang.translate("tooltip.vat.power", df.format(controller.heatingPower / 1000f)).forGoggles(tooltip);
+            if (DestroyConfigs.client().chemistry.nerdMode.get()) DestroyLang.translate("tooltip.vat.power", df.format(controller.heatingPower / 1000f)).forGoggles(tooltip);
         } else if (getDisplayType().showsPressure) {
             Vat vat = getVatOptional().get();
             DestroyLang.translate("tooltip.vat.pressure.header").style(ChatFormatting.WHITE).forGoggles(tooltip);

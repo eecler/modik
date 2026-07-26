@@ -1,6 +1,6 @@
 package petrolpark.mc.destroy.core.chemistry.vat;
 
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import com.simibubi.create.content.processing.burner.BlazeBurnerBlock;
 import com.simibubi.create.content.processing.burner.BlazeBurnerBlock.HeatLevel;
 
@@ -38,11 +38,11 @@ public interface IVatHeaterBlock {
         if (state.hasProperty(BlazeBurnerBlock.HEAT_LEVEL) && face == Direction.UP) {
             HeatLevel heatLevel = state.getValue(BlazeBurnerBlock.HEAT_LEVEL);
             if (heatLevel == HeatLevel.KINDLED) {
-                return DestroyAllConfigs.SERVER.blocks.blazeBurnerHeatingPower.getF();
+                return DestroyConfigs.server().blocks.blazeBurnerHeatingPower.getF();
             } else if (heatLevel == HeatLevel.SEETHING) {
-                return DestroyAllConfigs.SERVER.blocks.blazeBurnerSuperHeatingPower.getF();
+                return DestroyConfigs.server().blocks.blazeBurnerSuperHeatingPower.getF();
             } else if ("FROSTING".equals(heatLevel.name())) {
-                return DestroyAllConfigs.SERVER.blocks.coolerHeatingPower.getF();
+                return DestroyConfigs.server().blocks.coolerHeatingPower.getF();
             };
         };
 

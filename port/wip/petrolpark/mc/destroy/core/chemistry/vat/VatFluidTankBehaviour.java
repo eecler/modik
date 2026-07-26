@@ -1,5 +1,6 @@
 package petrolpark.mc.destroy.core.chemistry.vat;
 
+import net.minecraft.core.HolderLookup;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -17,7 +18,7 @@ import com.simibubi.create.foundation.blockEntity.behaviour.fluid.SmartFluidTank
 import com.simibubi.create.foundation.fluid.SmartFluidTank;
 
 import net.minecraft.nbt.CompoundTag;
-import net.neoforged.neoforge.common.util.LazyOptional;
+import net.minecraftforge.common.util.LazyOptional;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
@@ -143,15 +144,15 @@ public class VatFluidTankBehaviour extends GeniusFluidTankBehaviour {
     };
 
     @Override
-	public void write(CompoundTag nbt, boolean clientPacket) {
-		super.write(nbt, clientPacket);
+	public void write(CompoundTag nbt, HolderLookup.Provider registries, boolean clientPacket) {
+		super.write(nbt, registries, clientPacket);
         if (clientPacket) return;
 		nbt.putBoolean("Full", liquidFull);
 	};
 
 	@Override
-	public void read(CompoundTag nbt, boolean clientPacket) {
-		super.read(nbt, clientPacket);
+	public void read(CompoundTag nbt, HolderLookup.Provider registries, boolean clientPacket) {
+		super.read(nbt, registries, clientPacket);
         if (clientPacket) return;
         liquidFull = nbt.getBoolean("Full");
         vatCapacity = getLiquidHandler().getCapacity();

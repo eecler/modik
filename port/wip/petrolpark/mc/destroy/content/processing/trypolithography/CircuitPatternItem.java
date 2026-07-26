@@ -1,5 +1,6 @@
 package petrolpark.mc.destroy.content.processing.trypolithography;
 
+import petrolpark.mc.destroy.legacy.LegacyNBT;
 import petrolpark.mc.library.compat.create.core.world.item.transported.IDirectionalBeltItem;
 import petrolpark.mc.library.util.NBTHelper;
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyItem;
@@ -15,11 +16,11 @@ public class CircuitPatternItem extends Item implements IDirectionalBeltItem {
 
     public static int getPattern(ItemStack stack) {
         if (!(stack.getItem() instanceof CircuitPatternItem || stack.getItem() instanceof SequencedAssemblyItem)) return 0;
-        return NBTHelper.readBinaryMatrix4x4(stack.getOrCreateTag(), "Pattern");
+        return NBTHelper.readBinaryMatrix4x4(LegacyNBT.getOrCreateTag(stack), "Pattern");
     };
 
     public static void putPattern(ItemStack stack, int pattern) {
-        if (stack.getItem() instanceof CircuitPatternItem || stack.getItem() instanceof SequencedAssemblyItem) NBTHelper.writeBinaryMatrix4x4(stack.getOrCreateTag(), "Pattern", pattern);
+        if (stack.getItem() instanceof CircuitPatternItem || stack.getItem() instanceof SequencedAssemblyItem) NBTHelper.writeBinaryMatrix4x4(LegacyNBT.getOrCreateTag(stack), "Pattern", pattern);
     };
     
 };

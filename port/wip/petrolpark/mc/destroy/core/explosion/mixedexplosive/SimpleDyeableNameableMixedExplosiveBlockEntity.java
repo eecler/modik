@@ -1,5 +1,7 @@
 package petrolpark.mc.destroy.core.explosion.mixedexplosive;
 
+import petrolpark.mc.destroy.legacy.LegacyRegistries;
+import net.minecraft.core.HolderLookup;
 import java.util.List;
 
 import org.jetbrains.annotations.NotNull;
@@ -31,8 +33,8 @@ import net.minecraft.world.level.gameevent.vibrations.VibrationSystem;
 import net.neoforged.api.distmarker.Dist;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.neoforged.neoforge.common.util.LazyOptional;
-import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.common.util.LazyOptional;
+import net.neoforged.fml.DistExecutor;
 import net.neoforged.neoforge.items.IItemHandler;
 
 public abstract class SimpleDyeableNameableMixedExplosiveBlockEntity extends SmartBlockEntity implements IDyeableMixedExplosiveBlockEntity, GameEventListener.Holder<VibrationSystem.Listener>, VibrationSystem {
@@ -87,21 +89,21 @@ public abstract class SimpleDyeableNameableMixedExplosiveBlockEntity extends Sma
     };
 
     @Override
-    protected void read(CompoundTag tag, boolean clientPacket) {
-        super.read(tag, clientPacket);
+    protected void read(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
+        super.read(tag, registries, clientPacket);
         setColor(tag.getInt("Color"));
         if (tag.contains("CustomName", Tag.TAG_STRING)) name = Component.Serializer.fromJson(tag.getString("CustomName"));
         inv = createInv();
-        inv.deserializeNBT(tag.getCompound("ExplosiveMix"));
+        LegacyRegistries.deserializeNBT(inv, tag.getCompound("ExplosiveMix"));
         if (tag.contains("VibrationData", Tag.TAG_COMPOUND)) VibrationSystem.Data.CODEC.parse(new Dynamic<>(NbtOps.INSTANCE, tag.getCompound("VibrationData"))).resultOrPartial(Destroy.LOGGER::error).ifPresent(data -> vibrationData = data);
     };
 
     @Override
-    protected void write(CompoundTag tag, boolean clientPacket) {
-        super.write(tag, clientPacket);
+    protected void write(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
+        super.write(tag, registries, clientPacket);
         tag.putInt("Color", color);
         if (name != null) tag.putString("CustomName", Component.Serializer.toJson(name));
-        tag.put("ExplosiveMix", inv.serializeNBT());
+        tag.put("ExplosiveMix", LegacyRegistries.serializeNBT(inv));
         VibrationSystem.Data.CODEC.encodeStart(NbtOps.INSTANCE, vibrationData).resultOrPartial(Destroy.LOGGER::error).ifPresent(data -> tag.put("VibrationData", data));
     };
 

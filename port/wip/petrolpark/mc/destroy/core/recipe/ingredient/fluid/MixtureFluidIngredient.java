@@ -1,5 +1,6 @@
 package petrolpark.mc.destroy.core.recipe.ingredient.fluid;
 
+import petrolpark.mc.destroy.legacy.LegacyNBT;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,8 +43,8 @@ public abstract class MixtureFluidIngredient<T extends MixtureFluidIngredient<T>
     protected final List<FluidStack> determineMatchingFluidStacks() {
         return getExampleMixtures().stream().map(mixture -> {
             FluidStack stack = MixtureFluid.of(amountRequired, mixture);
-            stack.getOrCreateTag().putString("MixtureFluidIngredientSubtype", getType().getMixtureFluidIngredientSubtype());
-            addNBT(stack.getOrCreateTag());
+            LegacyNBT.getOrCreateTag(stack).putString("MixtureFluidIngredientSubtype", getType().getMixtureFluidIngredientSubtype());
+            addNBT(LegacyNBT.getOrCreateTag(stack));
             return stack;
         }).toList();
     };

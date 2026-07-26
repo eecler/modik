@@ -19,8 +19,8 @@ import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.PlantType;
+import net.neoforged.neoforge.common.ForgeHooks;
+import net.neoforged.neoforge.common.PlantType;
 
 public class MagicBeetrootShootsBlock extends BushBlock implements BonemealableBlock {
 

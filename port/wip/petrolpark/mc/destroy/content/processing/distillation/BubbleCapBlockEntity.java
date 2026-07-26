@@ -1,5 +1,7 @@
 package petrolpark.mc.destroy.content.processing.distillation;
 
+import petrolpark.mc.destroy.legacy.LegacyRegistries;
+import net.minecraft.core.HolderLookup;
 import java.text.DecimalFormat;
 import java.util.List;
 
@@ -14,7 +16,7 @@ import petrolpark.mc.destroy.DestroySoundEvents;
 import petrolpark.mc.destroy.client.DestroyLang;
 import petrolpark.mc.destroy.client.DestroyLang.TemperatureUnit;
 import petrolpark.mc.destroy.client.DestroyParticleTypes;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import petrolpark.mc.destroy.core.block.entity.IDirectionalOutputFluidBlockEntity;
 import petrolpark.mc.destroy.core.block.entity.IHaveLabGoggleInformation;
 import petrolpark.mc.destroy.core.chemistry.MixtureContentsDisplaySource;
@@ -45,7 +47,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.neoforged.neoforge.common.util.LazyOptional;
+import net.minecraftforge.common.util.LazyOptional;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
@@ -117,8 +119,8 @@ public class BubbleCapBlockEntity extends SmartBlockEntity implements IHaveLabGo
 
     @Override
     @SuppressWarnings("null")
-    protected void read(CompoundTag compound, boolean clientPacket) {
-        super.read(compound, clientPacket);
+    protected void read(CompoundTag compound, HolderLookup.Provider registries, boolean clientPacket) {
+        super.read(compound, registries, clientPacket);
         if (!hasLevel()) return;
         fraction = compound.getInt("Fraction");
         int[] controllerPosArray = compound.getIntArray("DistillationTowerControllerPosition");
@@ -148,12 +150,12 @@ public class BubbleCapBlockEntity extends SmartBlockEntity implements IHaveLabGo
     };
 
     @Override
-    protected void write(CompoundTag compound, boolean clientPacket) {
-        super.write(compound, clientPacket);
+    protected void write(CompoundTag compound, HolderLookup.Provider registries, boolean clientPacket) {
+        super.write(compound, registries, clientPacket);
         compound.putInt("Fraction", fraction);
         compound.putIntArray("DistillationTowerControllerPosition", List.of(towerControllerPos.getX(), towerControllerPos.getY(), towerControllerPos.getZ()));
         if (isController) {
-            compound.put("DistillationTower", tower.serializeNBT());
+            compound.put("DistillationTower", LegacyRegistries.serializeNBT(tower));
         };
         compound.putInt("TicksToFill", ticksToFill);
         if (clientPacket) {
@@ -199,7 +201,7 @@ public class BubbleCapBlockEntity extends SmartBlockEntity implements IHaveLabGo
     };
 
     public static int getTankCapacity() {
-        return DestroyAllConfigs.SERVER.blocks.bubbleCapCapacity.get();
+        return DestroyConfigs.server().blocks.bubbleCapCapacity.get();
     };
 
     /**
@@ -362,7 +364,7 @@ public class BubbleCapBlockEntity extends SmartBlockEntity implements IHaveLabGo
         if (!isController) DestroyLang.tankInfoTooltip(tooltip, DestroyLang.translate("tooltip.bubble_cap.output_tank"), getTank());
         DestroyLang.tankInfoTooltip(tooltip, DestroyLang.translate("tooltip.bubble_cap.input_tank"), inputTank);
 
-        TemperatureUnit unit = DestroyAllConfigs.CLIENT.chemistry.temperatureUnit.get();
+        TemperatureUnit unit = DestroyConfigs.client().chemistry.temperatureUnit.get();
         if (isController) DestroyLang.translate("tooltip.bubble_cap.reboiler_temperature", unit.of(DistillationTower.getTemperatureForDistillationTower(getLevel(), worldPosition), df)).forGoggles(tooltip);
 
         return true;

@@ -1,6 +1,6 @@
 package petrolpark.mc.destroy.content.product.alcohol;
 
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import petrolpark.mc.destroy.config.DestroySubstancesConfigs;
 import petrolpark.mc.destroy.core.item.tooltip.IDynamicItemDescription;
 import petrolpark.mc.destroy.core.player.PlayerPreviousPositionsCapability;
@@ -54,7 +54,7 @@ public class ChorusWineItem extends AlcoholicDrinkItem implements IDynamicItemDe
     public ItemDescription getItemDescription() {
         return new ItemDescription.Builder(getPalette())
             .addSummary(Component.translatable("item.destroy.chorus_wine_bottle.dynamic_tooltip.summary").getString())
-            .addBehaviour(Component.translatable("item.destroy.chorus_wine_bottle.dynamic_tooltip.condition").getString(), Component.translatable("item.destroy.chorus_wine_bottle.dynamic_tooltip.behaviour", DestroyAllConfigs.SERVER.substances.chorusWineTeleportTime.get()).getString())
+            .addBehaviour(Component.translatable("item.destroy.chorus_wine_bottle.dynamic_tooltip.condition").getString(), Component.translatable("item.destroy.chorus_wine_bottle.dynamic_tooltip.behaviour", DestroyConfigs.server().substances.chorusWineTeleportTime.get()).getString())
             .build();
     };
 

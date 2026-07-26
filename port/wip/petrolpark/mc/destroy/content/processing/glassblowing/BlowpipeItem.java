@@ -1,5 +1,6 @@
 package petrolpark.mc.destroy.content.processing.glassblowing;
 
+import petrolpark.mc.destroy.legacy.LegacyNBT;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -45,13 +46,13 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.neoforged.neoforge.common.util.FakePlayer;
-import net.neoforged.neoforge.common.util.LazyOptional;
+import net.minecraftforge.common.util.LazyOptional;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
-import net.minecraftforge.fml.DistExecutor;
+import net.neoforged.fml.DistExecutor;
 
 public class BlowpipeItem extends BlockItem implements CustomArmPoseItem {
 
@@ -64,7 +65,7 @@ public class BlowpipeItem extends BlockItem implements CustomArmPoseItem {
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
-        CompoundTag tag = stack.getOrCreateTag();
+        CompoundTag tag = LegacyNBT.getOrCreateTag(stack);
         int progress = tag.getInt("Progress");
 
         GlassblowingRecipe recipe = BlowpipeBlockEntity.readRecipe(level, tag);
@@ -108,7 +109,7 @@ public class BlowpipeItem extends BlockItem implements CustomArmPoseItem {
     public InteractionResult useOn(UseOnContext context) {
         Level level = context.getLevel();
         ItemStack stack = context.getItemInHand();
-        CompoundTag tag = stack.getOrCreateTag();
+        CompoundTag tag = LegacyNBT.getOrCreateTag(stack);
         FluidIngredientOld ingredient = getFluidIngredient(tag);
         if (ingredient != null) {
             BlockPos pos = context.getClickedPos();
@@ -141,7 +142,7 @@ public class BlowpipeItem extends BlockItem implements CustomArmPoseItem {
     };
 
     public boolean finishBlowing(ItemStack stack, Level level, Player player) {
-        CompoundTag tag = stack.getOrCreateTag();
+        CompoundTag tag = LegacyNBT.getOrCreateTag(stack);
         if (tag.getInt("Progress") < BlowpipeBlockEntity.BLOWING_DURATION) return false;
         tag.put("Tank", new FluidTank(1000).writeToNBT(new CompoundTag())); // Empty the Tank
         tag.putInt("Progress", 0); // Reset progress
@@ -155,10 +156,10 @@ public class BlowpipeItem extends BlockItem implements CustomArmPoseItem {
 
     @Override
     public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
-        CompoundTag tag = stack.getOrCreateTag();
+        CompoundTag tag = LegacyNBT.getOrCreateTag(stack);
         FluidTank tank = new FluidTank(1000);
         tank.readFromNBT(tag.getCompound("Tank"));
-        if (!tank.isEmpty() && (float)stack.getOrCreateTag().getInt("Progress") / (float)BlowpipeBlockEntity.BLOWING_DURATION < BlowpipeBlockEntity.BLOWING_TIME_PROPORTION) {
+        if (!tank.isEmpty() && (float)LegacyNBT.getOrCreateTag(stack).getInt("Progress") / (float)BlowpipeBlockEntity.BLOWING_DURATION < BlowpipeBlockEntity.BLOWING_TIME_PROPORTION) {
             entity.setSecondsOnFire(3);
         };
         return false;
@@ -181,7 +182,7 @@ public class BlowpipeItem extends BlockItem implements CustomArmPoseItem {
 
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
-        CompoundTag tag = stack.getOrCreateTag();
+        CompoundTag tag = LegacyNBT.getOrCreateTag(stack);
         if (BlowpipeBlockEntity.readRecipe(level, tag) == null) {
             tag.putInt("Progress", 0);
             tag.putInt("LastProgress", 0);
@@ -215,19 +216,19 @@ public class BlowpipeItem extends BlockItem implements CustomArmPoseItem {
 
     @Override
     public @Nullable ArmPose getArmPose(ItemStack stack, AbstractClientPlayer player, InteractionHand hand) {
-        if (!player.swinging && stack.getOrCreateTag().getBoolean("Blowing")) return ArmPose.SPYGLASS;
+        if (!player.swinging && LegacyNBT.getOrCreateTag(stack).getBoolean("Blowing")) return ArmPose.SPYGLASS;
         return null;
     };
 
     @Override
     public int getUseDuration(ItemStack stack) {
-        return BlowpipeBlockEntity.BLOWING_DURATION + TIME_TO_MOVE_TO_MOUTH - stack.getOrCreateTag().getInt("Progress");
+        return BlowpipeBlockEntity.BLOWING_DURATION + TIME_TO_MOVE_TO_MOUTH - LegacyNBT.getOrCreateTag(stack).getInt("Progress");
     };
 
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
         super.finishUsingItem(stack, level, livingEntity);
-        CompoundTag tag = stack.getOrCreateTag();
+        CompoundTag tag = LegacyNBT.getOrCreateTag(stack);
         if (tag.getInt("Progress") == BlowpipeBlockEntity.BLOWING_DURATION) {
             tag.putInt("Progress", 0);
             tag.putInt("LastProgress", 0);
@@ -272,7 +273,7 @@ public class BlowpipeItem extends BlockItem implements CustomArmPoseItem {
         @Override
         public @NotNull FluidStack getFluidInTank(int tankNo) {
             FluidTank tank = new FluidTank(getTankCapacity(0));
-            tank.readFromNBT(stack.getOrCreateTag().getCompound("Tank"));
+            tank.readFromNBT(LegacyNBT.getOrCreateTag(stack).getCompound("Tank"));
             return tank.getFluid();
         };
 
@@ -288,7 +289,7 @@ public class BlowpipeItem extends BlockItem implements CustomArmPoseItem {
 
         @Override
         public int fill(FluidStack resource, FluidAction action) {
-            CompoundTag tag = stack.getOrCreateTag();
+            CompoundTag tag = LegacyNBT.getOrCreateTag(stack);
             FluidIngredientOld ingredient = getFluidIngredient(tag);
             if (ingredient != null && ingredient.test(resource) && resource.getAmount() >= ingredient.getRequiredAmount()) {
                 FluidTank tank = new FluidTank(getTankCapacity(0));

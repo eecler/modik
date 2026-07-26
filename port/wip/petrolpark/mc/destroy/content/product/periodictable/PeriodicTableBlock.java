@@ -108,7 +108,7 @@ public class PeriodicTableBlock extends HorizontalDirectionalBlock {
             jsonObject.entrySet().forEach(entry -> {
                 if (!CraftingHelper.processConditions(entry.getValue().getAsJsonObject(), "conditions", this.context)) return;
 
-                Optional<? extends Holder<Block>> blockOptional = BuiltInRegistries.BLOCK.asLookup().get(ResourceKey.create(Registries.BLOCK, new ResourceLocation(entry.getKey())));
+                Optional<? extends Holder<Block>> blockOptional = BuiltInRegistries.BLOCK.asLookup().get(ResourceKey.create(Registries.BLOCK, ResourceLocation.parse(entry.getKey())));
                 if (blockOptional.isEmpty()) throw new IllegalStateException("Invalid block ID: "+entry.getKey());
                 JsonObject pos = entry.getValue().getAsJsonObject();
                 int x = pos.get("x").getAsInt();

@@ -1,5 +1,7 @@
 package petrolpark.mc.destroy.content.processing.trypolithography.keypunch;
 
+import petrolpark.mc.destroy.legacy.LegacyNBT;
+import net.minecraft.core.HolderLookup;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicReference;
@@ -83,7 +85,7 @@ public class KeypunchBlockEntity extends KineticBlockEntity implements ICircuitP
         int pattern = CircuitPatternItem.getPattern(stack);
 
         int positionToPunch = BinaryMatrix4x4.rotate(getActualPosition(), input.getRotation());
-        if (stack.getOrCreateTag().contains("Flipped")) positionToPunch = BinaryMatrix4x4.flip(positionToPunch);
+        if (LegacyNBT.getOrCreateTag(stack).contains("Flipped")) positionToPunch = BinaryMatrix4x4.flip(positionToPunch);
 
         if (BinaryMatrix4x4.is1(pattern, positionToPunch)) return false;
 
@@ -176,8 +178,8 @@ public class KeypunchBlockEntity extends KineticBlockEntity implements ICircuitP
     };
 
     @Override
-    protected void read(CompoundTag compound, boolean clientPacket) {
-        super.read(compound, clientPacket);
+    protected void read(CompoundTag compound, HolderLookup.Provider registries, boolean clientPacket) {
+        super.read(compound, registries, clientPacket);
         if (compound.contains("PatternIvePunched", Tag.TAG_INT)) {
             previouslyPunched = compound.getInt("PatternIvePunched");
             differentPositionsPunched = compound.getInt("CountPositionsIvePunched");
@@ -189,8 +191,8 @@ public class KeypunchBlockEntity extends KineticBlockEntity implements ICircuitP
     };
 
     @Override
-    protected void write(CompoundTag compound, boolean clientPacket) {
-        super.write(compound, clientPacket);
+    protected void write(CompoundTag compound, HolderLookup.Provider registries, boolean clientPacket) {
+        super.write(compound, registries, clientPacket);
         if (advancementBehaviour.getPlayer() != null) {
             compound.putInt("PatternIvePunched", previouslyPunched);
             compound.putInt("CountPositionsIvePunched", differentPositionsPunched);

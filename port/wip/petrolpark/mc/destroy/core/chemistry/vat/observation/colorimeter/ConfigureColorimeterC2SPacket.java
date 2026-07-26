@@ -8,7 +8,7 @@ import petrolpark.mc.library.network.packet.C2SPacket;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraftforge.network.NetworkEvent.Context;
+import net.neoforged.neoforge.network.NetworkEvent.Context;
 
 public class ConfigureColorimeterC2SPacket extends C2SPacket {
 

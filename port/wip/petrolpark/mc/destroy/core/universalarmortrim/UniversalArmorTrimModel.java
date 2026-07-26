@@ -31,7 +31,7 @@ public class UniversalArmorTrimModel extends BakedModelWrapper<BakedModel> {
         return trimOverrides;
     };
 
-    public static final ResourceLocation TRIM_TYPE_PREDICATE_LOCATION = new ResourceLocation("trim_type");
+    public static final ResourceLocation TRIM_TYPE_PREDICATE_LOCATION = ResourceLocation.parse("trim_type");
 
     @SubscribeEvent
     public static void onModelBake(ModelEvent.ModifyBakingResult event) {

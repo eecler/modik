@@ -1,12 +1,13 @@
 package petrolpark.mc.destroy.core.explosion;
 
+import net.minecraft.core.HolderLookup;
 import static petrolpark.mc.library.compat.create.CreateClient.OUTLINER;
 
 import java.util.Arrays;
 import java.util.List;
 
 import petrolpark.mc.destroy.client.DestroyLang;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import petrolpark.mc.destroy.core.bettervaluesettings.SidedScrollValueBehaviour;
 import petrolpark.mc.destroy.core.block.entity.ISpecialWhenHoveredBlockEntity;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
@@ -47,7 +48,7 @@ public class DynamiteBlockEntity extends SmartBlockEntity implements ISpecialWhe
     @Override
     public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
         scrollValueBehaviour = new SidedScrollValueBehaviour(DestroyLang.translate("tooltip.dynamite.excavation_radius").component(), this, new DynamiteValueBox())
-            .between(0, DestroyAllConfigs.SERVER.blocks.dynamiteMaxRadius.get())
+            .between(0, DestroyConfigs.server().blocks.dynamiteMaxRadius.get())
             .oppositeSides()
             .withCallback((d, i) -> updateExcavationArea());
         Arrays.fill(scrollValueBehaviour.values, 2); // Set default values
@@ -66,15 +67,15 @@ public class DynamiteBlockEntity extends SmartBlockEntity implements ISpecialWhe
     };
 
     @Override
-    protected void read(CompoundTag tag, boolean clientPacket) {
-        super.read(tag, clientPacket);
+    protected void read(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
+        super.read(tag, registries, clientPacket);
         excavationAreaUpperCorner = NbtUtils.readBlockPos(tag.getCompound("UpperCorner"));
         excavationAreaLowerCorner = NbtUtils.readBlockPos(tag.getCompound("LowerCorner"));
     };
 
     @Override
-    protected void write(CompoundTag tag, boolean clientPacket) {
-        super.write(tag, clientPacket);
+    protected void write(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
+        super.write(tag, registries, clientPacket);
         tag.put("UpperCorner", NbtUtils.writeBlockPos(excavationAreaUpperCorner));
         tag.put("LowerCorner", NbtUtils.writeBlockPos(excavationAreaLowerCorner));
     };

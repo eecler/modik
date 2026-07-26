@@ -1,5 +1,6 @@
 package petrolpark.mc.destroy.content.processing.glassblowing;
 
+import net.minecraft.core.HolderLookup;
 import java.util.List;
 
 import petrolpark.mc.destroy.DestroyAdvancementTrigger;
@@ -79,8 +80,8 @@ public class BlowpipeBlockEntity extends SmartBlockEntity {
     };
 
     @Override
-    protected void read(CompoundTag tag, boolean clientPacket) {
-        super.read(tag, clientPacket);
+    protected void read(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
+        super.read(tag, registries, clientPacket);
         readBlowing(tag);
         int oldLuminosity = luminosity;
         luminosity = tag.getInt("Luminosity");
@@ -93,13 +94,13 @@ public class BlowpipeBlockEntity extends SmartBlockEntity {
 
     public void readBlowing(CompoundTag tag) {
         tank.readFromNBT(tag.getCompound("Tank"));
-        recipeId = new ResourceLocation(tag.getString("Recipe"));
+        recipeId = ResourceLocation.parse(tag.getString("Recipe"));
         progress = tag.getInt("Progress");
         progressLastTick = tag.getInt("LastProgress");
     };
 
     public static GlassblowingRecipe readRecipe(Level level, CompoundTag tag) {
-        return getRecipe(level, new ResourceLocation(tag.getString("Recipe")));
+        return getRecipe(level, ResourceLocation.parse(tag.getString("Recipe")));
     };
 
     protected static GlassblowingRecipe getRecipe(Level level, ResourceLocation recipeId) {
@@ -107,8 +108,8 @@ public class BlowpipeBlockEntity extends SmartBlockEntity {
     };
 
     @Override
-    protected void write(CompoundTag tag, boolean clientPacket) {
-        super.write(tag, clientPacket);
+    protected void write(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
+        super.write(tag, registries, clientPacket);
         writeBlowing(tag, false);
         tag.putInt("Luminosity", luminosity);
     };

@@ -1,5 +1,7 @@
 package petrolpark.mc.destroy.core.chemistry.storage.testtube;
 
+import petrolpark.mc.destroy.legacy.LegacyRegistries;
+import net.minecraft.core.HolderLookup;
 import static petrolpark.mc.library.compat.create.CreateClient.OUTLINER;
 
 import java.util.List;
@@ -26,7 +28,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.neoforged.neoforge.common.util.LazyOptional;
+import net.minecraftforge.common.util.LazyOptional;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
 public class TestTubeRackBlockEntity extends SmartBlockEntity implements ISpecialWhenHoveredBlockEntity {
@@ -64,16 +66,16 @@ public class TestTubeRackBlockEntity extends SmartBlockEntity implements ISpecia
     };
 
     @Override
-    protected void read(CompoundTag tag, boolean clientPacket) {
-        super.read(tag, clientPacket);
+    protected void read(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
+        super.read(tag, registries, clientPacket);
         inv = new TestTubeRackInventory();
-        inv.deserializeNBT(tag.getCompound("Inventory"));
+        LegacyRegistries.deserializeNBT(inv, tag.getCompound("Inventory"));
     };
 
     @Override
-    protected void write(CompoundTag tag, boolean clientPacket) {
-        super.write(tag, clientPacket);
-        tag.put("Inventory", inv.serializeNBT());
+    protected void write(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
+        super.write(tag, registries, clientPacket);
+        tag.put("Inventory", LegacyRegistries.serializeNBT(inv));
     };
     
     @OnlyIn(Dist.CLIENT)

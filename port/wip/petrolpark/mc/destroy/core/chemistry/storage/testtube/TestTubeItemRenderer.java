@@ -36,7 +36,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 @EventBusSubscriber(value = Dist.CLIENT, modid = Destroy.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class TestTubeItemRenderer extends CustomRenderedItemModelRenderer {
 
-    private static final ResourceLocation defaultItemModelRl = new ResourceLocation("generated");
+    private static final ResourceLocation defaultItemModelRl = ResourceLocation.parse("generated");
     private static final ItemModelGenerator ITEM_MODEL_GENERATOR = new ItemModelGenerator();
     private static BakedModel overlayModel;
 

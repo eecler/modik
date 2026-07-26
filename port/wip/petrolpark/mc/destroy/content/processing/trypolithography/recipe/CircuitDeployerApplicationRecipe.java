@@ -1,5 +1,6 @@
 package petrolpark.mc.destroy.content.processing.trypolithography.recipe;
 
+import petrolpark.mc.destroy.legacy.LegacyNBT;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -61,7 +62,7 @@ public class CircuitDeployerApplicationRecipe extends DeployerApplicationRecipe 
         public ItemStack[] getItems() {
             return Stream.of(parent.getItems()).map(stack -> {
                 stack = stack.copy();
-                stack.getOrCreateTag().putBoolean("HideContaminants", true);
+                LegacyNBT.getOrCreateTag(stack).putBoolean("HideContaminants", true);
                 CircuitPatternItem.putPattern(stack, EXAMPLE_PATTERN);
                 return stack;
             }).toArray(i -> new ItemStack[i]);
@@ -124,7 +125,7 @@ public class CircuitDeployerApplicationRecipe extends DeployerApplicationRecipe 
     };
 
     public DeployerApplicationRecipe specify(RecipeWrapper inv) {
-        DeployerApplicationRecipe recipe = new ProcessingRecipeBuilder<>(params -> new SpecificCircuitDeployerApplicationRecipe(params, inv), new ResourceLocation(getId().getNamespace(), getId().getPath() + recipeId++))
+        DeployerApplicationRecipe recipe = new ProcessingRecipeBuilder<>(params -> new SpecificCircuitDeployerApplicationRecipe(params, inv), ResourceLocation.fromNamespaceAndPath(getId().getNamespace(), getId().getPath() + recipeId++))
             .withItemIngredients(ingredients)
             .withItemOutputs(results)
             .build();

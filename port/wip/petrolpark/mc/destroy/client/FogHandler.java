@@ -1,9 +1,10 @@
 package petrolpark.mc.destroy.client;
 
+import petrolpark.mc.destroy.DestroyPollutionTypes;
 import petrolpark.mc.destroy.Destroy;
 import petrolpark.mc.destroy.DestroyClient;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
-import petrolpark.mc.destroy.core.pollution.Pollution.PollutionType;
+import petrolpark.mc.destroy.config.DestroyConfigs;
+import petrolpark.mc.destroy.core.pollution.PollutionType;
 import petrolpark.mc.destroy.core.pollution.PollutionHelper;
 
 import net.createmod.catnip.animation.AnimationTickHolder;
@@ -17,7 +18,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.ViewportEvent.ComputeFogColor;
 import net.neoforged.neoforge.client.event.ViewportEvent.RenderFog;
-import net.minecraftforge.event.TickEvent;
+import net.neoforged.neoforge.event.TickEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 
@@ -82,9 +83,9 @@ public class FogHandler {
 
         if (getFluidInCamera(event.getCamera()) == FogType.NONE) {
             Minecraft mc = Minecraft.getInstance();
-            float smog = (float)PollutionHelper.getPollution(mc.level, mc.player.blockPosition(), PollutionType.SMOG);
-            event.scaleNearPlaneDistance(1f - (0.8f * smog / (float)PollutionType.SMOG.max));
-            event.scaleFarPlaneDistance(1f - (0.5f * smog / (float)PollutionType.SMOG.max));
+            float smog = (float)PollutionHelper.getPollution(mc.level, mc.player.blockPosition(), DestroyPollutionTypes.SMOG.get());
+            event.scaleNearPlaneDistance(1f - (0.8f * smog / (float)DestroyPollutionTypes.SMOG.get().max));
+            event.scaleFarPlaneDistance(1f - (0.5f * smog / (float)DestroyPollutionTypes.SMOG.get().max));
             event.setCanceled(true);
         };
     };
@@ -98,9 +99,9 @@ public class FogHandler {
 
         if (getFluidInCamera(event.getCamera()) == FogType.NONE) {
             Minecraft mc = Minecraft.getInstance();
-            float smog = (float)PollutionHelper.getPollution(mc.level, mc.player.blockPosition(), PollutionType.SMOG);
+            float smog = (float)PollutionHelper.getPollution(mc.level, mc.player.blockPosition(), DestroyPollutionTypes.SMOG.get());
             Color existing = new Color(event.getRed(), event.getGreen(), event.getBlue(), 1f);
-            DestroyClient.FOG_HANDLER.setTargetColor(Color.mixColors(existing, BROWN, 0.8f * smog / (float)PollutionType.SMOG.max), AnimationTickHolder.getPartialTicks());
+            DestroyClient.FOG_HANDLER.setTargetColor(Color.mixColors(existing, BROWN, 0.8f * smog / (float)DestroyPollutionTypes.SMOG.get().max), AnimationTickHolder.getPartialTicks());
             Color color = DestroyClient.FOG_HANDLER.getColor(AnimationTickHolder.getPartialTicks());
             event.setRed(color.getRedAsFloat());
             event.setGreen(color.getGreenAsFloat());
@@ -109,6 +110,6 @@ public class FogHandler {
     };
 
     protected static boolean smogEnabled() {
-        return PollutionHelper.pollutionEnabled() && DestroyAllConfigs.SERVER.pollution.smog.get();
+        return PollutionHelper.isPollutionEnabled() && DestroyConfigs.server().pollution.smog.get();
     };
 };

@@ -1,5 +1,6 @@
 {
     "block.destroy.cordite_block": "Cordite Block",
+    "block.destroy.mechanical_sieve": "Mechanical Sieve",
     "commands.destroy.pollution.query": "Pollution of type %s has a level of %s",
     "commands.destroy.pollution.set": "Set level of Pollution of type %s to %s. A reload may be required for some changes to take effect.",
     "destroy.chemical.acetamide": "Acetamide",
@@ -360,6 +361,7 @@
     "item.destroy.fluorite": "Fluorite",
     "item.destroy.fulminated_mercury": "Fulminated Mercury",
     "item.destroy.iodine": "Iodine",
+    "item.destroy.mesh": "Mesh",
     "item.destroy.nether_crocoite": "Nether Crocoite",
     "item.destroy.nickel_hydrazine_nitrate": "Nickel Hydrazine Nitrate",
     "item.destroy.nitrocellulose": "Nitrocellulose",

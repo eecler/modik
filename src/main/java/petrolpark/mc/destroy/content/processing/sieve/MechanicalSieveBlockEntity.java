@@ -16,6 +16,7 @@ import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour
 
 import net.createmod.catnip.nbt.NBTHelper;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.particles.ItemParticleOption;
@@ -25,6 +26,7 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -70,8 +72,8 @@ public class MechanicalSieveBlockEntity extends KineticBlockEntity {
     };
 
     @Override
-    protected void read(CompoundTag compound, boolean clientPacket) {
-        super.read(compound, clientPacket);
+    protected void read(CompoundTag compound, HolderLookup.Provider registries, boolean clientPacket) {
+        super.read(compound, registries, clientPacket);
         compound.put("Items", NBTHelper.writeCompoundList(items, item -> {
             CompoundTag tag = new CompoundTag();
             tag.putUUID("Entity", item.item.getUUID());
@@ -81,8 +83,8 @@ public class MechanicalSieveBlockEntity extends KineticBlockEntity {
     };
 
     @Override
-    protected void write(CompoundTag compound, boolean clientPacket) {
-        super.write(compound, clientPacket);
+    protected void write(CompoundTag compound, HolderLookup.Provider registries, boolean clientPacket) {
+        super.write(compound, registries, clientPacket);
         items.addAll(NBTHelper.readCompoundList(compound.getList("Items", Tag.TAG_COMPOUND), this::processItem));
     };
 
@@ -116,7 +118,7 @@ public class MechanicalSieveBlockEntity extends KineticBlockEntity {
             if (item.processingTime < 0) {
                 ItemEntity entity = item.item;
                 entity.kill();
-                for (ItemStack stack : RecipeHelper.rollResults(item.getRecipe(), luckyBehaviour.getPlayer(), entity.getItem().getCount())) {
+                for (ItemStack stack : RecipeHelper.rollResults(level.random, item.getRecipe(), luckyBehaviour.getPlayer(), entity.getItem().getCount())) {
                     getLevel().addFreshEntity(new ItemEntity(getLevel(), entity.getX() - 0.125d + level.random.nextDouble() * 0.25d, getBlockPos().getY(), entity.getZ() - 0.125d + level.random.nextDouble() * 0.25d, stack, 0d, 0d, 0d));
                 };
                 iterator.remove();
@@ -150,9 +152,9 @@ public class MechanicalSieveBlockEntity extends KineticBlockEntity {
         if (lastRecipe != null && lastRecipe.matches(wrapper, getLevel())) {
             recipe = lastRecipe;
         } else {
-            Optional<SievingRecipe> recipeOp = DestroyRecipeTypes.SIEVING.find(wrapper, getLevel());
+            Optional<RecipeHolder<SievingRecipe>> recipeOp = DestroyRecipeTypes.SIEVING.find(wrapper, getLevel());
             if (recipeOp.isEmpty()) return null;
-            recipe = recipeOp.get();
+            recipe = recipeOp.get().value();
         };
         return new ProcessingItem(entity, processingTime == -1 ? recipe.getProcessingDuration() : processingTime, recipe);
     };

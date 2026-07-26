@@ -8,7 +8,7 @@ import petrolpark.mc.library.PetrolparkTags;
 import petrolpark.mc.destroy.Destroy;
 import petrolpark.mc.destroy.DestroyAttributes;
 import petrolpark.mc.destroy.DestroyMessages;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 
 import net.minecraft.CrashReport;
 import net.minecraft.CrashReportCategory;
@@ -157,7 +157,7 @@ public class ExtendedInventory extends Inventory {
         try {
             MenuType<?> menuType = menu.getType();
             if (menuType == null) return false;
-            if (DestroyAllConfigs.SERVER.extendedInventorySafeMode.get()) {
+            if (DestroyConfigs.server().extendedInventorySafeMode.get()) {
                 return PetrolparkTags.MenuTypes.ALWAYS_SHOWS_EXTENDED_INVENTORY.matches(menuType);
             } else {
                 return !PetrolparkTags.MenuTypes.NEVER_SHOWS_EXTENDED_INVENTORY.matches(menuType);

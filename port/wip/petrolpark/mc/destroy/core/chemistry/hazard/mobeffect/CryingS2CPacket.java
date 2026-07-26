@@ -11,7 +11,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraftforge.network.NetworkEvent;
+import net.neoforged.neoforge.network.NetworkEvent;
 
 public class CryingS2CPacket extends S2CPacket {
 
@@ -43,10 +43,10 @@ public class CryingS2CPacket extends S2CPacket {
             if (level == null) return;
             Entity entity = level.getEntity(entityId);
             if (entity == null || !(entity instanceof LivingEntity livingEntity)) return;
-            if (isCrying && !livingEntity.hasEffect(DestroyMobEffects.CRYING.get())) {
-                livingEntity.addEffect(new MobEffectInstance(DestroyMobEffects.CRYING.get(), Integer.MAX_VALUE, 0, true, false, false));
+            if (isCrying && !livingEntity.hasEffect(DestroyMobEffects.CRYING)) {
+                livingEntity.addEffect(new MobEffectInstance(DestroyMobEffects.CRYING, Integer.MAX_VALUE, 0, true, false, false));
             } else {
-                livingEntity.removeEffect(DestroyMobEffects.CRYING.get());
+                livingEntity.removeEffect(DestroyMobEffects.CRYING);
             };
         });
         return true;

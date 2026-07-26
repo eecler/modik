@@ -1,5 +1,6 @@
 package petrolpark.mc.destroy.core.event;
 
+import petrolpark.mc.destroy.DestroyPollutionTypes;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +19,7 @@ import petrolpark.mc.destroy.DestroyTags.MobEffects;
 import petrolpark.mc.destroy.DestroyTrades;
 import petrolpark.mc.destroy.DestroyVillagers;
 import petrolpark.mc.destroy.client.DestroyLang;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import petrolpark.mc.destroy.content.oil.ChunkCrudeOil;
 import petrolpark.mc.destroy.content.oil.CrudeOilCommand;
 import petrolpark.mc.destroy.content.processing.glassblowing.BlowpipeItem;
@@ -49,7 +50,7 @@ import petrolpark.mc.destroy.core.player.PlayerCrouchingCapability;
 import petrolpark.mc.destroy.core.player.PlayerPreviousPositionsCapability;
 import petrolpark.mc.destroy.core.pollution.LevelPollutionS2CPacket;
 import petrolpark.mc.destroy.core.pollution.Pollution;
-import petrolpark.mc.destroy.core.pollution.Pollution.PollutionType;
+import petrolpark.mc.destroy.core.pollution.PollutionType;
 import petrolpark.mc.destroy.core.pollution.PollutionCommand;
 import petrolpark.mc.destroy.core.pollution.PollutionHelper;
 import petrolpark.mc.destroy.core.pollution.SyncChunkPollutionS2CPacket;
@@ -101,10 +102,10 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.common.util.FakePlayer;
-import net.minecraftforge.event.AddReloadListenerEvent;
-import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.event.RegisterCommandsEvent;
-import net.minecraftforge.event.TickEvent;
+import net.neoforged.neoforge.event.AddReloadListenerEvent;
+import net.neoforged.neoforge.event.AttachCapabilitiesEvent;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
+import net.neoforged.neoforge.event.TickEvent;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.EntityTravelToDimensionEvent;
 import net.neoforged.neoforge.event.entity.living.BabyEntitySpawnEvent;
@@ -115,7 +116,7 @@ import net.neoforged.neoforge.event.level.BlockEvent.CropGrowEvent;
 import net.neoforged.neoforge.event.level.ChunkWatchEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
 import net.neoforged.neoforge.event.level.SaplingGrowTreeEvent;
-import net.minecraftforge.event.server.ServerAboutToStartEvent;
+import net.neoforged.neoforge.event.server.ServerAboutToStartEvent;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 import net.neoforged.bus.api.Event;
 import net.neoforged.bus.api.Event.Result;
@@ -239,7 +240,7 @@ public class DestroyCommonEvents {
         boolean keepInv = event.getEntity().level().getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY);
         if (event.isWasDeath()) {
             // Copy Baby Blue Addiction Data
-            if (DestroyAllConfigs.SERVER.substances.keepBabyBlueAddictionOnDeath.get() || keepInv) event.getOriginal().getCapability(PlayerBabyBlueAddictionCapability.CAPABILITY).ifPresent(oldStore -> {
+            if (DestroyConfigs.server().substances.keepBabyBlueAddictionOnDeath.get() || keepInv) event.getOriginal().getCapability(PlayerBabyBlueAddictionCapability.CAPABILITY).ifPresent(oldStore -> {
                 event.getEntity().getCapability(PlayerBabyBlueAddictionCapability.CAPABILITY).ifPresent(newStore -> {
                     newStore.copyFrom(oldStore);
                 });
@@ -251,7 +252,7 @@ public class DestroyCommonEvents {
                     newStore.copyFrom(oldStore);
                 });
             });
-        } else if (!event.isWasDeath() || DestroyAllConfigs.SERVER.substances.keepCreatineExtraInventorySizeOnDeath.get() || keepInv) {
+        } else if (!event.isWasDeath() || DestroyConfigs.server().substances.keepCreatineExtraInventorySizeOnDeath.get() || keepInv) {
             // Copy Extra Inventory due to Creatine
             @Nullable AttributeModifier extraInventoryModifier = event.getOriginal().getAttribute(DestroyAttributes.EXTRA_INVENTORY_SIZE.get()).getModifier(CreatineItem.EXTRA_INVENTORY_ATTRIBUTE_MODIFIER);
             if (extraInventoryModifier != null) event.getEntity().getAttribute(DestroyAttributes.EXTRA_INVENTORY_SIZE.get()).addPermanentModifier(extraInventoryModifier);
@@ -304,8 +305,8 @@ public class DestroyCommonEvents {
         Registry<StructureTemplatePool> templatePoolRegistry = event.getServer().registryAccess().registry(Registries.TEMPLATE_POOL).orElseThrow();
         Registry<StructureProcessorList> processorListRegistry = event.getServer().registryAccess().registry(Registries.PROCESSOR_LIST).orElseThrow();
         
-        DestroyVillageAddition.addBuildingToPool(templatePoolRegistry, processorListRegistry, new ResourceLocation("minecraft:village/plains/houses"), "destroy:plains_inn", 5);
-        DestroyVillageAddition.addBuildingToPool(templatePoolRegistry, processorListRegistry, new ResourceLocation("minecraft:village/desert/houses"), "destroy:desert_inn", 5);
+        DestroyVillageAddition.addBuildingToPool(templatePoolRegistry, processorListRegistry, ResourceLocation.parse("minecraft:village/plains/houses"), "destroy:plains_inn", 5);
+        DestroyVillageAddition.addBuildingToPool(templatePoolRegistry, processorListRegistry, ResourceLocation.parse("minecraft:village/desert/houses"), "destroy:desert_inn", 5);
     };
 
     /**
@@ -326,8 +327,8 @@ public class DestroyCommonEvents {
         };
 
         // Regenerate ozone
-        if (event.getEntity().getType() == EntityType.LIGHTNING_BOLT && PollutionHelper.pollutionEnabled() && DestroyAllConfigs.SERVER.pollution.lightningRegeneratesOzone.get()) {
-            PollutionHelper.changePollution(event.getLevel(), event.getEntity().getOnPos(), PollutionType.OZONE_DEPLETION, -50);
+        if (event.getEntity().getType() == EntityType.LIGHTNING_BOLT && PollutionHelper.isPollutionEnabled() && DestroyConfigs.server().pollution.lightningRegeneratesOzone.get()) {
+            PollutionHelper.changePollution(event.getLevel(), event.getEntity().getOnPos(), DestroyPollutionTypes.OZONE_DEPLETION.get(), -50);
         };
     };
 
@@ -339,7 +340,7 @@ public class DestroyCommonEvents {
         Player player = event.getEntity();
         ItemStack itemStack = player.getItemInHand(event.getHand());
 
-        if (itemStack.is(Items.GLASS_BOTTLE) && player.hasEffect(DestroyMobEffects.CRYING.get())) {
+        if (itemStack.is(Items.GLASS_BOTTLE) && player.hasEffect(DestroyMobEffects.CRYING)) {
             collectTears(event, player, event.getHand(), itemStack, player);
         };
     };
@@ -377,13 +378,13 @@ public class DestroyCommonEvents {
         };
 
         // Collecting Tears
-        if (itemStack.is(Items.GLASS_BOTTLE) && event.getTarget() instanceof LivingEntity livingEntity && livingEntity.hasEffect(DestroyMobEffects.CRYING.get())) {
+        if (itemStack.is(Items.GLASS_BOTTLE) && event.getTarget() instanceof LivingEntity livingEntity && livingEntity.hasEffect(DestroyMobEffects.CRYING)) {
             collectTears(event, player, event.getHand(), itemStack, livingEntity);
         };
     };
 
     public static void collectTears(Event event, Player player, InteractionHand hand, ItemStack bottleStack, LivingEntity cryingEntity) {
-        cryingEntity.removeEffect(DestroyMobEffects.CRYING.get()); // Stop the crying
+        cryingEntity.removeEffect(DestroyMobEffects.CRYING); // Stop the crying
 
         // Give the Tear Bottle to the Player
         ItemStack filled = DestroyItems.TEAR_BOTTLE.asStack();
@@ -477,7 +478,7 @@ public class DestroyCommonEvents {
                     if (program.getChannels().stream().anyMatch(channel -> channel.getNetworkKey().equals(key))) {
                         event.setCancellationResult(InteractionResult.FAIL);
                         if (level.isClientSide()) player.displayClientMessage(DestroyLang.translate("tooltip.redstone_programmer.add_frequency.failure.exists").style(ChatFormatting.RED).component(), true); 
-                    } else if (program.getChannels().size() >= DestroyAllConfigs.SERVER.blocks.redstoneProgrammerMaxChannels.get()) {
+                    } else if (program.getChannels().size() >= DestroyConfigs.server().blocks.redstoneProgrammerMaxChannels.get()) {
                         event.setCancellationResult(InteractionResult.FAIL);
                         if (level.isClientSide()) player.displayClientMessage(DestroyLang.translate("tooltip.redstone_programmer.add_frequency.failure.full").style(ChatFormatting.RED).component(), true); 
                     } else {
@@ -520,7 +521,7 @@ public class DestroyCommonEvents {
         };
 
         // Failure due to smog
-        if (!failure && PollutionHelper.pollutionEnabled() && DestroyAllConfigs.SERVER.pollution.breedingAffected.get() && event.getParentA().getRandom().nextInt(PollutionType.SMOG.max) <= PollutionHelper.getPollution(level, event.getParentA().getOnPos(), PollutionType.SMOG)) failure = true; // 0% chance of failure for 0 smog, 100% chance for full smog
+        if (!failure && PollutionHelper.isPollutionEnabled() && DestroyConfigs.server().pollution.breedingAffected.get() && event.getParentA().getRandom().nextInt(DestroyPollutionTypes.SMOG.get().max) <= PollutionHelper.getPollution(level, event.getParentA().getOnPos(), DestroyPollutionTypes.SMOG.get())) failure = true; // 0% chance of failure for 0 smog, 100% chance for full smog
 
         if (failure) { 
             if (level instanceof ServerLevel serverLevel) {
@@ -535,10 +536,10 @@ public class DestroyCommonEvents {
      */
     @SubscribeEvent
     public static final void onCropGrowPre(CropGrowEvent.Pre event) {
-        if (!PollutionHelper.pollutionEnabled() || !DestroyAllConfigs.SERVER.pollution.growingAffected.get()) return;
+        if (!PollutionHelper.isPollutionEnabled() || !DestroyConfigs.server().pollution.growingAffected.get()) return;
         if (!(event.getLevel() instanceof Level level)) return;
         BlockPos pos = event.getPos();
-        for (PollutionType pollutionType : new PollutionType[]{PollutionType.SMOG, PollutionType.GREENHOUSE, PollutionType.ACID_RAIN}) {
+        for (PollutionType pollutionType : new PollutionType[]{DestroyPollutionTypes.SMOG.get(), DestroyPollutionTypes.GREENHOUSE.get(), DestroyPollutionTypes.ACID_RAIN.get()}) {
             if (level.random.nextInt(pollutionType.max) <= PollutionHelper.getPollution(level, pos, pollutionType)) {
                 if (level instanceof ServerLevel serverLevel) serverLevel.sendParticles(PollutionHelper.cropGrowthFailureParticles(), pos.getX() + 0.5d, pos.getY() + level.random.nextDouble() * event.getState().getShape(level, pos).max(Axis.Y), pos.getZ() + 0.5d, 10, 0.25d, 0.25d, 0.25d, 0.02d);
                 event.setResult(Result.DENY);
@@ -552,10 +553,10 @@ public class DestroyCommonEvents {
      */
     @SubscribeEvent
     public static final void onBonemeal(BonemealEvent event) {
-        if (!PollutionHelper.pollutionEnabled() || !DestroyAllConfigs.SERVER.pollution.growingAffected.get() || !DestroyAllConfigs.SERVER.pollution.bonemealingAffected.get() || event.getStack().is(DestroyTags.Items.BONEMEAL_BYPASSES_POLLUTION.tag)) return;
+        if (!PollutionHelper.isPollutionEnabled() || !DestroyConfigs.server().pollution.growingAffected.get() || !DestroyConfigs.server().pollution.bonemealingAffected.get() || event.getStack().is(DestroyTags.Items.BONEMEAL_BYPASSES_POLLUTION.tag)) return;
         Level level = event.getLevel();
         BlockPos pos = event.getPos();
-        for (PollutionType pollutionType : new PollutionType[]{PollutionType.SMOG, PollutionType.GREENHOUSE, PollutionType.ACID_RAIN}) {
+        for (PollutionType pollutionType : new PollutionType[]{DestroyPollutionTypes.SMOG.get(), DestroyPollutionTypes.GREENHOUSE.get(), DestroyPollutionTypes.ACID_RAIN.get()}) {
             if (level.random.nextInt(pollutionType.max) <= PollutionHelper.getPollution(level, pos, pollutionType)) {
                 if (level instanceof ServerLevel serverLevel) serverLevel.sendParticles(PollutionHelper.cropGrowthFailureParticles(), pos.getX() + 0.5d, pos.getY() + level.random.nextDouble() * event.getBlock().getShape(level, pos).max(Axis.Y), pos.getZ() + 0.5d, 10, 0.25d, 0.25d, 0.25d, 0.02d);
                 event.setResult(Result.DENY);
@@ -569,11 +570,11 @@ public class DestroyCommonEvents {
      */
     @SubscribeEvent
     public static final void onSaplingGrowTree(SaplingGrowTreeEvent event) {
-        if (!(event.getLevel() instanceof Level level) || !PollutionHelper.pollutionEnabled() || !DestroyAllConfigs.SERVER.pollution.growingTreesDecreasesPollution.get()) return;
+        if (!(event.getLevel() instanceof Level level) || !PollutionHelper.isPollutionEnabled() || !DestroyConfigs.server().pollution.growingTreesDecreasesPollution.get()) return;
         BlockPos pos = event.getPos();
-        if (level.random.nextInt(3) == 0) PollutionHelper.changePollution(level, pos, PollutionType.GREENHOUSE, -1);
-        if (level.random.nextInt(3) == 0) PollutionHelper.changePollution(level, pos, PollutionType.SMOG, -1);
-        if (level.random.nextInt(3) == 0) PollutionHelper.changePollution(level, pos, PollutionType.ACID_RAIN, -1);
+        if (level.random.nextInt(3) == 0) PollutionHelper.changePollution(level, pos, DestroyPollutionTypes.GREENHOUSE.get(), -1);
+        if (level.random.nextInt(3) == 0) PollutionHelper.changePollution(level, pos, DestroyPollutionTypes.SMOG.get(), -1);
+        if (level.random.nextInt(3) == 0) PollutionHelper.changePollution(level, pos, DestroyPollutionTypes.ACID_RAIN.get(), -1);
     };
 
     /**
@@ -585,7 +586,7 @@ public class DestroyCommonEvents {
 
         // Global Pollution
         for (PollutionType pollutionType : PollutionType.values()) {
-            if (PollutionHelper.pollutionEnabled() && !pollutionType.local && level.random.nextFloat() <= DestroyAllConfigs.SERVER.pollution.pollutionDecreaseRates.get(pollutionType).getF()) PollutionHelper.changePollutionGlobal(event.level, pollutionType, -1);
+            if (PollutionHelper.isPollutionEnabled() && !pollutionType.local && level.random.nextFloat() <= DestroyConfigs.server().pollution.pollutionDecreaseRates.get(pollutionType).getF()) PollutionHelper.changePollutionGlobal(event.level, pollutionType, -1);
         };
 
     };

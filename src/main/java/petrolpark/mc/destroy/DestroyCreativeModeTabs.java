@@ -57,6 +57,7 @@ public class DestroyCreativeModeTabs {
                 output.accept(DestroyItems.NITROCELLULOSE.get());
                 output.accept(DestroyItems.TOUCH_POWDER.get());
                 output.accept(DestroyBlocks.CORDITE_BLOCK.get());
+                output.accept(DestroyBlocks.MECHANICAL_SIEVE.get());
 
                 // Sodium
                 output.accept(DestroyItems.SODIUM_INGOT.get());
@@ -65,6 +66,7 @@ public class DestroyCreativeModeTabs {
 
                 // Other products
                 output.accept(DestroyItems.BABY_BLUE_CRYSTAL.get());
+                output.accept(DestroyItems.MESH.get());
                 output.accept(DestroyItems.CREATINE.get());
                 output.accept(DestroyItems.IODINE.get());
             })

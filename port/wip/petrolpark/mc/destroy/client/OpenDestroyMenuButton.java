@@ -9,7 +9,7 @@ import org.apache.commons.lang3.mutable.MutableObject;
 
 import petrolpark.mc.destroy.Destroy;
 import petrolpark.mc.destroy.DestroyItems;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import petrolpark.mc.destroy.mixin.accessor.MenuRowsAccessor;
 import com.simibubi.create.infrastructure.gui.OpenCreateMenuButton.MenuRows;
 
@@ -66,12 +66,12 @@ public class OpenDestroyMenuButton extends Button {
 
         if (gui instanceof TitleScreen) {
             menu = MenuRows.MAIN_MENU;
-            rowIdx = DestroyAllConfigs.CLIENT.configurationButtons.mainMenuConfigButtonRow.get();
-            offsetX =  DestroyAllConfigs.CLIENT.configurationButtons.mainMenuConfigButtonOffsetX.get();
+            rowIdx = DestroyConfigs.client().configurationButtons.mainMenuConfigButtonRow.get();
+            offsetX =  DestroyConfigs.client().configurationButtons.mainMenuConfigButtonOffsetX.get();
         } else if (gui instanceof PauseScreen) {
             menu = MenuRows.INGAME_MENU;
-            rowIdx =  DestroyAllConfigs.CLIENT.configurationButtons.pauseMenuConfigButtonRow.get();
-            offsetX =  DestroyAllConfigs.CLIENT.configurationButtons.pauseMenuConfigButtonOffsetX.get();
+            rowIdx =  DestroyConfigs.client().configurationButtons.pauseMenuConfigButtonRow.get();
+            offsetX =  DestroyConfigs.client().configurationButtons.pauseMenuConfigButtonOffsetX.get();
         };
 
         if (rowIdx != 0 && menu != null) {

@@ -1,11 +1,12 @@
 package petrolpark.mc.destroy.core.pollution;
 
+import petrolpark.mc.destroy.DestroyPollutionTypes;
 import java.util.function.BiFunction;
 import java.util.function.IntSupplier;
 
 import javax.annotation.Nullable;
 
-import petrolpark.mc.destroy.core.pollution.Pollution.PollutionType;
+import petrolpark.mc.destroy.core.pollution.PollutionType;
 
 import net.createmod.catnip.theme.Color;
 import net.createmod.ponder.api.level.PonderLevel;
@@ -20,7 +21,7 @@ import net.minecraft.world.level.GrassColor;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;
-import net.neoforged.neoforge.common.util.LazyOptional;
+import net.minecraftforge.common.util.LazyOptional;
 
 public class SmogAffectedBlockColor implements BlockColor {
 
@@ -84,7 +85,7 @@ public class SmogAffectedBlockColor implements BlockColor {
 
     public static int getColor(int originalColor, LazyOptional<Pollution> pollutionOp) {
         if (!pollutionOp.isPresent()) return originalColor;
-        return Color.mixColors(originalColor, brown, (float) pollutionOp.resolve().get().get(PollutionType.SMOG) / PollutionType.SMOG.max);
+        return Color.mixColors(originalColor, brown, (float) pollutionOp.resolve().get().get(DestroyPollutionTypes.SMOG.get()) / DestroyPollutionTypes.SMOG.get().max);
     };
     
     private static final int brown = 0xFF3F332A;

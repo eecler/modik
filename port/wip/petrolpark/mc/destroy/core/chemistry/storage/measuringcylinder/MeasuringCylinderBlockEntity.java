@@ -3,7 +3,7 @@ package petrolpark.mc.destroy.core.chemistry.storage.measuringcylinder;
 import net.createmod.catnip.data.Couple;
 import org.joml.Vector3f;
 
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import petrolpark.mc.destroy.core.chemistry.storage.SimpleMixtureTankBlockEntity;
 
 import net.minecraft.core.BlockPos;
@@ -16,7 +16,7 @@ public class MeasuringCylinderBlockEntity extends SimpleMixtureTankBlockEntity {
 
     public MeasuringCylinderBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
-        tank.setCapacity(DestroyAllConfigs.SERVER.blocks.measuringCylinderCapacity.get());
+        tank.setCapacity(DestroyConfigs.server().blocks.measuringCylinderCapacity.get());
     };
 
     @Override

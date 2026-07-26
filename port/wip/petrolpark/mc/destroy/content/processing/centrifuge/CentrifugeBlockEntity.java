@@ -1,5 +1,7 @@
 package petrolpark.mc.destroy.content.processing.centrifuge;
 
+import petrolpark.mc.destroy.legacy.LegacyNBT;
+import net.minecraft.core.HolderLookup;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -23,7 +25,7 @@ import petrolpark.mc.destroy.chemistry.legacy.LegacySpecies;
 import petrolpark.mc.destroy.chemistry.legacy.LegacyMixture.Phases;
 import petrolpark.mc.destroy.chemistry.minecraft.MixtureFluid;
 import petrolpark.mc.destroy.client.DestroyLang;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import petrolpark.mc.destroy.content.processing.centrifuge.potion.PotionSeparationRecipes;
 import petrolpark.mc.destroy.core.block.entity.IDirectionalOutputFluidBlockEntity;
 import petrolpark.mc.destroy.core.block.entity.IHaveLabGoggleInformation;
@@ -63,7 +65,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.neoforged.neoforge.common.util.LazyOptional;
+import net.minecraftforge.common.util.LazyOptional;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
@@ -165,9 +167,9 @@ public class CentrifugeBlockEntity extends KineticBlockEntity implements IDirect
             }).collect(Collectors.toList());
 
             // Potion separation
-            if (AllConfigs.server().recipes.allowBrewingInMixer.get() && inputFluidStack.getFluid().isSame(AllFluids.POTION.get()) && inputFluidStack.hasTag()) {
-                Potion potion = BuiltInRegistries.POTION.getValue(new ResourceLocation(inputFluidStack.getOrCreateTag().getString("Potion")));
-                BottleType bottleType = NBTHelper.readEnum(inputFluidStack.getOrCreateTag(), "BottleType", BottleType.class);
+            if (AllConfigs.server().recipes.allowBrewingInMixer.get() && inputFluidStack.getFluid().isSame(AllFluids.POTION.get()) && LegacyNBT.hasTag(inputFluidStack)) {
+                Potion potion = BuiltInRegistries.POTION.getValue(ResourceLocation.parse(LegacyNBT.getOrCreateTag(inputFluidStack).getString("Potion")));
+                BottleType bottleType = NBTHelper.readEnum(LegacyNBT.getOrCreateTag(inputFluidStack), "BottleType", BottleType.class);
                 if (potion != null) {
                     CentrifugationRecipe potionSeparationRecipe = PotionSeparationRecipes.ALL.get(Pair.of(potion, bottleType));
                     if (potionSeparationRecipe != null)
@@ -192,22 +194,22 @@ public class CentrifugeBlockEntity extends KineticBlockEntity implements IDirect
     };
 
     @Override
-    protected void read(CompoundTag compound, boolean clientPacket) {
+    protected void read(CompoundTag compound, HolderLookup.Provider registries, boolean clientPacket) {
         timer = compound.getInt("Timer");
         getInputTank().readFromNBT(compound.getCompound("InputTank"));
         getDenseOutputTank().readFromNBT(compound.getCompound("DenseOutputTank"));
         getLightOutputTank().readFromNBT(compound.getCompound("LightOutputTank"));
         denseOutputTankFace = getBlockState().getValue(CentrifugeBlock.DENSE_OUTPUT_FACE);
-        super.read(compound, clientPacket);
+        super.read(compound, registries, clientPacket);
     };
 
     @Override
-    protected void write(CompoundTag compound, boolean clientPacket) {
+    protected void write(CompoundTag compound, HolderLookup.Provider registries, boolean clientPacket) {
         compound.putInt("Timer", timer);
         compound.put("InputTank", getInputTank().writeToNBT(new CompoundTag()));
         compound.put("DenseOutputTank", getDenseOutputTank().writeToNBT(new CompoundTag()));
         compound.put("LightOutputTank", getLightOutputTank().writeToNBT(new CompoundTag()));
-        super.write(compound, clientPacket);
+        super.write(compound, registries, clientPacket);
     };
 
     public int getProcessingSpeed() {
@@ -501,7 +503,7 @@ public class CentrifugeBlockEntity extends KineticBlockEntity implements IDirect
     };
 
     public int getEachTankCapacity() {
-        return DestroyAllConfigs.SERVER.blocks.centrifugeCapacity.get();
+        return DestroyConfigs.server().blocks.centrifugeCapacity.get();
     };
 
     private void onFluidStackChanged() {

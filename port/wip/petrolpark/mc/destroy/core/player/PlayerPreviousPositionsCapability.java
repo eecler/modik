@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 
 import com.google.common.collect.EvictingQueue;
 import petrolpark.mc.destroy.Destroy;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -23,8 +23,8 @@ import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.capabilities.CapabilityToken;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.neoforged.neoforge.common.util.INBTSerializable;
-import net.neoforged.neoforge.common.util.LazyOptional;
-import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.common.util.LazyOptional;
+import net.neoforged.neoforge.event.TickEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 
@@ -80,7 +80,7 @@ public class PlayerPreviousPositionsCapability {
     };
 
     public static void updateQueueSize() {
-        QUEUE_SIZE = DestroyAllConfigs.SERVER.substances.chorusWineTeleportTime.get();
+        QUEUE_SIZE = DestroyConfigs.server().substances.chorusWineTeleportTime.get();
     };
 
     public static int getQueueSize() {

@@ -1,5 +1,6 @@
 package petrolpark.mc.destroy.core.fluid;
 
+import petrolpark.mc.destroy.legacy.LegacyNBT;
 import java.util.Map;
 import java.util.function.Consumer;
 
@@ -13,7 +14,7 @@ import com.simibubi.create.foundation.fluid.SmartFluidTank;
 
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.level.material.Fluids;
-import net.neoforged.neoforge.common.util.LazyOptional;
+import net.minecraftforge.common.util.LazyOptional;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 
@@ -72,9 +73,9 @@ public class GeniusFluidTankBehaviour extends SmartFluidTankBehaviour {
             int filled = super.fill(resource, action);
             if (filled == 0 && getSpace() > 0) { // If we wouldn't usually be able to insert, and we're not full (i.e. the Fluids are 'different')
                 if (!DestroyFluids.isMixture(resource) || !DestroyFluids.isMixture(fluid)) return 0;
-                if (!resource.getOrCreateTag().contains("Mixture", Tag.TAG_COMPOUND) || !fluid.getOrCreateTag().contains("Mixture", Tag.TAG_COMPOUND)) return 0;
-                LegacyMixture existingMixture = LegacyMixture.readNBT(fluid.getOrCreateTag().getCompound("Mixture"));
-                LegacyMixture addedMixture = LegacyMixture.readNBT(resource.getOrCreateTag().getCompound("Mixture"));
+                if (!LegacyNBT.getOrCreateTag(resource).contains("Mixture", Tag.TAG_COMPOUND) || !LegacyNBT.getOrCreateTag(fluid).contains("Mixture", Tag.TAG_COMPOUND)) return 0;
+                LegacyMixture existingMixture = LegacyMixture.readNBT(LegacyNBT.getOrCreateTag(fluid).getCompound("Mixture"));
+                LegacyMixture addedMixture = LegacyMixture.readNBT(LegacyNBT.getOrCreateTag(resource).getCompound("Mixture"));
 
                 int amountOfMixtureAdded = Math.min(getSpace(), resource.getAmount());
                 int existingAmount = fluid.getAmount();

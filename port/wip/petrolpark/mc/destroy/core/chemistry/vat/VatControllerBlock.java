@@ -33,7 +33,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.fml.DistExecutor;
+import net.neoforged.fml.DistExecutor;
 
 public class VatControllerBlock extends HorizontalDirectionalBlock implements IBE<VatControllerBlockEntity>, ISpecialMixtureContainerBlock, IWrenchable {
 

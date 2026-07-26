@@ -1,12 +1,13 @@
 package petrolpark.mc.destroy.core.pollution.catalyticconverter;
 
+import net.minecraft.core.HolderLookup;
 import java.util.List;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import petrolpark.mc.destroy.DestroyAdvancementTrigger;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import petrolpark.mc.destroy.core.data.advancement.DestroyAdvancementBehaviour;
 import petrolpark.mc.destroy.core.fluid.GeniusFluidTankBehaviour;
 import petrolpark.mc.destroy.core.pollution.PollutionHelper;
@@ -21,7 +22,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.neoforged.neoforge.common.util.LazyOptional;
+import net.minecraftforge.common.util.LazyOptional;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
 
 public class CatalyticConverterBlockEntity extends SmartBlockEntity {
@@ -41,7 +42,7 @@ public class CatalyticConverterBlockEntity extends SmartBlockEntity {
         if (ticksToFlush <= 0) {
             ticksToFlush = 10;
             if (tankBehaviour.isEmpty()) return;
-            float multiplier = DestroyAllConfigs.SERVER.blocks.catalyticConverterReduction.getF();
+            float multiplier = DestroyConfigs.server().blocks.catalyticConverterReduction.getF();
             if (multiplier > 0f) PollutionHelper.pollute(level, getBlockPos().relative(getBlockState().getValue(CatalyticConverterBlock.FACING)), multiplier, 10, tankBehaviour.getPrimaryHandler().getFluid());
             advancementBehaviour.awardDestroyAdvancement(DestroyAdvancementTrigger.CATALYTIC_CONVERTER);
             tankBehaviour.getPrimaryHandler().drain(1000000, FluidAction.EXECUTE);
@@ -50,14 +51,14 @@ public class CatalyticConverterBlockEntity extends SmartBlockEntity {
     };
 
     @Override
-    protected void read(CompoundTag tag, boolean clientPacket) {
-        super.read(tag, clientPacket);
+    protected void read(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
+        super.read(tag, registries, clientPacket);
         ticksToFlush = tag.getInt("TicksToFlush");
     };
 
     @Override
-    protected void write(CompoundTag tag, boolean clientPacket) {
-        super.write(tag, clientPacket);
+    protected void write(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
+        super.write(tag, registries, clientPacket);
         tag.putInt("TicksToFlush", ticksToFlush);
     };
 

@@ -9,7 +9,7 @@ import petrolpark.mc.library.network.packet.S2CPacket;
 import petrolpark.mc.library.core.data.recipe.ingredient.BlockIngredient;
 
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraftforge.network.NetworkEvent.Context;
+import net.neoforged.neoforge.network.NetworkEvent.Context;
 
 public class SyncVatMaterialsS2CPacket extends S2CPacket {
 

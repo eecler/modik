@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 
 import com.google.common.collect.ImmutableList;
 import petrolpark.mc.destroy.client.DestroyLang;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import com.simibubi.create.Create;
 import com.simibubi.create.content.redstone.link.IRedstoneLinkable;
 import com.simibubi.create.content.redstone.link.RedstoneLinkNetworkHandler;
@@ -79,7 +79,7 @@ public abstract class RedstoneProgram {
 
     public RedstoneProgram() {
         mode = PlayMode.MANUAL;
-        ticksPerBeat = DestroyAllConfigs.SERVER.blocks.redstoneProgrammerMinTicksPerBeat.get();
+        ticksPerBeat = DestroyConfigs.server().blocks.redstoneProgrammerMinTicksPerBeat.get();
         length = 20;
         playtime = 0;
         paused = true;
@@ -107,7 +107,7 @@ public abstract class RedstoneProgram {
     };
 
     public void setTicksPerBeat(int value) {
-        ticksPerBeat = Math.max(DestroyAllConfigs.SERVER.blocks.redstoneProgrammerMinTicksPerBeat.get(), value);
+        ticksPerBeat = Math.max(DestroyConfigs.server().blocks.redstoneProgrammerMinTicksPerBeat.get(), value);
     };
 
     public void tick() {

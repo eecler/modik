@@ -2,7 +2,7 @@ package petrolpark.mc.destroy.content.product;
 
 import petrolpark.mc.destroy.DestroyAdvancementTrigger;
 import petrolpark.mc.destroy.DestroyMobEffects;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import petrolpark.mc.destroy.content.tool.syringe.SyringeItem;
 
 import net.minecraft.world.entity.LivingEntity;
@@ -18,8 +18,8 @@ public class AspirinSyringeItem extends SyringeItem {
 
     @Override
     public void onInject(ItemStack itemStack, Level level, LivingEntity target) {
-        target.heal(DestroyAllConfigs.SERVER.substances.aspirinHeal.getF());
-        if (!target.removeEffect(DestroyMobEffects.HANGOVER.get())) return;
+        target.heal(DestroyConfigs.server().substances.aspirinHeal.getF());
+        if (!target.removeEffect(DestroyMobEffects.HANGOVER)) return;
         if (target instanceof Player player) {
             DestroyAdvancementTrigger.CURE_HANGOVER.award(level, player);
         };

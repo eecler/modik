@@ -1,8 +1,9 @@
 package petrolpark.mc.destroy.core.explosion.mixedexplosive;
 
+import petrolpark.mc.destroy.legacy.LegacyRegistries;
 import petrolpark.mc.destroy.DestroyBlocks;
 import petrolpark.mc.destroy.DestroyEntityTypes;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import petrolpark.mc.destroy.core.explosion.PrimedBombEntity;
 import petrolpark.mc.destroy.core.explosion.SmartExplosion;
 
@@ -19,7 +20,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.entity.IEntityAdditionalSpawnData;
-import net.minecraftforge.network.NetworkHooks;
+import net.neoforged.neoforge.network.NetworkHooks;
 
 public class MixedExplosiveEntity extends PrimedBombEntity implements IEntityAdditionalSpawnData {
 
@@ -52,15 +53,15 @@ public class MixedExplosiveEntity extends PrimedBombEntity implements IEntityAdd
     protected void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("Color", color);
-        compound.put("Inventory", inv.serializeNBT());
+        compound.put("Inventory", LegacyRegistries.serializeNBT(inv));
     };
 
     @Override
     protected void readAdditionalSaveData(CompoundTag compound) {
         super.readAdditionalSaveData(compound);
         color = compound.getInt("Color");
-        inv = new MixedExplosiveInventory(DestroyAllConfigs.SERVER.blocks.customExplosiveMixSize.get());
-        inv.deserializeNBT(compound.getCompound("Inventory"));
+        inv = new MixedExplosiveInventory(DestroyConfigs.server().blocks.customExplosiveMixSize.get());
+        LegacyRegistries.deserializeNBT(inv, compound.getCompound("Inventory"));
     };
 
     @Override

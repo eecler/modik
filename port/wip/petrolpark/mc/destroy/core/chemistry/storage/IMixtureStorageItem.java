@@ -1,5 +1,6 @@
 package petrolpark.mc.destroy.core.chemistry.storage;
 
+import petrolpark.mc.destroy.legacy.LegacyNBT;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Optional;
@@ -9,7 +10,7 @@ import javax.annotation.Nullable;
 import petrolpark.mc.destroy.chemistry.legacy.ClientMixture;
 import petrolpark.mc.destroy.chemistry.legacy.ReadOnlyMixture;
 import petrolpark.mc.destroy.chemistry.minecraft.MixtureFluid;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import petrolpark.mc.destroy.core.chemistry.vat.VatControllerBlockEntity;
 import petrolpark.mc.destroy.core.chemistry.vat.VatControllerBlockEntity.VatTankWrapper;
 import petrolpark.mc.destroy.core.fluid.GeniusFluidTankBehaviour.GeniusFluidTank;
@@ -33,7 +34,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.neoforged.neoforge.common.util.LazyOptional;
+import net.minecraftforge.common.util.LazyOptional;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
@@ -227,16 +228,16 @@ public interface IMixtureStorageItem {
 
             tooltip.add(Component.literal(""));
         
-            CompoundTag mixtureTag = fluidStack.getOrCreateTag().getCompound("Mixture");
+            CompoundTag mixtureTag = LegacyNBT.getOrCreateTag(fluidStack).getCompound("Mixture");
             if (!mixtureTag.isEmpty()) { // If this is a Mixture
                 ReadOnlyMixture mixture = ReadOnlyMixture.readNBT(ClientMixture::new, mixtureTag);
 
-                boolean iupac = DestroyAllConfigs.CLIENT.chemistry.iupacNames.get();
+                boolean iupac = DestroyConfigs.client().chemistry.iupacNames.get();
                 temperature = mixture.getTemperature();
                 tooltip.addAll(mixture.getContentsTooltip(iupac, false, false, fluidStack.getAmount(), df).stream().map(c -> c.copy()).toList());
             };
 
-            tooltip.add(2, Component.literal(" "+fluidStack.getAmount()).withStyle(ChatFormatting.GRAY).append(CreateLang.translateDirect("generic.unit.millibuckets")).append(" "+DestroyAllConfigs.CLIENT.chemistry.temperatureUnit.get().of(temperature, df)));
+            tooltip.add(2, Component.literal(" "+fluidStack.getAmount()).withStyle(ChatFormatting.GRAY).append(CreateLang.translateDirect("generic.unit.millibuckets")).append(" "+DestroyConfigs.client().chemistry.temperatureUnit.get().of(temperature, df)));
         });
     };
 

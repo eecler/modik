@@ -7,7 +7,7 @@ import petrolpark.mc.destroy.chemistry.legacy.LegacySpecies;
 import petrolpark.mc.destroy.chemistry.legacy.ReadOnlyMixture;
 import petrolpark.mc.destroy.chemistry.legacy.index.DestroyMolecules;
 import petrolpark.mc.destroy.client.DestroyLang;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import com.simibubi.create.foundation.item.TooltipHelper;
 import net.createmod.catnip.lang.FontHelper.Palette;
 
@@ -58,7 +58,7 @@ public class IonFluidIngredient extends MoleculeFluidIngredient {
             float maxConc = fluidTag.getFloat("MaximumConcentration");
     
             LegacySpecies molecule = LegacySpecies.getMolecule(moleculeID);
-            Component moleculeName = molecule == null ? DestroyLang.translate("tooltip.unknown_molecule").component() : molecule.getName(DestroyAllConfigs.CLIENT.chemistry.iupacNames.get());
+            Component moleculeName = molecule == null ? DestroyLang.translate("tooltip.unknown_molecule").component() : molecule.getName(DestroyConfigs.client().chemistry.iupacNames.get());
             boolean anion = molecule != null && molecule.getCharge() < 0;
     
             return TooltipHelper.cutStringTextComponent(DestroyLang.translate("tooltip.mixture_ingredient." + (anion ? "anion" : "cation"), moleculeName, df.format(minConc), df.format(maxConc)).string(), Palette.GRAY_AND_WHITE);

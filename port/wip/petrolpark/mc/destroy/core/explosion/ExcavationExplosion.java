@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 
 import net.createmod.catnip.math.VecHelper;
 import net.minecraft.core.BlockPos;
@@ -37,7 +37,7 @@ public class ExcavationExplosion extends SmartExplosion {
         Queue<BlockPos> blocksToTryExplode = new LinkedList<>(); // Blocks which need to be checked to see if they should explode
         blocksToTryExplode.add(center);
 
-        if (DestroyAllConfigs.SERVER.blocks.dynamiteExplodesResistant.get()) {
+        if (DestroyConfigs.server().blocks.dynamiteExplodesResistant.get()) {
             blocksToExplode.addAll(BlockPos.betweenClosedStream(explosionArea).toList());
         } else {
             // Flood fill the Explosion area (this ensures Blocks protected by unbreakable Blocks do not get destroyed)

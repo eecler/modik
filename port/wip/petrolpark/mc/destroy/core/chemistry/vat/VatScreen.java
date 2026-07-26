@@ -16,7 +16,7 @@ import petrolpark.mc.destroy.chemistry.legacy.ReadOnlyMixture;
 import petrolpark.mc.destroy.client.DestroyGuiTextures;
 import petrolpark.mc.destroy.client.DestroyIcons;
 import petrolpark.mc.destroy.client.DestroyLang;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import petrolpark.mc.destroy.core.chemistry.MoleculeDisplayItem;
 import petrolpark.mc.destroy.core.chemistry.MoleculeRenderer;
 import petrolpark.mc.destroy.util.GuiHelper;
@@ -290,7 +290,7 @@ public class VatScreen extends AbstractSimiScreen {
     protected void renderWindow(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
         if (minecraft == null) return;
         PoseStack ms = graphics.pose();
-        boolean iupac = DestroyAllConfigs.CLIENT.chemistry.iupacNames.get();
+        boolean iupac = DestroyConfigs.client().chemistry.iupacNames.get();
 
         float scrollOffset = -moleculeScroll.getValue(partialTicks);
         

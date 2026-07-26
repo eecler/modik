@@ -10,7 +10,7 @@ import petrolpark.mc.library.network.packet.S2CPacket;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.network.NetworkEvent.Context;
+import net.neoforged.neoforge.network.NetworkEvent.Context;
 
 public class CircuitPatternsS2CPacket extends S2CPacket {
 

@@ -12,7 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
-import net.minecraftforge.network.NetworkEvent.Context;
+import net.neoforged.neoforge.network.NetworkEvent.Context;
 
 public class SelectGlassblowingRecipeC2SPacket extends C2SPacket {
 
@@ -48,7 +48,7 @@ public class SelectGlassblowingRecipeC2SPacket extends C2SPacket {
             if (!tag.contains("Recipe")) { // If no recipe was set to begin with
 
             } else { // If there is an existing Recipe being replaced
-                ResourceLocation existingRecipe = new ResourceLocation(tag.getString("Recipe"));
+                ResourceLocation existingRecipe = ResourceLocation.parse(tag.getString("Recipe"));
                 if (existingRecipe.equals(recipeId)) return;
                 FluidTank tank = new FluidTank(BlowpipeBlockEntity.TANK_CAPACITY);
                 tank.readFromNBT(tag.getCompound("Tank"));

@@ -1,5 +1,6 @@
 package petrolpark.mc.destroy.content.processing.trypolithography;
 
+import petrolpark.mc.destroy.legacy.LegacyNBT;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -43,7 +44,7 @@ public class CircuitMaskItem extends CircuitPatternItem {
 
     public static List<UUID> getContaminants(ItemStack stack) {
         List<UUID> previousPunches = new ArrayList<>(3);
-        stack.getOrCreateTag().getList("PunchedBy", Tag.TAG_INT_ARRAY).forEach(uuidTag -> {
+        LegacyNBT.getOrCreateTag(stack).getList("PunchedBy", Tag.TAG_INT_ARRAY).forEach(uuidTag -> {
             previousPunches.add(NbtUtils.loadUUID(uuidTag));
         });
         return previousPunches;
@@ -51,7 +52,7 @@ public class CircuitMaskItem extends CircuitPatternItem {
     
     public static ItemStack contaminate(ItemStack stack, UUID uuid) {
         stack = stack.copy();
-        CompoundTag tag = stack.getOrCreateTag();
+        CompoundTag tag = LegacyNBT.getOrCreateTag(stack);
         List<UUID> previousPunches = getContaminants(stack);
         if (previousPunches.contains(uuid)) return stack;
         if (previousPunches.size() >= 3) return DestroyItems.RUINED_CIRCUIT_MASK.asStack();
@@ -59,7 +60,7 @@ public class CircuitMaskItem extends CircuitPatternItem {
         ListTag newPunches = new ListTag();
         previousPunches.forEach(id -> newPunches.add(NbtUtils.createUUID(id)));
         tag.put("PunchedBy", newPunches);
-        stack.setTag(tag);
+        LegacyNBT.setTag(stack, tag);
         return stack;
     };
     
@@ -85,8 +86,8 @@ public class CircuitMaskItem extends CircuitPatternItem {
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
         super.inventoryTick(stack, level, entity, slotId, isSelected);
-        stack.getOrCreateTag().remove("Flipped");
-        stack.getOrCreateTag().remove("RotationWhileFlying");
+        LegacyNBT.getOrCreateTag(stack).remove("Flipped");
+        LegacyNBT.getOrCreateTag(stack).remove("RotationWhileFlying");
 
         if (level.isClientSide() && isSelected && entity instanceof Player player && player.isCrouching()) {
             Direction direction = player.getDirection();
@@ -98,7 +99,7 @@ public class CircuitMaskItem extends CircuitPatternItem {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, Level level, List<Component> tooltipComponents, TooltipFlag isAdvanced) {
         super.appendHoverText(stack, level, tooltipComponents, isAdvanced);
-        if (stack.getOrCreateTag().contains("HideContaminants")) return;
+        if (LegacyNBT.getOrCreateTag(stack).contains("HideContaminants")) return;
 
         if(level == null) // Fixes a crash caused by Jade
             level = Minecraft.getInstance().level;

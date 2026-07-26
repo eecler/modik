@@ -1,5 +1,6 @@
 package petrolpark.mc.destroy.content.tool.swissarmyknife;
 
+import petrolpark.mc.destroy.legacy.LegacyNBT;
 import java.util.List;
 import java.util.Map;
 
@@ -110,12 +111,12 @@ public class SwissArmyKnifeItemRenderer extends CustomRenderedItemModelRenderer 
 
         public ItemStack getRenderedItemStack(SwissArmyKnifeItem item) {
             ItemStack stack = new ItemStack(item, 1);
-            stack.getOrCreateTag().putFloat("RenderedTool", ((float)ordinal() / 8f));
+            LegacyNBT.getOrCreateTag(stack).putFloat("RenderedTool", ((float)ordinal() / 8f));
             return stack;
         };
 
         public static float getItemProperty(ItemStack stack, @Nullable ClientLevel level, @Nullable LivingEntity entity, int seed) {
-            return stack.getOrCreateTag().getFloat("RenderedTool");
+            return LegacyNBT.getOrCreateTag(stack).getFloat("RenderedTool");
         };
     };
 

@@ -6,7 +6,7 @@ import java.util.function.Consumer;
 import petrolpark.mc.destroy.DestroyDamageSources;
 import petrolpark.mc.destroy.DestroyMobEffects;
 import petrolpark.mc.destroy.chemistry.legacy.LegacySpecies;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import petrolpark.mc.destroy.core.chemistry.hazard.EntityChemicalPoisonCapability;
 import petrolpark.mc.destroy.core.mobeffect.UncurableMobEffect;
 
@@ -17,7 +17,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeMap;
 import net.neoforged.neoforge.client.extensions.common.IClientMobEffectExtensions;
-import net.neoforged.neoforge.common.util.LazyOptional;
+import net.minecraftforge.common.util.LazyOptional;
 
 public class ChemicalPoisonMobEffect extends UncurableMobEffect {
 
@@ -40,7 +40,7 @@ public class ChemicalPoisonMobEffect extends UncurableMobEffect {
     @SuppressWarnings("null") // We know the effect isn't null if its ticking
     public void applyEffectTick(LivingEntity livingEntity, int amplifier) {
         if (!livingEntity.level().isClientSide()) {
-            int duration = livingEntity.getEffect(DestroyMobEffects.CHEMICAL_POISON.get()).getDuration(); // This is the bit it says is null
+            int duration = livingEntity.getEffect(DestroyMobEffects.CHEMICAL_POISON).getDuration(); // This is the bit it says is null
             if (duration % 50 == 0) {
                 LegacySpecies molecule = null;
                 LazyOptional<EntityChemicalPoisonCapability> cap = getCap(livingEntity);
@@ -69,7 +69,7 @@ public class ChemicalPoisonMobEffect extends UncurableMobEffect {
             if (minecraft.player != null) {
                 minecraft.player.getCapability(EntityChemicalPoisonCapability.Provider.ENTITY_CHEMICAL_POISON).ifPresent(cp -> {
                     LegacySpecies molecule = cp.getMolecule();
-                    if (molecule != null) tooltip.set(0, Component.translatable("effect.destroy.chemical_poison.molecule", cp.getMolecule().getName(DestroyAllConfigs.CLIENT.chemistry.iupacNames.get())));
+                    if (molecule != null) tooltip.set(0, Component.translatable("effect.destroy.chemical_poison.molecule", cp.getMolecule().getName(DestroyConfigs.client().chemistry.iupacNames.get())));
                 });
             };
         };

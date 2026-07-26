@@ -9,7 +9,7 @@ import petrolpark.mc.destroy.chemistry.legacy.LegacyMixture;
 import petrolpark.mc.destroy.chemistry.legacy.LegacySpecies;
 import petrolpark.mc.destroy.chemistry.legacy.ReadOnlyMixture;
 import petrolpark.mc.destroy.client.DestroyLang;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import com.simibubi.create.foundation.item.TooltipHelper;
 import net.createmod.catnip.lang.FontHelper.Palette;
 
@@ -78,7 +78,7 @@ public class PureSpeciesFluidIngredient extends MixtureFluidIngredient<PureSpeci
 
         @Override
         public List<Component> getDescription(CompoundTag fluidTag) {
-            return TooltipHelper.cutTextComponent(DestroyLang.translate("tooltip.mixture_ingredient.pure", LegacySpecies.getMolecule(fluidTag.getString("Species")).getName(DestroyAllConfigs.CLIENT.chemistry.iupacNames.get())).component(), Palette.GRAY_AND_WHITE);
+            return TooltipHelper.cutTextComponent(DestroyLang.translate("tooltip.mixture_ingredient.pure", LegacySpecies.getMolecule(fluidTag.getString("Species")).getName(DestroyConfigs.client().chemistry.iupacNames.get())).component(), Palette.GRAY_AND_WHITE);
         };
 
         @Override

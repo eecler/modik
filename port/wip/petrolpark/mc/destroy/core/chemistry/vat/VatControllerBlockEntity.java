@@ -1,5 +1,7 @@
 package petrolpark.mc.destroy.core.chemistry.vat;
 
+import petrolpark.mc.destroy.legacy.LegacyRegistries;
+import net.minecraft.core.HolderLookup;
 import static petrolpark.mc.library.compat.create.CreateClient.OUTLINER;
 
 import java.util.ArrayList;
@@ -24,7 +26,7 @@ import petrolpark.mc.destroy.chemistry.legacy.LegacyReaction;
 import petrolpark.mc.destroy.chemistry.legacy.ReadOnlyMixture;
 import petrolpark.mc.destroy.chemistry.minecraft.MixtureFluid;
 import petrolpark.mc.destroy.client.DestroyLang;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import petrolpark.mc.destroy.core.block.entity.IHaveLabGoggleInformation;
 import petrolpark.mc.destroy.core.block.entity.ISpecialWhenHoveredBlockEntity;
 import petrolpark.mc.destroy.core.chemistry.MixtureContentsDisplaySource;
@@ -73,7 +75,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.util.LazyOptional;
+import net.minecraftforge.common.util.LazyOptional;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
@@ -257,7 +259,7 @@ public class VatControllerBlockEntity extends SmartBlockEntity implements IHaveL
             };
 
             // Check for Explosion
-            if (DestroyAllConfigs.SERVER.blocks.vatExplodesAtHighPressure.get() && Math.abs(getPercentagePressure()) >= 1f) explode();
+            if (DestroyConfigs.server().blocks.vatExplodesAtHighPressure.get() && Math.abs(getPercentagePressure()) >= 1f) explode();
 
             sendData();
         };
@@ -277,12 +279,12 @@ public class VatControllerBlockEntity extends SmartBlockEntity implements IHaveL
     };
 
     public static int getSimulationLevel() {
-        return DestroyAllConfigs.SERVER.blocks.simulationLevel.get();
+        return DestroyConfigs.server().blocks.simulationLevel.get();
     };
 
     @Override
-    protected void read(CompoundTag tag, boolean clientPacket) {
-        super.read(tag, clientPacket);
+    protected void read(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
+        super.read(tag, registries, clientPacket);
 
         heatingPower = tag.getFloat("HeatingPower");
         UVPower = tag.getFloat("UVPower");
@@ -297,7 +299,7 @@ public class VatControllerBlockEntity extends SmartBlockEntity implements IHaveL
         underDeconstruction = tag.getBoolean("UnderDeconstruction");
 
         // Inventory
-        inventory.deserializeNBT(tag.getCompound("Inventory"));
+        LegacyRegistries.deserializeNBT(inventory, tag.getCompound("Inventory"));
 
         // Mixture
         if (clientPacket) {
@@ -313,8 +315,8 @@ public class VatControllerBlockEntity extends SmartBlockEntity implements IHaveL
 
     @Override
     @SuppressWarnings("null")
-    protected void write(CompoundTag tag, boolean clientPacket) {
-        super.write(tag, clientPacket);
+    protected void write(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
+        super.write(tag, registries, clientPacket);
 
         tag.putFloat("HeatingPower", heatingPower);
         tag.putFloat("UVPower", UVPower);
@@ -328,7 +330,7 @@ public class VatControllerBlockEntity extends SmartBlockEntity implements IHaveL
         tag.putBoolean("UnderDeconstruction", underDeconstruction);
 
         // Inventory
-        tag.put("Inventory", inventory.serializeNBT());
+        tag.put("Inventory", LegacyRegistries.serializeNBT(inventory));
         
         // Mixture
         if (!getLevel().isClientSide()) { // It thinks getLevel() might be null (it's not)

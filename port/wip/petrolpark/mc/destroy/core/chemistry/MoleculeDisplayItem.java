@@ -1,5 +1,6 @@
 package petrolpark.mc.destroy.core.chemistry;
 
+import petrolpark.mc.destroy.legacy.LegacyNBT;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ import petrolpark.mc.destroy.chemistry.legacy.LegacySpecies;
 import petrolpark.mc.destroy.chemistry.legacy.LegacySpeciesTag;
 import petrolpark.mc.destroy.client.DestroyLang;
 import petrolpark.mc.destroy.client.DestroyLang.TemperatureUnit;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import petrolpark.mc.destroy.core.item.tooltip.DestroyTooltipComponent;
 
 import net.minecraft.ChatFormatting;
@@ -39,7 +40,7 @@ public class MoleculeDisplayItem extends Item {
 
     public static ItemStack with(LegacySpecies molecule) {
         ItemStack stack = new ItemStack(DestroyItems.MOLECULE_DISPLAY.get(), 1);
-        stack.getOrCreateTag().putString("Molecule", molecule.getFullID());
+        LegacyNBT.getOrCreateTag(stack).putString("Molecule", molecule.getFullID());
         return stack;
     };
 
@@ -52,7 +53,7 @@ public class MoleculeDisplayItem extends Item {
 
     private static LegacySpecies getMolecule(ItemStack itemStack) {
         if (!DestroyItems.MOLECULE_DISPLAY.isIn(itemStack)) return null;
-        return LegacySpecies.getMolecule(itemStack.getOrCreateTag().getString("Molecule"));
+        return LegacySpecies.getMolecule(LegacyNBT.getOrCreateTag(itemStack).getString("Molecule"));
     };
 
     public static List<Component> getLore(LegacySpecies molecule) {
@@ -62,9 +63,9 @@ public class MoleculeDisplayItem extends Item {
         boolean novel = molecule.isNovel();
         boolean charged = molecule.getCharge() != 0;
         boolean hypothetical = molecule.isHypothetical();
-        boolean nerdMode = DestroyAllConfigs.CLIENT.chemistry.nerdMode.get();
+        boolean nerdMode = DestroyConfigs.client().chemistry.nerdMode.get();
 
-        TemperatureUnit unit = DestroyAllConfigs.CLIENT.chemistry.temperatureUnit.get();
+        TemperatureUnit unit = DestroyConfigs.client().chemistry.temperatureUnit.get();
         
         if (hypothetical) tooltip.add(DestroyLang.translate("tooltip.molecule.r_group").style(ChatFormatting.DARK_GRAY).component());
         if (nerdMode && !novel) tooltip.add(DestroyLang.translate("tooltip.molecule.formula", molecule.getSerlializedMolecularFormula(true) + DestroyLang.toSuperscript(molecule.getSerializedCharge(false))).component().withStyle(ChatFormatting.GRAY));

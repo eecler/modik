@@ -1,5 +1,6 @@
 package petrolpark.mc.destroy.core.chemistry.basinreaction;
 
+import petrolpark.mc.destroy.legacy.LegacyNBT;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -73,7 +74,7 @@ public class ReactionInBasinRecipe extends BasinRecipe {
             LegacyMixture mixture;
             if (DestroyFluids.isMixture(fluidStack)) {
                 // True Mixtures
-                mixture = LegacyMixture.readNBT(fluidStack.getOrCreateTag().getCompound("Mixture"));
+                mixture = LegacyMixture.readNBT(LegacyNBT.getOrCreateTag(fluidStack).getCompound("Mixture"));
                 containsRawMixtures = true;
             } else {
                 // Non-Mixture -> Mixture conversions

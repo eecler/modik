@@ -5,8 +5,8 @@ import java.util.function.Supplier;
 import petrolpark.mc.library.network.packet.S2CPacket;
 
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraftforge.network.NetworkEvent;
-import net.minecraftforge.network.NetworkEvent.Context;
+import net.neoforged.neoforge.network.NetworkEvent;
+import net.neoforged.neoforge.network.NetworkEvent.Context;
 
 public class SeismometerSpikeS2CPacket extends S2CPacket {
 

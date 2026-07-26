@@ -1,5 +1,7 @@
 package petrolpark.mc.destroy.core.chemistry.hazard;
 
+import petrolpark.mc.destroy.DestroyPollutionTypes;
+import petrolpark.mc.destroy.legacy.LegacyNBT;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -16,7 +18,7 @@ import petrolpark.mc.destroy.chemistry.legacy.ReadOnlyMixture;
 import petrolpark.mc.destroy.chemistry.legacy.index.DestroyMolecules;
 import petrolpark.mc.destroy.client.DestroyLang;
 import petrolpark.mc.destroy.config.DestroySubstancesConfigs;
-import petrolpark.mc.destroy.core.pollution.Pollution.PollutionType;
+import petrolpark.mc.destroy.core.pollution.PollutionType;
 import petrolpark.mc.destroy.core.pollution.PollutionHelper;
 
 import net.minecraft.nbt.CompoundTag;
@@ -28,7 +30,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.event.TickEvent;
+import net.neoforged.neoforge.event.TickEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -74,7 +76,7 @@ public class ChemistryHazardHelper {
 
         // Wah wah cry like a little baby
         if (lacrimator && !eyesProtected) {
-            entity.addEffect(new MobEffectInstance(DestroyMobEffects.CRYING.get(), 600, 0, false, false, true));
+            entity.addEffect(new MobEffectInstance(DestroyMobEffects.CRYING, 600, 0, false, false, true));
         };
         
         // Smelly chemicals
@@ -85,7 +87,7 @@ public class ChemistryHazardHelper {
         // Acutely toxic Molecules
         if (toxicMolecule != null && !sensitivePartsProtected && !level.isClientSide()) {
             EntityChemicalPoisonCapability.setMolecule(entity, toxicMolecule);
-            if (!entity.hasEffect(DestroyMobEffects.CHEMICAL_POISON.get())) entity.addEffect(new MobEffectInstance(DestroyMobEffects.CHEMICAL_POISON.get(), 219, 0, false, false));
+            if (!entity.hasEffect(DestroyMobEffects.CHEMICAL_POISON)) entity.addEffect(new MobEffectInstance(DestroyMobEffects.CHEMICAL_POISON, 219, 0, false, false));
         };
         
         // Carcinogens
@@ -95,7 +97,7 @@ public class ChemistryHazardHelper {
 
         // Lead poisoning
         if (lead && (!noseProtected || !mouthProtected)) {
-            if (entity.getRandom().nextInt(2400) == 0) DestroyMobEffects.increaseEffectLevel(entity, DestroyMobEffects.LEAD_POISONING.get(), 1, -1);
+            if (entity.getRandom().nextInt(2400) == 0) DestroyMobEffects.increaseEffectLevel(entity, DestroyMobEffects.LEAD_POISONING, 1, -1);
         };
 
         // Acid/base burns
@@ -113,7 +115,7 @@ public class ChemistryHazardHelper {
     
     public static void contaminate(ItemStack stack, FluidStack fluidStack) {
         if (Items.CONTAMINABLE.matches(stack.getItem())) {
-            CompoundTag tag = stack.getOrCreateTag();
+            CompoundTag tag = LegacyNBT.getOrCreateTag(stack);
             if (tag.contains("ContaminatingFluid")) return;
             CompoundTag fluidTag = new CompoundTag();
             fluidStack.writeToNBT(fluidTag);
@@ -122,7 +124,7 @@ public class ChemistryHazardHelper {
     };
 
     public static void decontaminate(ItemStack stack) {
-        stack.getOrCreateTag().remove("ContaminatingFluid");
+        LegacyNBT.getOrCreateTag(stack).remove("ContaminatingFluid");
     };
 
     public static enum Protection {
@@ -156,7 +158,7 @@ public class ChemistryHazardHelper {
         };
 
         static {
-            NOSE.registerTest(le -> le.hasEffect(DestroyMobEffects.FRAGRANCE.get()));
+            NOSE.registerTest(le -> le.hasEffect(DestroyMobEffects.FRAGRANCE));
         };
     };
 
@@ -164,7 +166,7 @@ public class ChemistryHazardHelper {
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         Player player = event.player;
-        if (player.level().canSeeSky(player.blockPosition()) && !player.hasEffect(DestroyMobEffects.SUN_PROTECTION.get()) && player.getRandom().nextInt(PollutionType.OZONE_DEPLETION.max * 600) < PollutionHelper.getPollution(player.level(), player.blockPosition(), PollutionType.OZONE_DEPLETION)) player.addEffect(DestroyMobEffects.cancerInstance());
+        if (player.level().canSeeSky(player.blockPosition()) && !player.hasEffect(DestroyMobEffects.SUN_PROTECTION) && player.getRandom().nextInt(DestroyPollutionTypes.OZONE_DEPLETION.get().max * 600) < PollutionHelper.getPollution(player.level(), player.blockPosition(), DestroyPollutionTypes.OZONE_DEPLETION.get())) player.addEffect(DestroyMobEffects.cancerInstance());
     };
 
     /**
@@ -176,7 +178,7 @@ public class ChemistryHazardHelper {
         Player player = event.getEntity();
 
         if (stack.isEdible()) {
-            if (DestroySubstancesConfigs.babyBlueEnabled() && stack.getItem() != DestroyItems.BABY_BLUE_POWDER.get() && player.hasEffect(DestroyMobEffects.BABY_BLUE_WITHDRAWAL.get()) && !stack.getFoodProperties(player).canAlwaysEat()) {
+            if (DestroySubstancesConfigs.babyBlueEnabled() && stack.getItem() != DestroyItems.BABY_BLUE_POWDER.get() && player.hasEffect(DestroyMobEffects.BABY_BLUE_WITHDRAWAL) && !stack.getFoodProperties(player).canAlwaysEat()) {
                 player.displayClientMessage(DestroyLang.translate("tooltip.eating_prevented.baby_blue").component(), true);
                 event.setCanceled(true);
             };
@@ -189,8 +191,8 @@ public class ChemistryHazardHelper {
      */
     @SubscribeEvent
     public static final void onLivingEquipmentChange(LivingEquipmentChangeEvent event) {
-        if (event.getSlot() == EquipmentSlot.MAINHAND || event.getSlot() == EquipmentSlot.OFFHAND || !event.getFrom().hasTag()) return;
-        CompoundTag tag = event.getFrom().getTag();
+        if (event.getSlot() == EquipmentSlot.MAINHAND || event.getSlot() == EquipmentSlot.OFFHAND || !LegacyNBT.hasTag(event.getFrom())) return;
+        CompoundTag tag = LegacyNBT.getTag(event.getFrom());
         if (tag.contains("ContaminatingFluid", Tag.TAG_COMPOUND)) {
             ChemistryHazardHelper.damage(event.getEntity().level(), event.getEntity(), FluidStack.loadFluidStackFromNBT(tag.getCompound("ContaminatingFluid")), true);
             ChemistryHazardHelper.decontaminate(event.getFrom());

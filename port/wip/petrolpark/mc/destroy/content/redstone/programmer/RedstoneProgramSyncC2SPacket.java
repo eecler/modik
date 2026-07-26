@@ -3,14 +3,14 @@ package petrolpark.mc.destroy.content.redstone.programmer;
 import java.util.function.Supplier;
 
 import petrolpark.mc.destroy.DestroyMessages;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import petrolpark.mc.destroy.content.redstone.programmer.RedstoneProgrammerMenu.DummyRedstoneProgram;
 import petrolpark.mc.library.network.packet.C2SPacket;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraftforge.network.NetworkEvent.Context;
+import net.neoforged.neoforge.network.NetworkEvent.Context;
 
 public class RedstoneProgramSyncC2SPacket extends C2SPacket {
 
@@ -42,7 +42,7 @@ public class RedstoneProgramSyncC2SPacket extends C2SPacket {
                 program.load();
                 program.whenChanged();
                 DestroyMessages.sendToClient(new RedstoneProgramSyncReplyS2CPacket(), player);
-                if (Math.min(program.getChannels().size() + 1, DestroyAllConfigs.SERVER.blocks.redstoneProgrammerMaxChannels.get()) * 2 > programMenu.slots.size()) programMenu.refreshSlots();
+                if (Math.min(program.getChannels().size() + 1, DestroyConfigs.server().blocks.redstoneProgrammerMaxChannels.get()) * 2 > programMenu.slots.size()) programMenu.refreshSlots();
             };
         });
         return true;

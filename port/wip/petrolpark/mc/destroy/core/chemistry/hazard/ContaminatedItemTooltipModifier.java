@@ -1,5 +1,6 @@
 package petrolpark.mc.destroy.core.chemistry.hazard;
 
+import petrolpark.mc.destroy.legacy.LegacyNBT;
 import petrolpark.mc.destroy.client.DestroyLang;
 import com.simibubi.create.foundation.item.TooltipHelper;
 import com.simibubi.create.foundation.item.TooltipModifier;
@@ -19,8 +20,8 @@ public class ContaminatedItemTooltipModifier implements TooltipModifier {
 
     @Override
     public void modify(ItemTooltipEvent context) {
-        if (!context.getItemStack().hasTag()) return;
-        CompoundTag tag = context.getItemStack().getOrCreateTag();
+        if (!LegacyNBT.hasTag(context.getItemStack())) return;
+        CompoundTag tag = LegacyNBT.getOrCreateTag(context.getItemStack());
 
         if (tag.contains("ContaminatingFluid", Tag.TAG_COMPOUND)) {
             FluidStack fluid = FluidStack.loadFluidStackFromNBT(tag.getCompound("ContaminatingFluid"));

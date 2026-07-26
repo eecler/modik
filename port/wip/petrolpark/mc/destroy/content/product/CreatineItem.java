@@ -5,7 +5,7 @@ import java.util.UUID;
 import javax.annotation.Nonnull;
 
 import petrolpark.mc.destroy.DestroyAttributes;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 
 import net.minecraft.network.protocol.game.ClientboundUpdateAttributesPacket;
 import net.minecraft.server.level.ServerPlayer;
@@ -45,14 +45,14 @@ public class CreatineItem extends Item {
                 AttributeInstance extraInventory = livingEntity.getAttribute(DestroyAttributes.EXTRA_INVENTORY_SIZE.get());
                 if (extraInventory != null) {
                     extraInventory.removeModifier(EXTRA_INVENTORY_ATTRIBUTE_MODIFIER);
-                    extraInventory.addPermanentModifier(new AttributeModifier(EXTRA_INVENTORY_ATTRIBUTE_MODIFIER, "Extra Inventory", DestroyAllConfigs.SERVER.substances.creatineExtraInventorySize.get(), AttributeModifier.Operation.ADDITION));
+                    extraInventory.addPermanentModifier(new AttributeModifier(EXTRA_INVENTORY_ATTRIBUTE_MODIFIER, "Extra Inventory", DestroyConfigs.server().substances.creatineExtraInventorySize.get(), AttributeModifier.Operation.ADDITION));
                 }
             }
             if (livingEntity.getAttributes().hasAttribute(DestroyAttributes.EXTRA_HOTBAR_SLOTS.get())) {
                 AttributeInstance extraHotbar = livingEntity.getAttribute(DestroyAttributes.EXTRA_HOTBAR_SLOTS.get());
                 if (extraHotbar != null) {
                     extraHotbar.removeModifier(EXTRA_HOTBAR_ATTRIBUTE_MODIFIER);
-                    extraHotbar.addPermanentModifier(new AttributeModifier(EXTRA_HOTBAR_ATTRIBUTE_MODIFIER, "Extra Hotbar", DestroyAllConfigs.SERVER.substances.creatineExtraHotbarSlots.get(), AttributeModifier.Operation.ADDITION));
+                    extraHotbar.addPermanentModifier(new AttributeModifier(EXTRA_HOTBAR_ATTRIBUTE_MODIFIER, "Extra Hotbar", DestroyConfigs.server().substances.creatineExtraHotbarSlots.get(), AttributeModifier.Operation.ADDITION));
                 }
             }
 

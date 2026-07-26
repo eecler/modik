@@ -45,10 +45,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.client.RenderTypeGroup;
+import net.neoforged.neoforge.client.RenderTypeGroup;
 import net.neoforged.neoforge.client.model.IModelBuilder;
 import net.neoforged.neoforge.client.model.pipeline.QuadBakingVertexConsumer;
-import net.minecraftforge.client.textures.UnitTextureAtlasSprite;
+import net.neoforged.neoforge.client.textures.UnitTextureAtlasSprite;
 
 public class MoleculeRenderer {
 

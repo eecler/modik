@@ -1,5 +1,6 @@
 package petrolpark.mc.destroy.content.processing.dynamo;
 
+import net.minecraft.core.HolderLookup;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,7 +8,7 @@ import petrolpark.mc.destroy.DestroyAdvancementTrigger;
 import petrolpark.mc.destroy.DestroyBlocks;
 import petrolpark.mc.destroy.DestroyRecipeTypes;
 import petrolpark.mc.destroy.DestroySoundEvents;
-import petrolpark.mc.destroy.config.DestroyAllConfigs;
+import petrolpark.mc.destroy.config.DestroyConfigs;
 import petrolpark.mc.destroy.content.processing.discstamping.DiscElectroplatingRecipe;
 import petrolpark.mc.destroy.content.processing.dynamo.ChargingBehaviour.ChargingBehaviourSpecifics;
 import petrolpark.mc.destroy.content.processing.dynamo.arcfurnace.ArcFurnaceRecipe;
@@ -82,7 +83,7 @@ public class DynamoBlockEntity extends BasinOperatingBlockEntity implements Char
     @Override
     public float calculateStressApplied() {
         lastStressApplied = super.calculateAddedStressCapacity();
-        if (getBlockState().getValue(DynamoBlock.ARC_FURNACE)) lastStressApplied *= DestroyAllConfigs.SERVER.blocks.arcFurnaceStressMultiplier.getF();
+        if (getBlockState().getValue(DynamoBlock.ARC_FURNACE)) lastStressApplied *= DestroyConfigs.server().blocks.arcFurnaceStressMultiplier.getF();
         return lastStressApplied;
     };
 
@@ -98,16 +99,16 @@ public class DynamoBlockEntity extends BasinOperatingBlockEntity implements Char
     };
 
     @Override
-    protected void read(CompoundTag compound, boolean clientPacket) {
-        super.read(compound, clientPacket);
+    protected void read(CompoundTag compound, HolderLookup.Provider registries, boolean clientPacket) {
+        super.read(compound, registries, clientPacket);
         soundDuration = compound.getInt("SoundDuration");
         CompoundTag stateTag = compound.getCompound("ArcFurnaceBlock");
         if (compound.contains("ArcFurnaceBlock", Tag.TAG_COMPOUND)) arcFurnaceBlock = Lazy.of(() -> NbtUtils.readBlockState(getLevel().holderLookup(Registries.BLOCK), stateTag));
     };
 
     @Override
-    protected void write(CompoundTag compound, boolean clientPacket) {
-        super.write(compound, clientPacket);
+    protected void write(CompoundTag compound, HolderLookup.Provider registries, boolean clientPacket) {
+        super.write(compound, registries, clientPacket);
         compound.putInt("SoundDuration", soundDuration);
         if (!arcFurnaceBlock.get().isAir()) compound.put("ArcFurnaceBlock", NbtUtils.writeBlockState(arcFurnaceBlock.get()));
     };
@@ -190,7 +191,7 @@ public class DynamoBlockEntity extends BasinOperatingBlockEntity implements Char
 
     @Override
     public boolean canProcessInBulk() {
-        return DestroyAllConfigs.SERVER.blocks.dynamoBulkCharging.get();
+        return DestroyConfigs.server().blocks.dynamoBulkCharging.get();
     };
 
     @Override
@@ -291,8 +292,8 @@ public class DynamoBlockEntity extends BasinOperatingBlockEntity implements Char
     protected <C extends Container> boolean matchStaticFilters(Recipe<C> recipe) {
         return (recipe.getType() == DestroyRecipeTypes.ELECTROLYSIS.getType())
         || (recipe.getType() == DestroyRecipeTypes.ARC_FURNACE.getType())
-        || (recipe.getType() == RecipeType.SMELTING && DestroyAllConfigs.SERVER.blocks.arcFurnaceAllowsSmelting.get())
-        || (recipe.getType() == RecipeType.BLASTING && DestroyAllConfigs.SERVER.blocks.arcFurnaceAllowsBlasting.get());
+        || (recipe.getType() == RecipeType.SMELTING && DestroyConfigs.server().blocks.arcFurnaceAllowsSmelting.get())
+        || (recipe.getType() == RecipeType.BLASTING && DestroyConfigs.server().blocks.arcFurnaceAllowsBlasting.get());
     };
 
     @Override

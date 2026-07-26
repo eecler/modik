@@ -5,6 +5,7 @@ import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import petrolpark.mc.destroy.core.chemistry.hazard.EntityChemicalPoison;
 import petrolpark.mc.destroy.core.chemistry.novelcompounds.PlayerNovelCompoundsSynthesized;
 import petrolpark.mc.destroy.core.pollution.ChunkPollution;
 import petrolpark.mc.destroy.core.pollution.LevelPollution;
@@ -21,6 +22,11 @@ public class DestroyAttachmentTypes {
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<ChunkPollution>> CHUNK_POLLUTION = ATTACHMENT_TYPES.register("chunk_pollution", AttachmentType.builder(ChunkPollution::create)
         .serialize(ChunkPollution.SERIALIZER)
         ::build
+    );
+
+    public static final DeferredHolder<AttachmentType<?>, AttachmentType<EntityChemicalPoison>> CHEMICAL_POISON = ATTACHMENT_TYPES.register("chemical_poison", () -> AttachmentType.builder(() -> new EntityChemicalPoison())
+        .serialize(EntityChemicalPoison.CODEC)
+        .build()
     );
 
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<PlayerNovelCompoundsSynthesized>> NOVEL_COMPOUNDS_SYNTHESIZED = ATTACHMENT_TYPES.register("novel_compounds_synthesized", () -> AttachmentType.builder(() -> new PlayerNovelCompoundsSynthesized())

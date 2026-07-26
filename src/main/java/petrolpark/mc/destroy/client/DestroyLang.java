@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.UnaryOperator;
 
+import com.simibubi.create.foundation.utility.CreateLang;
+
 import net.createmod.catnip.lang.FontHelper.Palette;
 import net.createmod.catnip.lang.Lang;
 import net.createmod.catnip.lang.LangBuilder;
@@ -15,6 +17,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 
 import petrolpark.mc.destroy.Destroy;
 
@@ -149,6 +152,54 @@ public class DestroyLang {
             };
         };
         return translate(translationKey, concentrationFormatter.format(quantity));
+    };
+
+
+    public static void tankInfoTooltip(List<Component> tooltip, LangBuilder tankName, FluidTank tank) {
+        tankInfoTooltip(tooltip, tankName, tank.getFluid(), tank.getCapacity());
+    };
+
+    public static void tankInfoTooltip(List<Component> tooltip, LangBuilder tankName, FluidStack contents, int capacity) {
+        LangBuilder mb = CreateLang.builder().translate("generic.unit.millibuckets");
+
+        tankName
+            .style(ChatFormatting.GRAY)
+            .forGoggles(tooltip, 0);
+
+        if (contents.isEmpty()) {
+            CreateLang.builder().translate("gui.goggles.fluid_container.capacity")
+                .add(DestroyLang.number(capacity)
+                    .add(mb)
+                    .style(ChatFormatting.GOLD))
+                .style(ChatFormatting.GRAY)
+                .forGoggles(tooltip, 1);
+        } else {
+            DestroyLang.fluidName(contents)
+                .style(ChatFormatting.GRAY)
+                .forGoggles(tooltip, 1);
+
+            DestroyLang.builder()
+                .add(DestroyLang.number(contents.getAmount())
+                    .add(mb)
+                    .style(ChatFormatting.GOLD))
+                .text(ChatFormatting.GRAY, " / ")
+                .add(DestroyLang.number(capacity)
+                    .add(mb)
+                    .style(ChatFormatting.DARK_GRAY))
+                .forGoggles(tooltip, 1);
+        };
+    };
+
+    public static MutableComponent tickOrCross(boolean tick) {
+        return tick ? tick() : cross();
+    };
+
+    public static MutableComponent tick() {
+        return Component.literal("\u2714").withStyle(ChatFormatting.GREEN).copy();
+    };
+
+    public static MutableComponent cross() {
+        return Component.literal("\u2718").withStyle(ChatFormatting.RED).copy();
     };
 
 };

@@ -50,6 +50,13 @@ public class DestroyPartials {
     MECHANICAL_SIEVE_LINKAGES = block("mechanical_sieve/linkages"),
     MECHANICAL_SIEVE = block("mechanical_sieve/sieve");
 
+    // Chemistry protection equipment
+    public static final PartialModel
+    LABORATORY_GOGGLES = block("laboratory_goggles"),
+    GOLD_LABORATORY_GOGGLES = block("gold_laboratory_goggles"),
+    GAS_MASK = block("gas_mask"),
+    PAPER_MASK = block("paper_mask");
+
     // Tree Tap
     public static final PartialModel
     TREE_TAP_ARM = block("tree_tap/arm");

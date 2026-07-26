@@ -1,0 +1,102 @@
+package petrolpark.mc.destroy.core.chemistry.storage.testtube;
+
+import net.minecraft.core.HolderLookup;
+
+import java.util.List;
+
+import org.jetbrains.annotations.NotNull;
+
+import petrolpark.mc.destroy.DestroyTags.Items;
+import petrolpark.mc.destroy.core.block.entity.ISpecialWhenHoveredBlockEntity;
+import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
+import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
+
+import net.createmod.catnip.data.Pair;
+import net.createmod.catnip.outliner.Outliner;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.items.ItemStackHandler;
+
+public class TestTubeRackBlockEntity extends SmartBlockEntity implements ISpecialWhenHoveredBlockEntity {
+
+    public TestTubeRackInventory inv;
+
+    public TestTubeRackBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+        super(type, pos, state);
+        inv = new TestTubeRackInventory();
+    };
+
+    @Override
+    public void addBehaviours(List<BlockEntityBehaviour> behaviours) {};
+
+    /**
+     * PORT (1.21.1): the Item Handler is handed out by
+     * {@link petrolpark.mc.destroy.core.chemistry.storage.MixtureStorageCapabilities} now, and there
+     * is nothing to invalidate - {@link #read} replaces the inventory, so this must be looked up
+     * fresh rather than cached.
+     */
+    public TestTubeRackInventory getInventory() {
+        return inv;
+    };
+
+    @Override
+    public void tick() {
+        super.tick();
+        sendData();
+    };
+
+    @Override
+    protected void read(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
+        super.read(tag, registries, clientPacket);
+        inv = new TestTubeRackInventory();
+        inv.deserializeNBT(registries, tag.getCompound("Inventory"));
+    };
+
+    @Override
+    protected void write(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
+        super.write(tag, registries, clientPacket);
+        tag.put("Inventory", inv.serializeNBT(registries));
+    };
+    
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public void whenLookedAt(LocalPlayer player, BlockHitResult result) {
+        int tube = TestTubeRackBlock.getTargetedTube(getBlockState(), getBlockPos(), player);
+        if (tube == -1) return;
+        if (inv.isItemValid(tube, player.getItemInHand(InteractionHand.MAIN_HAND)) || !inv.getStackInSlot(tube).isEmpty()) Outliner.getInstance().showAABB(Pair.of("test_tube_rack_" + tube, getBlockPos()), TestTubeRackBlock.getTubeBox(getBlockState(), getBlockPos(), tube), 1)
+            .lineWidth(1 / 64f)
+            .colored(0xFF7F7F7F);
+    };
+
+    public class TestTubeRackInventory extends ItemStackHandler {
+
+        public TestTubeRackInventory() {
+            super(4);
+        };
+
+        @Override
+        public int getSlotLimit(int slot) {
+            return 1;
+        };
+
+        @Override
+        public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+            return stack.is(Items.TEST_TUBE_RACK_STORABLE.tag);
+        };
+
+        @Override
+        protected void onContentsChanged(int slot) {
+            super.onContentsChanged(slot);
+            notifyUpdate();
+        };
+    };
+    
+};

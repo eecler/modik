@@ -81,3 +81,17 @@ javac -proc:none -d out -cp "$(cat cp.txt)" -sourcepath src/main/java <свои 
 - AT `net.minecraft.world.level.Explosion`: `level/x/y/z/source/radius/damageSource/
   damageCalculator/random/toBlow/hitPlayers/fire/blockInteraction` открыты в
   `accesstransformer.cfg` — общий файл, если добавляете туда что-то ещё, дописывайте в конец.
+
+# Сессия B: незакоммиченные правки в общих файлах
+
+Сессии A/B/C работают в одном рабочем дереве, поэтому общие реестры нельзя закоммитить
+по кластерам — в них уже перемешаны правки трёх сессий. Правки сессии B, которые лежат
+в рабочем дереве (не в коммите), нужны, чтобы кластеры `storage`/`hazard` работали:
+
+- `Destroy.java` — вызовы `DestroyArmorMaterials.register`, `DestroyCapabilities.register`,
+  `DestroyParticleTypes.register`, `MixtureStorage.register`.
+- `DestroyPackets.java` — записи `CHEMICAL_POISON`, `CRYING`, `TRANSFER_FLUID`.
+- `DestroyCapabilities.java` (новый общий файл) — строка `MixtureStorageCapabilities`.
+- `build.gradle` — задача `dumpCompileClasspath` для `port/tools/check_cluster.sh`.
+
+Кто коммитит общие файлы первым — пусть проверит, что эти строки на месте.

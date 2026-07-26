@@ -5,6 +5,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.fluids.SimpleFluidContent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -25,6 +26,29 @@ public class DestroyDataComponents {
         () -> DataComponentType.<CompoundTag>builder()
             .persistent(CompoundTag.CODEC)
             .networkSynchronized(ByteBufCodecs.COMPOUND_TAG)
+            .build()
+    );
+
+    /**
+     * PORT (1.21.1): where {@link petrolpark.mc.destroy.core.chemistry.storage.IMixtureStorageItem
+     * Mixture storage Items} used to keep their contents in a {@code "Fluid"} child tag, they now
+     * hold a Fluid Stack component. {@link SimpleFluidContent} is NeoForge's own holder for this.
+     */
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<SimpleFluidContent>> FLUID_CONTENT = DATA_COMPONENT_TYPES.register("fluid_content",
+        () -> DataComponentType.<SimpleFluidContent>builder()
+            .persistent(SimpleFluidContent.CODEC)
+            .networkSynchronized(SimpleFluidContent.STREAM_CODEC)
+            .build()
+    );
+
+    /**
+     * The Mixture a piece of protective equipment was splashed with, which will hurt whoever takes
+     * it off without washing it first.
+     */
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<SimpleFluidContent>> CONTAMINATING_FLUID = DATA_COMPONENT_TYPES.register("contaminating_fluid",
+        () -> DataComponentType.<SimpleFluidContent>builder()
+            .persistent(SimpleFluidContent.CODEC)
+            .networkSynchronized(SimpleFluidContent.STREAM_CODEC)
             .build()
     );
 

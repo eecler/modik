@@ -18,6 +18,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import petrolpark.mc.destroy.content.processing.sieve.SievingRecipe;
+import petrolpark.mc.destroy.content.processing.treetap.TappingRecipe;
 import petrolpark.mc.library.compat.create.core.data.recipe.AdvancedProcessingRecipe;
 
 /**
@@ -29,7 +30,8 @@ import petrolpark.mc.library.compat.create.core.data.recipe.AdvancedProcessingRe
  */
 public enum DestroyRecipeTypes implements IRecipeTypeInfo {
 
-    SIEVING(() -> new AdvancedProcessingRecipe.Serializer<>(SievingRecipe::new));
+    SIEVING(() -> new AdvancedProcessingRecipe.Serializer<>(SievingRecipe::new)),
+    TAPPING(() -> new AdvancedProcessingRecipe.Serializer<>(TappingRecipe::new));
 
     private final ResourceLocation id;
     private final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<?>> serializerObject;

@@ -7,6 +7,8 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import petrolpark.mc.destroy.DestroyBlockEntityTypes;
 import petrolpark.mc.destroy.content.processing.sieve.MechanicalSieveVisual;
+import petrolpark.mc.destroy.content.processing.treetap.TreeTapRegistry;
+import petrolpark.mc.destroy.content.processing.treetap.TreeTapVisual;
 
 /**
  * Flywheel visuals for Destroy's block entities. On 1.20.1 these were attached with
@@ -22,6 +24,10 @@ public class DestroyVisualizers {
 
         SimpleBlockEntityVisualizer.builder(DestroyBlockEntityTypes.MECHANICAL_SIEVE.get())
             .factory(MechanicalSieveVisual::new)
+            .apply();
+
+        SimpleBlockEntityVisualizer.builder(TreeTapRegistry.TREE_TAP_BLOCK_ENTITY.get())
+            .factory(TreeTapVisual::new)
             .apply();
     };
 

@@ -5,6 +5,7 @@ import petrolpark.mc.destroy.core.pollution.PollutionConfigs;
 
 public class DestroyServerConfigs extends ConfigBase {
 
+    public final DestroyBlocksConfigs blocks = nested(0, DestroyBlocksConfigs::new, "Destroy's blocks");
     public final PollutionConfigs pollution = nested(0, PollutionConfigs::new, "Pollution");
     public final DestroySubstancesConfigs substances = nested(0, DestroySubstancesConfigs::new, "Drugs, medicines and alcohol");
 

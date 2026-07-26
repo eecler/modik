@@ -50,6 +50,10 @@ public class DestroyPartials {
     MECHANICAL_SIEVE_LINKAGES = block("mechanical_sieve/linkages"),
     MECHANICAL_SIEVE = block("mechanical_sieve/sieve");
 
+    // Tree Tap
+    public static final PartialModel
+    TREE_TAP_ARM = block("tree_tap/arm");
+
     private static PartialModel block(String path) { //copied from Create source code
         return PartialModel.of(Destroy.asResource("block/"+path));
     };

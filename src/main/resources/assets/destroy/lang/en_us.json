@@ -7,6 +7,7 @@
     "block.destroy.molten_stainless_steel": "Molten Inox",
     "block.destroy.stainless_steel_block": "Block of Inox",
     "block.destroy.stainless_steel_rods_block": "Block of Inox Rods",
+    "block.destroy.tree_tap": "Tapper",
     "commands.destroy.pollution.query": "Pollution of type %s has a level of %s",
     "commands.destroy.pollution.set": "Set level of Pollution of type %s to %s. A reload may be required for some changes to take effect.",
     "destroy.chemical.acetamide": "Acetamide",

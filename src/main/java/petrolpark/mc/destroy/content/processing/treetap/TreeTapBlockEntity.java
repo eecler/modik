@@ -2,7 +2,6 @@ package petrolpark.mc.destroy.content.processing.treetap;
 
 import java.util.List;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import petrolpark.mc.destroy.DestroyAdvancementTrigger;
@@ -18,15 +17,11 @@ import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
 
 public class TreeTapBlockEntity extends BlockBreakingKineticBlockEntity {
 
-    protected LazyOptional<IFluidHandler> fluidCapability;
 	public GeniusFluidTankBehaviour tank;
 
     protected DestroyAdvancementBehaviour advancementBehaviour;
@@ -77,30 +72,23 @@ public class TreeTapBlockEntity extends BlockBreakingKineticBlockEntity {
 
         advancementBehaviour = new DestroyAdvancementBehaviour(this, DestroyAdvancementTrigger.TAP_TREE);
         behaviours.add(advancementBehaviour);
-
-        refreshCapability();
     };
-
-    private void refreshCapability() {
-		LazyOptional<IFluidHandler> oldCap = fluidCapability;
-		fluidCapability = LazyOptional.of(tank::getPrimaryHandler);
-		if (oldCap != null) oldCap.invalidate();
-	};
 
     @Override
     public boolean addToGoggleTooltip(List<Component> tooltip, boolean isPlayerSneaking) {
-        if (fluidCapability == null) return false;
-        return containedFluidTooltip(tooltip, isPlayerSneaking, fluidCapability);
+        if (tank == null) return false;
+        return containedFluidTooltip(tooltip, isPlayerSneaking, tank.getPrimaryHandler());
     };
 
-    @Nonnull
-	@Override
-	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-        if (side != null && side != getBlockState().getValue(TreeTapBlock.HORIZONTAL_FACING).getOpposite()) return super.getCapability(cap, side);
-		if (!fluidCapability.isPresent()) refreshCapability();
-		if (cap == ForgeCapabilities.FLUID_HANDLER) return fluidCapability.cast();
-		return super.getCapability(cap, side);
-	};
+    /**
+     * The Tree Tap only pours out of its back, so it exposes no handler on any other side.
+     */
+    @Nullable
+    public IFluidHandler getFluidHandler(@Nullable Direction side) {
+        if (tank == null) return null;
+        if (side != null && side != getBlockState().getValue(TreeTapBlock.HORIZONTAL_FACING).getOpposite()) return null;
+        return tank.getPrimaryHandler();
+    };
 
     public int getCapacity() {
         return DestroyConfigs.server().blocks.treeTapCapacity.get();

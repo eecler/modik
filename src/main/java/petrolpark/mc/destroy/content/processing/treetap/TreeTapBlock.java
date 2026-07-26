@@ -1,7 +1,6 @@
 package petrolpark.mc.destroy.content.processing.treetap;
 
 import petrolpark.mc.library.compat.create.core.world.block.entity.behaviour.AbstractRememberPlacerBehaviour;
-import petrolpark.mc.destroy.DestroyBlockEntityTypes;
 import petrolpark.mc.destroy.DestroyVoxelShapes;
 import com.simibubi.create.content.kinetics.base.HorizontalKineticBlock;
 import com.simibubi.create.foundation.block.IBE;
@@ -87,7 +86,7 @@ public class TreeTapBlock extends HorizontalKineticBlock implements IBE<TreeTapB
 
     @Override
     public BlockEntityType<? extends TreeTapBlockEntity> getBlockEntityType() {
-        return DestroyBlockEntityTypes.TREE_TAP.get();
+        return TreeTapRegistry.TREE_TAP_BLOCK_ENTITY.get();
     };
     
 };

@@ -17,6 +17,8 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
 import petrolpark.mc.destroy.config.DestroyConfigs;
 import petrolpark.mc.destroy.content.processing.moltenblock.MoltenBlocks;
+import petrolpark.mc.destroy.content.processing.treetap.TreeTapRegistry;
+import petrolpark.mc.destroy.core.chemistry.storage.MixtureStorageCapabilities;
 import petrolpark.mc.destroy.core.registrate.DestroyRegistrate;
 import petrolpark.mc.destroy.data.DestroyDatagen;
 import petrolpark.mc.library.shared.GetPetrolparkSharedFeatures;
@@ -52,7 +54,9 @@ public class Destroy {
         DestroyDataComponents.register(modEventBus);
         DestroyFluids.register();
         DestroyItems.register();
+        MixtureStorageCapabilities.register(modEventBus);
         MoltenBlocks.register();
+        TreeTapRegistry.register();
         DestroyMobEffects.register(modEventBus);
         DestroyNumberProviderTypes.register();
         DestroyPackets.register();

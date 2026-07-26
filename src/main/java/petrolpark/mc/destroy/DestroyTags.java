@@ -21,6 +21,13 @@ public class DestroyTags {
         return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", path));
     };
 
+    /**
+     * A common (<code>c:</code> namespace) Block tag. See {@link #commonItemTag(String)}.
+     */
+    public static TagKey<Block> commonBlockTag(String path) {
+        return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", path));
+    };
+
     public enum Blocks {
 
         ACID_RAIN_DESTROYS,

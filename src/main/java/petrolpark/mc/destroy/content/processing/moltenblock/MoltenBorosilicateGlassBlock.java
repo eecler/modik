@@ -4,22 +4,32 @@ import petrolpark.mc.destroy.DestroyBlocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class BorosilicateGlassFiberBlock extends FastCoolingMoltenPillarBlock {
+public class MoltenBorosilicateGlassBlock extends AbstractMoltenBlock {
 
-    public BorosilicateGlassFiberBlock(Properties properties) {
+    public MoltenBorosilicateGlassBlock(Properties properties) {
         super(properties);
     };
 
     @Override
-    @SuppressWarnings("deprecation")
+    public Item asItem() {
+        return MoltenBlocks.MOLTEN_BOROSILICATE_GLASS_BUCKET.get();
+    };
+
+    @Override
+    public BlockState getSolidifiedBlockState() {
+        return DestroyBlocks.BOROSILICATE_GLASS.getDefaultState();
+    };
+
+    @Override
     public boolean skipRendering(BlockState state, BlockState adjacentState, Direction side) {
-        return (state.getValue(MOLTEN) && (DestroyBlocks.MOLTEN_BOROSILICATE_GLASS.has(adjacentState) || (DestroyBlocks.BOROSILICATE_GLASS_FIBER.has(adjacentState) && adjacentState.getValue(FastCoolingMoltenPillarBlock.MOLTEN)))) || super.skipRendering(state, adjacentState, side);
+        return MoltenBlocks.MOLTEN_BOROSILICATE_GLASS.has(adjacentState) || (MoltenBlocks.BOROSILICATE_GLASS_FIBER.has(adjacentState) && adjacentState.getValue(FastCoolingMoltenPillarBlock.MOLTEN)) || super.skipRendering(state, adjacentState, side);
     };
 
     @Override

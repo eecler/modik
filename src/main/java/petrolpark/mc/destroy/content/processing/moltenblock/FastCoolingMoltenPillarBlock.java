@@ -9,7 +9,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
@@ -34,7 +33,7 @@ public class FastCoolingMoltenPillarBlock extends RotatedPillarBlock {
 
     @Override
     public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
-        if (state.getValue(MOLTEN) && entity instanceof LivingEntity livingEntity && !EnchantmentHelper.hasFrostWalker(livingEntity)) entity.hurt(level.damageSources().hotFloor(), 1.0f);
+        if (state.getValue(MOLTEN) && entity instanceof LivingEntity && !entity.isSteppingCarefully()) entity.hurt(level.damageSources().hotFloor(), 1.0f);
         super.stepOn(level, pos, state, entity);
     };
 

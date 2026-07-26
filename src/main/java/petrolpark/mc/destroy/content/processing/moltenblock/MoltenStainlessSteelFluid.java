@@ -1,7 +1,5 @@
 package petrolpark.mc.destroy.content.processing.moltenblock;
 
-import petrolpark.mc.destroy.DestroyBlocks;
-import petrolpark.mc.destroy.DestroyItems;
 import petrolpark.mc.library.core.world.fluid.ICustomBlockStateFluid;
 import com.simibubi.create.content.fluids.VirtualFluid;
 
@@ -26,12 +24,12 @@ public class MoltenStainlessSteelFluid extends VirtualFluid implements ICustomBl
 
     @Override
     public Item getBucket() {
-        return DestroyItems.MOLTEN_STAINLESS_STEEL_BUCKET.get();
+        return MoltenBlocks.MOLTEN_STAINLESS_STEEL_BUCKET.get();
     };
 
     @Override
     public BlockState getBlockState() {
-        return DestroyBlocks.MOLTEN_STAINLESS_STEEL.getDefaultState();
+        return MoltenBlocks.MOLTEN_STAINLESS_STEEL.getDefaultState();
     };
     
 };

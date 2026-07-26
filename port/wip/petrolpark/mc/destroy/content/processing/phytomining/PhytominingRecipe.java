@@ -4,9 +4,9 @@ import petrolpark.mc.destroy.Destroy;
 import petrolpark.mc.destroy.DestroyItems;
 import petrolpark.mc.destroy.DestroyRecipeTypes;
 import com.simibubi.create.content.processing.recipe.ProcessingOutput;
-import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
+import petrolpark.mc.library.compat.create.core.data.recipe.AdvancedProcessingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
-import com.simibubi.create.content.processing.recipe.ProcessingRecipeParams;
+import petrolpark.mc.library.compat.create.core.data.recipe.AdvancedProcessingRecipeParams;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -14,7 +14,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.items.wrapper.RecipeWrapper;
 
-public class PhytominingRecipe extends ProcessingRecipe<RecipeWrapper> {
+public class PhytominingRecipe extends AdvancedProcessingRecipe<RecipeWrapper> {
 
     private static int counter = 0;
 
@@ -35,7 +35,7 @@ public class PhytominingRecipe extends ProcessingRecipe<RecipeWrapper> {
         return recipe;
     };
 
-    public PhytominingRecipe(ProcessingRecipeParams params) {
+    public PhytominingRecipe(AdvancedProcessingRecipeParams params) {
         super(DestroyRecipeTypes.MUTATION, params);
     };
 

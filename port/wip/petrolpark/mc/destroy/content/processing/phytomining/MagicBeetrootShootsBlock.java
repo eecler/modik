@@ -4,6 +4,8 @@ import petrolpark.mc.destroy.DestroyBlocks;
 import petrolpark.mc.destroy.DestroyItems;
 import petrolpark.mc.destroy.DestroyVoxelShapes;
 
+import com.mojang.serialization.MapCodec;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -19,10 +21,17 @@ import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.neoforged.neoforge.common.ForgeHooks;
-import net.neoforged.neoforge.common.PlantType;
+import net.neoforged.neoforge.common.CommonHooks;
+import net.neoforged.neoforge.event.EventHooks;
 
 public class MagicBeetrootShootsBlock extends BushBlock implements BonemealableBlock {
+
+    public static final MapCodec<MagicBeetrootShootsBlock> CODEC = simpleCodec(MagicBeetrootShootsBlock::new);
+
+    @Override
+    protected MapCodec<MagicBeetrootShootsBlock> codec() {
+        return CODEC;
+    };
 
     public MagicBeetrootShootsBlock(Properties properties) {
         super(properties);
@@ -31,11 +40,6 @@ public class MagicBeetrootShootsBlock extends BushBlock implements BonemealableB
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         return DestroyVoxelShapes.MAGIC_BEETROOT_SEEDS;
-    };
-
-    @Override
-    public PlantType getPlantType(BlockGetter level, BlockPos pos) {
-        return PlantType.CROP;
     };
 
     @Override
@@ -51,7 +55,7 @@ public class MagicBeetrootShootsBlock extends BushBlock implements BonemealableB
     @Override
     @SuppressWarnings("deprecation")
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-        if (entity instanceof Ravager && net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(level, entity)) {
+        if (entity instanceof Ravager && EventHooks.canEntityGrief(level, entity)) {
             level.destroyBlock(pos, true, entity);
         };
 
@@ -63,9 +67,9 @@ public class MagicBeetrootShootsBlock extends BushBlock implements BonemealableB
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         if (!level.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
         if (level.getRawBrightness(pos, 0) >= 9) {
-            if (ForgeHooks.onCropsGrowPre(level, pos, state, random.nextInt(26) == 0)) {
+            if (CommonHooks.canCropGrow(level, pos, state, random.nextInt(26) == 0)) {
                 level.setBlockAndUpdate(pos, getGrowthResult(random));
-                ForgeHooks.onCropsGrowPost(level, pos, state);
+                CommonHooks.fireCropGrowPost(level, pos, state);
             };
         };
     };

@@ -95,3 +95,31 @@ javac -proc:none -d out -cp "$(cat cp.txt)" -sourcepath src/main/java <свои 
 - `build.gradle` — задача `dumpCompileClasspath` для `port/tools/check_cluster.sh`.
 
 Кто коммитит общие файлы первым — пусть проверит, что эти строки на месте.
+
+# Кластер `vat` — разведка сессии B (28 файлов, в `port/wip`)
+
+Заносить целиком нельзя: он тянет три чужих/непортированных кластера. Что нужно **до** vat:
+
+| Нужно | Кому в vat | Где сейчас |
+|---|---|---|
+| `core/chemistry/recipe/` (`ReactionRecipe`, `MixtureConversionRecipe`) | `VatControllerBlockEntity` | `port/wip` |
+| `core/fluid/gasparticle/` (`EvaporatingFluidS2CPacket`, `GasParticleData`) | `VatControllerBlockEntity` | `port/wip` |
+| `PollutionHelper.pollute(Level, BlockPos, float, int, FluidStack...)` | `VatControllerBlockEntity` | нет в скелете, взять из 1.20.1 (тянет `ChemistryHazardHelper.damage` — уже портирован — и `EvaporatingFluidS2CPacket`) |
+| `core/chemistry/MoleculeRenderer`, `MoleculeDisplayItem` | `VatScreen` | `port/wip` |
+| `client/DestroyIcons` | `VatScreen`, колориметр | `port/wip` |
+| `SingleBlockIngredient` | `VatMaterialResourceListener` | грепни библиотеку 1.5.0 — возможно уже там |
+| `VatMaterial.getMaterial(BlockState)` / `getLocalTemperature` | `Vat`, `VatSideBlockEntity` | `VatMaterial` в `src` портирован **частично**, этих методов нет |
+| `DestroyBlocks.VAT_SIDE` / `VAT_CONTROLLER`, `DestroyBlockEntityTypes` | всё | зарегистрировать (свой holder `VatRegistry`, как `MixtureStorage`) |
+
+Сами миграции внутри кластера — те же, что уже сделаны в `storage`/`hazard`, править по образцу:
+`LazyOptional` → `Capabilities.*` + `@Nullable` (24 места), `getOrCreateChildTag("Mixture")` →
+`stack.get(DestroyDataComponents.MIXTURE)` (7), `FluidStack.loadFluidStackFromNBT`/`writeToNBT` →
+`parseOptional`/`save`, 4 пакета `C2SPacket`/`S2CPacket` → Catnip payload + `StreamCodec`
+(записи в `DestroyPackets`), `DestroyMessages.*` → `CatnipServices.NETWORK.*`,
+`DistExecutor.unsafeRunWhenOn` → `FMLEnvironment.dist.isClient()`,
+`ForgeCatnipServices` → `NeoForgeCatnipServices`, `CreateClient.OUTLINER` → `Outliner.getInstance()`,
+`PollutionType.max` → `PollutionHelper.getLevelPollutionTypeProperties(t).max()`.
+
+Не забыть вернуть в `IMixtureStorageItem`: `selectVatTank(...)` и `SinglePhaseVatExtraction`
+(см. PORT-комментарий в файле) — иначе `VatSideBlock`, `VatControllerBlock` и
+`DrainVatPonderInstruction` не соберутся.
